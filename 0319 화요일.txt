@@ -1,0 +1,5 @@
+git init
+
+cd :  change directory
+cd 이동할 경로
+cd .. : 상위 폴더로 이동
