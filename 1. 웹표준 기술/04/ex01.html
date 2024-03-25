@@ -2,58 +2,118 @@
 <html>
     <head>
         <meta charset = "UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/style.css"
     </head>
     <body>
-        <h1>회원가입</h1>
-        <form>
-            <dl>
-                <dt>아이디</dt>
-                <dd>
-                    <input type="text">
-                </dd>
-            </dl>
-            <dl>
-                <dt>비밀번호</dt>
-                <dd>
-                    <input type="password">
-                </dd>
-            </dl>
-            <dl>
-                <dt>비밀번호 확인</dt>
-                <dd>
-                    <input type="password">
-                </dd>
-            </dl>
-            <dl>
-                <dt>회원 명</dt>
-                <dd>
-                    <input type="text">
-                </dd>
-            </dl>
-            <dl>
-                <dt>학년</dt>
-                <dd>
-                    <label><!--글자를 눌러도 체크가능-->
-                        <input type="radio" name="grade"> 1학년
-                    </label>
-                    <label><input type="radio" name="grade"> 2학년</label><!-- 두가지 형태 -->
-                    <input type="radio" name="grade" id="grade3"> 
-                    <label for="grade3">3학년</label>
-                    
-                </dd>
-            </dl>
-            <dl>
-                <dt>취미</dt>
-                <dd>
-                    <label><input type="checkbox">취미1</label>
-                    <input type="checkbox" id="취미2">
-                    <label for="취미2">취미2</label>
-                    <input type="checkbox">취미3
-                </dd>
-            </dl>
-            <input type = "submit" value="앙제출띠"><br><br>
-            <input type = "reset"  value="앙 초기화띠">
-            <button type="submit">submit</button>
+        <h1 style="color: orange;">회원가입</h1>
+        <form name="frm" method="post" action="ex02.html">
+            <input type="hidden" name="mode" value="join">
+            <fieldset>
+                <legend>일반 정보</legend>
+                <dl>
+                    <dt>아이디</dt>
+                    <dd>
+                        <input type="text" name="userId" autofocus placeholder="아이디" required minlength="6">
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>비밀번호</dt>
+                    <dd>
+                        <input type="password" name="userPw" placeholder="비밀번호" required minlength="8" >
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>비밀번호 확인</dt>
+                    <dd>
+                        <input type="password" name="confirmPw" placeholder="비밀번호 확인" required minlength="8">
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>회원 명</dt>
+                    <dd>
+                        <input type="text" name="userNm" value="사용자01" disabled>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>이메일</dt>
+                    <dd>
+                        <input type="email" name="email" >
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>생년월일</dt>
+                    <dd>
+                        <input type="date" name="birth">
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>프로필 이미지</dt>
+                    <dd>
+                        <input type="file" name="profileImg" multiple >
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>취미</dt>
+                    <dd>
+                        <label><input type="checkbox" name="hobby" value="취미1">취미1</label>
+                        <input type="checkbox" id="취미2" name="hobby" value="취미2">
+                        <label for="취미2">취미2</label>
+                        <input type="checkbox" name="hobby" value="취미2">취미3
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>지역</dt>
+                    <dd>
+                        <datalist id="locations">
+                            <option value="서울특별시" label="서울"></option>
+                            <option value="경기도" label="경기"></option>
+                            <option value="인천광역시" label="인천"></option>
+                        </datalist>
+                        <input type="text" name="locaion" list="locations">
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>자기소개</dt>
+                    <dd>
+                        <textarea name="introduction" rows="10" cols="30"></textarea>
+                    </dd>
+                </dl>
+            </fieldset>
+            <fieldset>
+                <legend>학교 정보</legend>
+                <dl>
+                    <dt>전공</dt>
+                    <dd>
+                        <select name="major">
+                            <optgroup label="공과대학">
+                                <option value="컴퓨터공학">컴퓨터공학</option>
+                                <option value="수학과">수학과</option>
+                            </optgroup>
+                            <optgroup label="인문대학">
+                                <option value="기계공학과">기계공학과</option>
+                                <option value="영어영문학과" selected>영어영문학과</option>
+                                <option value="철학과">철학과</option>
+                            </optgroup>
+                        </select>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>학년</dt>
+                    <dd>
+                        <label><!--글자를 눌러도 체크가능-->
+                            <input type="radio" name="grade" value="1" checked> 1학년
+                        </label>
+                        <label><input type="radio" name="grade" value="2"  > 2학년</label><!-- 두가지 형태 -->
+                        <input type="radio" name="grade" id="grade3" value="3"> 
+                        <label for="grade3">3학년</label>
+                        
+                    </dd>
+                </dl>
+            </fieldset>
+            <input type = "submit" value="제출"><br><br>
+            <input type = "reset"  value="초기화">
+            
         </form>
+        <progress max="100" value="70"></progress>
     </body>
 </html>

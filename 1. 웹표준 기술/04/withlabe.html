@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>label 태그 사용하기</title>
+</head>
+<body>
+    <form method="post">
+        <fieldset>
+            <legend>레게노</legend>
+            <h3>수강 분야 (다수 선택가능)</h3>
+            <dl>
+                <dd>
+                    <label>
+                        <input type="checkbox" name=area value="grm">문법
+                    </label>
+                    <label><input type="checkbox" value="rd">독해</label>
+                    <input type="checkbox" id="apple" value="wr">
+                    <label for="apple">작문</label>
+                </dd>
+                
+            </dl>
+        </fieldset>
+        <h3>수강 과목 (1과목만 선택가능)</h3>
+        <dl>
+            <dd>
+                <label><input type="radio" name="subject" value="eng">영어회화 </label>
+                <input type="radio" name="subject" value="ch">중국어회화
+            </dd>
+        </dl>
+        <input type="submit">
+    </form>
+    
+</body>
+</html>

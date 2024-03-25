@@ -1,0 +1,27 @@
+<h1>여름방학 특강 신청</h1>
+<form>
+    <fieldset>
+    <legend>수강 신청인</legend>
+        <label style="color: green;" >학번<input type="text" id="studentNumber"></label>
+        <br>
+        <label style="color: green;" >이름<input type="text" id="studentName"></label>
+        <br>
+        <label class="reg" style="color: green;" for="class">학과</label>
+        <select id="class" multiple>
+            <optgroup label="공과대학">
+                <option value="archi">건축공학과</option>
+                <option value="mechanic">기계공학과</option>
+                <option value="indust">산업공학과</option>
+                <option value="elec" selected>전지전자공학과</option>
+                <option value="compu">컴퓨터공학과</option>
+                <option value="chimi">화학공학과</option>
+            </optgroup>
+            <optgroup label="인문대학">
+                <option value="history">사학과</option>
+                <option value="lang"selected>언어학과</option>
+                <option value="philo">철학과</option>
+            </optgroup>
+        </select>
+        
+    </fieldset>
+</form>
