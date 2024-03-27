@@ -1,11 +1,66 @@
-<form>
-	<fieldset>
-		<label>아이디<input type="text" id="user_id"  maxlength="5"></label>
-		<label>비밀번호 <input type="password" id="user_pw"  minlength="8"></label>
-		<input type="submit" value="로그인">
-		<br>
-		검색<input type="search" placeholder="검색">
-		url<input type="url">
-		<label>전화번호<input type="tel"></label>
-	</fieldset>
-</form>
+HTML 태그 모음
+---------------------------
+<!doctype html> - 문서 유형을 지정하는 선언문
+<html lang="ko">웹 문서 시작을 알리는 태그</html>
+<head>
+	브라우저에게 정보를 주는 태그 
+	<title>문서 제목</title>
+	<meta charset="UTF-8"> 문자 세트를 비롯한 문서 정보
+</head>
+<body>
+	실제 브라우저에 표시될 내용
+	특수 기호 &lang;
+	
+	//택스트 관련 태그들
+	<hn>제목 표시하기 heading 의 h</hn>
+	<p> 단락 만들기 paragraph 의 p</p>
+	<br> 줄 바꾸기 break 의 br
+	<hr> 분위기 전환 horizontal ---------------------------
+	<blockquote>인용문 넣기</blockquote>
+	<pre>입력하는 그대로 화면에 표시하기</pre>
+	<strong><b>굵게 표시하기 차이점: 굵게강조/굵게 표시</b></strong>
+	<em><i>이텔릭체로 표기 차이점: 이텔릭 강조/이텔릭 표시</i></em>
+	<q>인용내용 표시하기 (인라인 태그)</q>
+	<mark>형광펜 효과 내기</mark>
+	<span>줄바꿈없이 영역 묶기</span>
+	<ruby>동아시아 글자 표시하기</ruby>
+	
+	// 목록을 만드는 태그들
+	<ul><li>순서없는 목록 만들기 unordered list</li></ul>
+	<ol type="1,A,a,i,I" start="" reversed><li>순서 목록 만들기</li></ol>
+	<dl><dt><dd>설명목록만들기 description list,description title </dd></dt></dl>
+
+	//표를 만드는 태그
+	<figure>
+		<figcaption>figure, figcaption 이용해서 제목</figcaption>
+		<table style="border: black;">
+			<caption>표에 제목 붙이기</caption>
+			<th> 표에 제목셀</th>
+			<tr>table row
+				<td colspan="합칠 셀의 개수">table data</td>
+			</tr>
+			<tr></tr>
+
+		</table>
+	</figure>
+	<figure> 이미지에 설명 붙이기
+		<figcaption> 설명글</figcaption>
+		<img url="경로" alt="대체이미지" width="너비" height="높이" 속성="값">
+	</figure>
+	<a href="링크할 주소" target="링크한 내용이 표시될 위치" download="링크한 내용을 보여주는것이아니라 다운로드" >링크만들기 텍스트/이미지</a>
+	<태그 id="앵커이름">텍스트 또는 이미지</태그>
+	<a href="#앵커이름">텍스트 또는 이미지</a>
+	<map name="맵이름">
+		<area shape="rect" coords="0,0,80,100" href="http://www.facebook.com" alt="페이스북">
+	</map>
+	<img src="이미지" usemap="#맵이름">
+
+	//폼만들기
+	<form method="서버프로그램으로 넘겨줄 방법" name="폼의 이름(폼구분용)" autocomplete="toggle">
+		<fieldset>폼 요소 그룹으로 묶기
+			<legend>표이름</legend>
+		</fieldset>
+
+	</form>
+	
+</body>
