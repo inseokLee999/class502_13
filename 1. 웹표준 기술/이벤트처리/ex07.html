@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <style>
+            .box{
+                width: 150px;
+                height: 150px;
+                background-color: rgb(100, 148, 237);
+            }
+            .box.on{
+                width: 200px;
+                height: 200px;
+            }
+        </style>
+        <script>
+            window.addEventListener("DOMContentLoaded",function(){
+                const boxEl = document.querySelector(".box");
+                boxEl.addEventListener("mouseenter",function(){
+                    this.classList.add("on")
+                });
+                boxEl.addEventListener("mouseleave",function(){
+                    this.classList.remove("on");
+                });
+                const textEl=document.getElementById("text");
+                textEl.addEventListener("keyup",function(e){
+                    console.log(e);
+                    console.log("keyup",this.value);
+                });
+            });
+        </script>
+        <div class="box"></div>
+        <input type="text" id="text" autofocus>
+    </body>
+</html>
