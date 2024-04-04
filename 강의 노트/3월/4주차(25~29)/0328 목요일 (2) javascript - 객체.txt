@@ -1,0 +1,157 @@
+코어 객체
+	내장생성자 객체
+	
+	내장 객체
+호스트 객체 :실행환경에 맞게 추가된 객체
+	웹 브라우저 객체
+		window
+			location: 주소 관련 기능, 정보
+			history : 방문 기록과 관련된 기능,정보
+			screen : 
+내장 생성자 
+- 자바스크립트에 처음부터 포함된 내장 생성자
+1.Object
+	Object.prototype을 상속 받았다. 모든 객체의 정점; 모든길은 오브젝트로 통한다.
+	const 변수명 = new Object(); 하면 새로운 객체 생성
+				= {...} 중괄호 두개만 써도 똑같다
+	prototype
+		.toLocaleString()
+			Locale : 지역화
+			-지역화에 맞게 변경 ->출력
+			
+	Object.getOwnpropertyDescriptor()
+	Object.getOwnpropertyDescriptors()
+	
+		데이터 프로퍼티 
+			value- 값;
+			writable : false->값 변경 x
+			enumerable : false -> 열거 불가
+			configurable : false -> 값(설정) 변경 불가
+			false라도 바꿀수있는 예외) writable 이 true -> 단한번만 false로 변경가능
+		->변경 
+			Object.defineProperty
+			.defineProperties
+	접근자 프로퍼티
+		-함수 형태 : 단축표현법
+		-set 함수명 - 값을 변경하는 접근자 속성
+		-get 함수명 - 값을 조회하는 접근자 속성
+		-enumerable
+		-configurable
+	참고 ) 속성: 통제기능 포함
+	Object.preventExetenstions():객체의 새로운 속성 추가 불가
+	Object.seal():객체 밀봉
+		-삭제, 속성추가 불가능
+		-값 변경 가능
+	Object.freeze():객체 동결
+		-삭제,숙성추가,값변경 불가
+	전개 연산자 ... : 깊은 복사 가능
+	Object.assign : 깊은 복사
+	
+	참고) 
+		entries : 이름 - 값 쌍 조회
+		Map.Entry : 이름- 값의 쌍
+2.String 
+	Wrapper 생성자 객체
+	
+	indexOf(...):문자열의 위치
+	lastIndexOf(...):문자열의 위치번호 (우->좌)
+	-문자열을 찾지못하면 -1 을 반환
+3.Number
+	Wrapper 생성자 객체
+	NaN : Not a Number - 숫자가 아니다.
+		isNaN(...):숫자가 아니냐
+			->Number(값)->NaN반환 ->true,NaN X->false
+		
+		Number->함수 그대로 사용 : 문자열 -> 숫자 변환
+		
+		typeof num1 === 'number'
+		
+		parseInt(...) 소수점이 없는수 문자열,실수 -> 정수
+		parseFloat(...)
+		
+		parse->변한(변경)
+		toFixed(n) : 소수점 n자리까지의 문자로 변환
+4.Boolean
+	- 함수 값에 대한 평가 -> 실제 논리값으로 변경 
+	- 
+5.Array
+	const 변수명 = new Array()
+	=[...];
+	=Array.prototype.Array
+	
+	-배열 x
+	-배열 객체
+	참고) 배열- 같은 자료형이 연속해서 나열된 형태
+6.Date - 조회 ,변경
+	-날짜와 시간
+	-년도 -getFullYear() / setFullYear()
+	- 월 - getMonth() 0~11 0->1월,11->12월 / setMonth()
+	- 일 -getDate() / setDate()
+	- 요일 getDay() 0~6 0-일 6-토 / setDay()
+	- 시간 -getHours()/setHours()
+	- 분 -getMinutes() / setMinutes()
+	- 초 -getSeconds / setSeconds()
+	- getTime() 정수값 1970.1.1 자정->1000분1초단위로 카운트 수치 -> Epoch Time->초단위-> Timestamp
+		->예) 유일한 값으로 ID를 만들 때 -> UID
+	-Date.now():현재시간의 Epoch타임
+	Date.parse(문자열 날짜 ): 문자열-> Date 객체로 변환
+	
+	2024-03-29T15:00:00 -> ISO
+	
+	달력
+		1) 이번달이 며칠로 끝나는지
+			-다음달 1일 -1일 차감 -> 현재 달의 마지막 날짜
+		2) 시작일이 무슨 요일인지
+			getDay():0~6 -> 5
+7.Function
+	bind: 새로운 함수를 원래 있는거에 추가 할 때
+	apply:
+	call:
+8.RegExp : 정규 표현식
+9.Error
+	try{
+	
+	}catch(e){
+	
+	}
+
+원시 타입, 원시 값 - 재료가 되는 값
+
+숫자, 문자, 논리값 - true,false, undefined,null
+...
+
+const str='abc';
+str.toUpperCase() // new String(str)->toUpperCase()->원시값 변환
+
+ES6 부터 추가된 주요 내장 생성자
+1.symbol
+2.Promise : 리액트 진행시
+
+자바 - 콜렉션 프레임워크
+
+3. Map
+4. Set
+
+기타 내장 객체 
+JSON (표준화된 형식)
+	JSON(JavaScript Object Notation) - 자바스크립트 객체 표기법 - 문자열
+		{
+			"이름":"값",
+			"이름":"값"
+		}
+		
+	.parse() :json문자열 -> 자바스크립트 객체 변환
+	.stringify(): 자바스크립트 객체-> json문자열로 변환
+Math
+	수학관련 편의 함수,상수
+	PI
+	round() :  반올림
+	floor() : 버림
+	ceil() : 올림
+	abs() : 절대값
+	sqrt() : 
+	
+1. 전역 프로퍼티
+2. 생성자
+3. 전역 함수
+4. 내장 객체

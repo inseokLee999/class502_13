@@ -1,0 +1,49 @@
+글자를 굵게 표기 - b
+형광펜 효과 - mark
+
+<img src=" " alt="">
+양식 입력 태그 -> 반드시 입력을 해야하는경우 required
+inline + 너비높이 : inline-block 
+border-width : 경계선 두께 
+border-width: 2px -> 상화좌우 모두 2px
+				2px 1px -> 상하단 2px, 좌우 1px
+				2px 3px 1px -> 상단 2px 좌우 3px 하단 1px
+				2px 3px 1px 4px -> 상단2px 우3px 하1px 좌4px
+				
+10부터 2씩 증가하면서 4번 더하기
+let total=10;
+for(let i=1;i<20;i+=2){
+	total+=i;
+}
+
+2. false 값 : 0 undefined '' null
+
+3. 화살표 함수 짧게 표현한 함수 용도가 제한적이고 매개변수에서 이용 "=>" 정답
+함수는 값
+	-매개변수
+	
+	function add(num1,num2) {
+    return num1+num2;
+}
+const add2 = (num1,num2) => {
+    return num1+num2;
+}
+
+4. 매서드 배열 추가 제거 pop,push shift,unshift splice 원본 데이터를 건든다.
+... : 1.전개연산자 깊은 복사, 2.가변적인 매개변수
+	3. 비구조화 할당->나머지 연산자 
+	
+	const person={
+    name:'syt',
+    age:40
+};
+
+const {name : a, age:b}=person;
+
+5. 나머지 연산자 나옴 
+6. 크롬은 javascript,css 해석 엔진이 있음
+각각 웹 마다 성격이 다른거 웹킷 블링크 트라이던트, 스파이더 몽키  스크립트 엔진이 포함되어있다. 구분
+7. 자바스크립트는 class가 없다 생성자 함수 객체 
+location	Location 객체를 가리킨다.
+
+아이디로 선택 : document.getElementById("아이디명");

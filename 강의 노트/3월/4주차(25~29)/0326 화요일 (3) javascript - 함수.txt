@@ -1,0 +1,49 @@
+함수 객체(실행 x)-> 평가(번역)-> 실행 가능 객체(EC- execution context)
+
+2. 변수의 충돌
+	
+3. 함수안에서 변수선언과 변수 끌어올림
+8. 즉시 실행 함수
+	-함수 정의와 동시에 호출
+	
+	(function(매개변수 정의,...)){
+		//실행코드
+	}(인자 값...);
+9.가변길이 인수목록(Arguments 객체)
+
+	arguments - 인수(매개변수에 대입된 값): 매개변수로 사용된 값
+
+	paramenter - 인자(매개변수)
+	
+	전개 연산자, 나머지 연산자
+	
+	...가변적인 변수/나머지변수
+	
+생성자
+함수 객체-> 다른객체 생산
+
+new 연산자 : 메모리에 공간을 생성 연산자
+생성자 함수명 
+	첫 시작 문자 대문자 (파스칼표기법)
+
+객체가 생성되는 과정
+1. 함수 객체에 정의된 prototype 객체의 상속
+2. this 값을 상속을 받은 객체로 변경함으로써 초기화
+참고) 
+객체간의 상속
+프로토타입 체인 연결
+[[Prototype]]:프로토타입 체인
+
+__proto__
+Person.prototype.constructor===Person
+function Person(){
+	내부에서 객체가만들어짐 즉 new Function(..)
+}
+
+모든 함수는 Function.prototype 상속관계
+	apply(thisArg,...)
+	call(thisArg,...)
+
+new : 메모리에 새로 만드는거
+
+1. prototype객체를 상속하고 2. this 값을 상속을 받은 객체로 변경함으로써 초기화

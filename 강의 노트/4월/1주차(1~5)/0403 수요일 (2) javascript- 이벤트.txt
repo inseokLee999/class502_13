@@ -1,0 +1,95 @@
+이벤트 처리
+1. 이벤트 처리기를 등록하는 방법
+(1) HTML요소의 이벤트 처리기 속성에 설정하는 방법
+ <input type="button" onclick="changeColor();">
+(2) DOM 요소 객체의 이벤트 처리기 프로퍼티에 설정하는 방법
+ var btn = document.getElementById("button");
+ btn.onclick = changeColor;
+(3) addEventListener메서드를 사용하는 방법
+ var btn = document.getElementById("button");
+ btn.addEventListener("click", changeColor, false);
+1.2 이벤트 처리기의 문제점
+- HTML요소의 이벤트 처리기 속성에 설정할 경우 :
+	HTML 문서를 읽어들일 때 이벤트 처리기도 함께 설정하기 때문에 설정하기 쉽지만 가독성이 떨어지고 
+단 하나만 등록 할수 있다
+- DOM요소 객체의 이벤트 처리기 프로퍼티에 설정할 경우
+	HTML과 자바스크립트 프로그램을 분리해서 연결을 느슨하게 하는 겸손한 자바스크립트
+	이것도 단 하나만 등록 가능
+	
+2.이벤트 리스너를 등록하고 삭제하는 방법
+-addEventListener 를 사용하여 얻을 수 있는 장점
+1) 같은 요소의 같은 이벤트에 이벤트 리스너를 여러 개 등록할 수 있다.
+2) 버블링 단계는 물론 캡처링 단계에서도 활용할 수 있다. 반면에 DOM 요소 객체에 직접 등록한 이벤트 처리기는 버블링 단계의 이벤트만 캡쳐할 수 있다.
+3) removeEventListener, stopPropagation, preventDefault를 활용하여 이벤트 전파를 정밀하게 제어할 수 있다.
+4) HTML 요소를 포함한 모든 DOM 노드에 이벤트 리스너를 등록할 수 있다.
+-addEventListener("이벤트 명",이벤트 핸들러 함수, 캡처링 여부 - false (기본값))
+	캡처링 여부 - false(기본 값) : 버블링 단계에서 이벤트 전파
+				-true : 캡처링 단계에서 이벤트 전파
+-removeEventlistener 메서드로 이벤트 리스너 삭제하기
+
+참고) 
+	이벤트 -> 비동기 형식
+	동기 -> 순서대로 실행
+	
+	지연실행 
+	setTimeout(function(){
+		//지연실행 코드
+	},지연시간(1ms)
+	
+	clearTimeout(이벤트 핸들러 등록 ID); 이벤트 취소
+	
+	지역 반복 실행 
+	setInterval(function(){
+	//지연 반복 실행 코드
+	},지연시간));
+	
+	반환값 -> 이벤트 핸들러 등록 ID
+	
+	clearInterval(이벤트 핸들러 등록 ID) - 지연 반복 실행 취소
+	
+	이벤트 전파
+1. 이벤트의 단계
+1) 캡처링 단계(전파의 방향을 바꿈)
+2) 타깃 단계
+3) 버블링 단계
+
+addEventListener(이벤트 타입, 이벤트 핸들러, 캡쳐링 여부);
+	캡처링 여부 - 기본값이 false
+				-false:이벤트 전파가 버블링 단계에서 발생
+				-true : 이벤트 전파가 캡쳐링 단계에서 발생
+				
+2. 이벤트 전파 
+1) 이벤트 전파 취소하기
+stopPropagation(): 이벤트 전파 취소
+
+2) 이벤트 전파의 일시 정지
+stopImmediatePropagation()
+
+3) 기본 동작 취소하기
+preventDefault()
+
+3. 이벤트 리스너 안의 this
+-event
+	.target//실제 클릭한 요소
+	.currentTarget//이벤트가 바인딩된 요소
+1)이벤트 리스너 안의 this는 이벤트가 발생한 요소 객체
+2) this가 원하는 객체를 가리키도록 설정하는 방법
+-bind 메서드를 사용하는 방법
+-익명 함수 안에서 실행하는 방법
+-화살표 함수를 사용하는 방법//화살표 함수는 선언할 때 this가 정해지기 때문에
+-addEventListener의 두번째 인수로 객체를 넘기는 방법
+
+이벤트 객체
+1. 이벤트 객체의 공통 프로퍼티
+2. 마우스 이벤트 객체 
+- 마우스 이벤트 객체에서 좌표를 담당하는 프로퍼티
+- mouseenter,mouseleave
+- mouseover,mouseout
+
+3. 키보드 이벤트 객체
+	keyup :
+	keypress : 누르면 계속 이벤트가 발생
+	keydown : 누르면 한번만 이벤트 발생
+	
+	change: 키를 조작 할때( 키를 누르거나 땔때)
+		:select,input[type='file']-파일을 선택, input[type='number|range']

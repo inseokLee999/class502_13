@@ -1,0 +1,52 @@
+생성자
+
+prototype
+
+new
+
+1) 함수 객체의prototype객체의 상속
+2) this 가 prototype 객체를 상속받은 객체로 주소 변경 -> 초기화
+=> new
+Function prototype
+apply(thisArg,...)
+call(thisArg,...)
+
+생성자 함수 객체의 상속
+
+연산자 
+	instanceof: 객체의 출처를 체크(프로토타입 체인)
+자바 스크립트 객체
+코어 객체 
+	-내장 생성자 함수 객체
+	-내장 객체
+		Math - 수학 관련 편의 메서드가 있는 객체로
+		JSON 
+	
+호스트 객체 : 실행 환경에 따른 객체
+	- 웹 브라우저 객체 - 웹브라우저의 기능과 관련된 객체
+		window
+			location 객체 - 브라우저의 주소와 관련된 기능, 정보
+			history 객체 - 브라우저의 방문 기록과 기능
+			screen 객체 - 화면 관련된객체
+			navigator
+			
+			document 객체 : 웹 문서를 다루는 객체
+			
+			
+			
+내장 생성자 
+- 자바스크립트에 처음부터 포함된 내장 생성자
+1.Object
+
+	prototype
+		.toLocaleString()
+			Locale : 지역화
+			-지역화에 맞게 변경 ->출력
+2.String
+3.Number
+4.Boolean
+5.Array
+6.Date
+7.Function
+8.RegExp
+9.Error

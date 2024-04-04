@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 //렌더링 할때마다 num 이 10으로 초기화
+
 const Counter = () => {
   const [number, setNumber] = useState(0);
-  let num = 10;
+  let num = useRef(10);
   console.log('Rendering!', number, num);
   const plus = () => {
-    num++;
+    num.current++;
     setNumber(number + 100);
     console.log(num);
   };

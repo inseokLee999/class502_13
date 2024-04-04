@@ -1,0 +1,59 @@
+문서 구조를 위한 HTML5 시맨틱 태그
+
+시맨틱 태그 - 의미가 있는 태그 목적) 1. 검색용 2. 웹접근성(설명)
+<form>
+<table>
+
+시맨틱 태그가 아닌 태그
+div,span
+
+1.<header> : 사이트 상단
+2.<nav> : 메뉴
+3.<section> : 영역
+4.<article> : 영역 안 내용
+5.<aside> : 측면
+6.<iframe> : 문서 포함하는 웹브라우저(창)
+	-src : 웹페이지의 경로
+	-seamless : 경계선 제외
+	-width,height
+	-scrolling- auto|yes - 스크롤바 O|no- 스크롤바 x
+	-name : target 에 iframe name을 지정해서 이동(부모창->자식창)
+7.<footer> : 하단
+9.<address> : 사이트 정보, 연락처,주소
+
+플렉스 박스 레이아웃 기본 속성들
+
+1.display 속성 - 플렉스 컨테이너 지정하기
+	:flex
+		-부모요소 적용
+		-자식요소의 배치
+2.flex-direction 속성 - 플렉스 방향 지정하기
+	-row: 기본값 좌->우
+	-row-reverse:우->좌 
+	-column : 상->하
+	-column-reverse: 하단->상단
+3.flex-wrap 속성 - 플렉스 항목을 한 줄 또는 여러 줄로 배치하기
+	-nowrap : 줄개행 x (기본값)
+	-wrap : 줄개행O
+4.order 
+	-배치 순서 변경
+	-자식 요소에 적용
+	-숫자가 작을 수록 먼저 배치
+5.flex-grow
+	-여백을 비율별로 배분
+	-자식요소에 적용
+	
+플랙스 박스 항목 배치를 위한 속성들
+1.justify-content 속성 - 주측의 기준의 배치 방법 지정하기
+flex-start : 왼쪽 정렬
+flex-end : 오른쪽 정렬
+center : 가운데 정렬
+	-여백 
+		space-between 사이에 여백이 있음
+		space-around 요소 양옆에 둘러싼 형태로 동일한 여백
+		space-evenly 동일한 여백
+2. align-items 상하 부모요소 높이에 자식요소가 늘어난다. 
+	stretch :기본값 
+	flex-start,flex-end,center, 상단 하단 가운데
+	
+3. 

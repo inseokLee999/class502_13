@@ -1,0 +1,85 @@
+CSS와 박스모델
+
+테두리 관련 속성들
+1. border-style
+	-style :  직선
+	-dashed : ----
+	-dotted : ...
+	-double:=====
+	
+2. border-width
+	-경계선 두께
+	
+3. border-color
+	-경계선 색상
+	
+4. border: 단축 표기
+	border.두께 스타일 색상;
+	
+	border-left: 왼쪽에 경계선
+	border-right: 오른쪽에 경계선
+	border-top:	상단에 경계선
+	border-bottom: 하단에 경계선
+5. border-radius
+	:경계선 모서리를 둥글게
+	:원 - 50%
+6. 타원 형태로 둥글게 만들기
+	border-radius : 가로반지름 세로반지름;
+	
+7. box-shadow 속성
+	-그림자 효과
+	-입체감
+	
+	box-shadow: 가로이동 세로이동 번짐정도 색상
+	
+CSS 포지셔닝과 주요 속성들
+
+1. CSS 포지셔닝-브라우저 화면 안에 각 콘텐츠 영역을 어떻게 배치할지를 결정하는 것
+2.box-sizing 속성 - 박스 너비 기준 정하기 width,height 기준
+	-content-box: 기본값, 내용물 기준, 내부여백, 경계선->전체 크기가 증가
+	-border-box: 경계선 기준, 내부여백, 경게썬 ->크기 x ->내용물의 크기가 감소
+	
+3. float : 내용이 바로다음에옴
+	-left : 왼쪽배치
+	-right : 오른쪽 배치
+	-none : 기본값 아무것도 x
+	
+	참고) flexbox를 더 많이 쓴다.
+	
+4. clear - float적용 속성을 제거
+	-left : float:left 적용제거
+	-right : float:right 적용제거
+	-both: float:left float:right 모두 제거
+	공간이 있는 요소(block,inline-block)에서만 적용 가능
+	가상 클래스 선택자 ::after
+span.clear{/*span태그의 clear클래스*/
+
+5. position
+	-static : 기본값
+	--상대적인 배치--
+	-relative : 현재 요소의 위치(왼쪽상단)
+	-absolute : 문서 왼쪽 상단
+				- 상위 요소에 상대 배치 속성(relative,absolute,fixed)이 적용된 경우, 상위 요소의 왼쪽 상단이 배치 기준
+	-fixed : 뷰포트가 배치의 기준
+			-뷰포트: 화면에서 보이는 영역
+		-left: 왼쪽-> 오른쪽 배치
+		-right : 오른쪽->왼쪽 배치
+		-top/bottom 위->아래, 아래->위
+6. visibility
+	visible - 기본값: 보임
+	hidden - 감추기(영역을 유지하면서 감추기)
+	
+	참고) display: none; - 감추기(영역이 사라진다)
+	
+7. z-index
+	-상대 배치에서 적용 가능(positoin-relative, absolute,fixed)
+	-층위
+	-숫자가 높을수록 앞쪽, 낮을수록 뒤
+	
+다단으로 편집하기
+1. column-width
+	컬럼 너비
+2. column-count
+	나눠질 단수
+3. column-gap
+	컬럼사이 여백

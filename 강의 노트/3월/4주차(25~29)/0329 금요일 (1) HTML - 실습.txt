@@ -1,0 +1,12 @@
+HTML+CSS실습
+
+https://n.m-mk.net
+
+img->하단쪽 외부 여백(inline)
+	->display:block->하단쪽 여백 0
+	
+word-break: break-all 띄어쓰기 없어도 줄 개행 하도록
+
+cursor : pointer-> 손가락 모양
+
+vertical-align : top 상단 , bottom 하단, middle 가운데

@@ -1,0 +1,67 @@
+컴포넌트
+
+yarn create react-app exam01
+IP 주소 
+	-공인 IP : 모든 네트워크에서 접근 가능한 주소
+	-사설 IP : 내부 네트워크에서 접근 가능한 주소
+	
+	ipv4
+	
+	localhost : 서버, 현재 PC, 
+	127.0.0.1
+	
+	localhost:3000 <- 3000 포트
+	포트 : 통로
+	80 - HTTP 
+	443 - HTTPS
+1. 클래스형 컴포넌트
+	Component  상속 
+	
+	render() {
+		return (
+			JSX 문법 컴포넌트 ...
+		)	
+	}
+	
+2. 함수형 컴포넌트 
+
+첫 컴포넌트 생성
+1. 모듈 내보내기(export)
+2. 모듈 불러오기(import)
+3. props
+1) props는 properties를 줄인 표현으로 컴포넌트 속성을 설정할 때 사용하는 요소입니다.
+2) props 값은 해당 컴포넌트를 불러와 사용하는 부모 컴포넌트에서 설정할 수 있습니다.
+	-객체 동결 상태, 삭제 불가, 속성 추가 불가
+
+3) props 기본값 설정: defaultProps
+
+	참고) ||-> 기본값 설정
+	
+	let num=0;
+	num = num || 10;//10대체
+	
+	??->undefined, null 일 때 기본값을 대체
+4) children
+5) propTypes를 통한 props 검증
+	-자료형 한정
+3. 클래스형 컴포넌트에서 props 사용하기
+- 클래스형 컴포넌트에서 props를 사용할 때는 render 함수에서 this.props를 조회하면 됩니다.
+- defaultProps와 propTypes는 똑같은 방식으로 설정할 수 있습니다.
+
+4. state
+1)  state는 컴포넌트 내부에서 바뀔 수 있는 값을 의미합니다.
+2)  props는 컴포넌트가 사용되는 과정에서 부모 컴포넌트가 설정하는 값이며, 컴포넌트 자신은 해당 props를 읽기 전용으로 사용
+3) this.setState를 사용하여 state에 새로운 값을 넣을 수 있습니다.
+4) state 객체 안에 여러 값이 있을 때
+5) state를 constructor에서 꺼내기
+6) this.setState에 객체 대신 함수 인자 전달하기
+
+this.setState((prevState, props) => {
+	return {
+		// 업데이트하고 싶은 내용
+	}
+});
+
+5. state를 사용할 때 주의사항
+1) 클래스 컴포넌트든 함수 컴포넌트든 state값을 바꾸어야 할 때는 setState 혹은 useState를 통해 전달받은 세터 함수를 사용해야 합니다.
+2) 배열이나 객체 사본을 만들고 그 사본에 값을 업데이트한 후, 그 사본의 상태를 setState 혹은 세터 함수를 통해 업데이트합니다.

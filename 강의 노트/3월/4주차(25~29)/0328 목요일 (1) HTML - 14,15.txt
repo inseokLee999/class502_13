@@ -1,0 +1,68 @@
+플랙스 박스 항목 배치를 위한 속성들
+1.justify-content 속성 - 주측의 기준의 배치 방법 지정하기
+flex-start : 왼쪽 정렬
+flex-end : 오른쪽 정렬
+center : 가운데 정렬
+	-여백 
+		space-between 사이에 여백이 있음
+		space-around 요소 양옆에 둘러싼 형태로 동일한 여백
+		space-evenly 동일한 여백
+2. align-items 상하 부모요소 높이에 자식요소가 늘어난다. 
+	stretch :기본값 
+	flex-start,flex-end,center, 상단 하단 가운데
+	align-self - 자식 요소 별 적용
+	stretch :기본값 
+	flex-start,flex-end,center, 상단 하단 가운데
+3. align-content: justify-content와 동일 속성
+	- justify-content는 하나의 행, align-content는 여러행에 걸쳐 있는 경우
+	- flex-start,flex-end, center(가운데), space-between,space-around, space-evenly
+	- flex-wrap: wrap되어 있는경우
+	
+모바일 기기와 웹 디자인
+1. 뷰포트:  화면에서 실제 내용이 표시되는 영역
+2. 뷰포트 지정하기
+	<meta name="viewport" content="<속성1=값>,...">
+	
+	-width : device-width
+	-height : device-height
+	-user-scalable: yes->축소,확대 조작 가능
+	-initial-scale: 처음 로딩시 화면 배율
+	-minimum-scale:축소 가능 배율, 예) 0.5->1/2 축소
+	-maximum-scale:확대 가능 배율 예)3->3.5배까지 확대가능
+	
+미디어 쿼리이해하기
+1.미디어 쿼리란?
+	-사이트에 접속하는 장치에 따라 특정한 css스타일을 사용하도록 해줍니다.
+	
+2.미디어 쿼리 구문
+@media [only|not]미디어 유형 [and 조건]*[and 조건]
+@media screen and (min-width:200px) and (max-width:360px){
+
+}
+
+1)미디어 유형의 종류
+	-all : 모든 미디어 유형
+	-print: 인쇄 장치
+	-screen: 컴퓨터 스크린(스마트폰 스크린 포함)
+	
+2) 미디어 쿼리의 조건
+	-width,height
+	- min-width, min-height
+	- max-width, max-height
+	- orientation:장비 방향
+		portrait: 세로모드
+		landscape: 가로모드
+	- 뷰포트의 너비가 600px이상이고 959px 이하일 때 
+	@media all(min-width:600px) and (max-width:959px){}
+	
+3) 웹 문서에서 직접 적용하기
+
+
+index.html 대문 페이지
+css
+	style.css
+js
+
+swiper.js
+
+calc(100%/3)

@@ -1,0 +1,135 @@
+웹 브라우저 객체 
+1.클라이언트 측 자바스크립트
+1) 웹 브라우저에서 자바스크립트가 하는 일
+(1) 웹 페이지의 Document 객체 제어(HTML 요소와 CSS 스타일 작업)
+DOM 이라는 API를 활용합니다.
+(2) 웹 페이지의 Window 객체 제어 및 브라우저 제어
+웹 브라우저에 내장된 다양한 객체를 활용하며, 대표적인 객체로 Location, Navigator 등이 있습니다.
+(3) 웹 페이지에서 발생하는 이벤트 처리
+(4) Http를 이용한 통신 제어
+XMLHttpRequest 객체를 활용합니다.
+2) 웹 브라우저에서 자바스크립트 실행 순서 
+ 서버가 html 문자열 응답 -> 브라우저 -> document 객체 변환->DOMContentLoaded 이벤트 발생-> document객체 변환 완료
+ =>트리구조 재구성(이진트리- 검색에 최적화)
+ =>DOMTree
+ 브라우저는 2가지 event가 발생한다. domcontentloaded , load
+3) async 와 defer속성
+	defer : 외부 링크로 연결하는 방식 <script defer src=""></script>
+			-> src스크립트 실행은 DOMContentLoaded 이벤트 발생 이후에 진행
+			
+	async : 비동기 실행
+2. css와 렌더링
+3. 웹 브라우저 렌더링 엔진과 자바스크립트 엔진
+
+window 객체
+1. window 객체의 주요 프로퍼티
+	pageXOffset: 가로방향 스크롤 정도
+	pageYOffset: 세로방향 스크롤 정도
+	
+	-스크롤바를 제외한 현재창의 보이는 영역
+	innerWidth
+	innerHeight
+	
+	-스크롤바를 포함한 현재창의 보이는 영역
+	outerWidth
+	outerHeight
+	
+2. window 객체의 주요 메서드
+	console
+		.log("값")
+		.dir(...): 객체의 이름과 값 형태 구성 출력
+		.error(값) : 글자색이 빨간색
+		.trace() : console.trace()에 도달하기까지 거쳐갔던 모든 단계들 쌓아가듯이 (stack)보여주는 기능 보여줌
+		
+	open(주소,창의 이름, 옵션) -> 팝업
+	옵션 : width, height, scrolling, location
+	opener : open을 호출해서 열어준 창
+	
+	alert("메세지") - 알림 메세지
+	prompt("메세지") - 입력 창, 반환값이 입력한 값
+	confirm("메세지")- 확인, 취소 확인 -> true, 취소-> false , 진행 여부 통제시 사용
+	
+Location 객체
+1. Location 객체의 프로퍼티
+-주소의 정보
+2. Location 객체의 메서드
+	-주소에 대한 통제기능
+	assign(주소):주소 이동 - 방문기록이 남는 주소 이동
+	-location.href="주소" 와 같음
+	replace(주소): 주소 이동 - 방문기록이 안남음
+	
+	reload():새로고침
+	
+	시크릿 모드->방문 기록 x ctrl+shift+N 
+History 객체
+방문 기록과 관련된 객체
+1. History 객체의 프로퍼티
+	-length : 방문 기록 갯수
+	scrollRestoration : auto - 페이지의 스크롤 위치 복구, manual-스크롤 위치 복구 x, 문서 상단 위치
+	
+2. History 객체의 메서드
+	back(): 뒤로 1단계 이동
+	forward() : 앞으로 1단계 이동
+	go(숫자) : 숫자-> 양수 앞으로 숫자만큼 이동, 음수 ->뒤로 숫자만큼 이동
+
+Naviator 객체
+1. Navigator 객체의 주요 프로퍼티
+2. Navigator 객체의 메서드
+
+Screen 객체
+1. Screen 객체의 주요 프로퍼티
+
+창 제어하기
+1. 창 여닫기
+open
+
+2. open 메서드로 설정할 수 있는 옵션의 이름
+width, height, location, scrollbars, toolbar, status, menubar
+
+3. 창 제어하기
+1) moveBy(..), moveTo(...)
+2) resizeBy(..), resizeTo(...)
+3) scrollBy(..), scrollTo(...)
+
+4. 다른 창 참조하기
+	-창의 이름을 가지고 참조
+	
+Document 객체
+- Document 객체는 창에 표시되고 있는 웹 페이지를 관리합니다.
+- 이 객체로 웹 페이지의 내용물인 DOM 트리를 읽거나 쓸 수 있습니다.
+- Document 객체는 클라이언트 측 자바스크립트에서 가장 중요한 객체입니다.
+
+1. Document 객체의 주요 프로퍼티
+2. Document 객체 주요 메서드
+	선택을 위한 메서드
+	아이디로 선택 : document.getElementById("아이디명"); - 단수개 선택
+	클래스명으로 선택 : document.getElementsByClassName("클래스 명"); -복수개 선택
+	태그명으로 선택 : document.getElementsByTagName("태그명"); - 복수개 선택
+	name속성으로 선택: document.getElementsByName("속성명"); - 복수개 선택
+	
+	CSS 선택자 형식으로 선택 : document.querySelector("CSS선택자 형식");- 단수개 선택(첫번째)
+							document.querySelectorAll("CSS선택자 형식"); - 복수개 선택
+							
+	children:자식 요소들 
+	parentElement : 부모 요소
+	firstElementChild : 첫번째 자식 요소
+	lastElementChild : 마지막 자식 요소
+	previousElementSibiling : 앞쪽 형제 선택
+	nextElementSibiling : 뒤쪽 형제 선택 
+	
+	참고) jQuery
+	html : document
+	head : document.head
+	body : document.body
+	
+	양식의 이름값
+		양식이름.입력항목이름
+		
+		
+	속성(attribute)을 관리하는 메서드
+	-추가
+	setAttribute("이름","값");
+	-조회
+	getAttribute("이름");
+	-삭제
+	removeAttribute("이름")

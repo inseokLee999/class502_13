@@ -1,9 +1,17 @@
 <!DOCTYPE html>
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
+	<script>
+		window.onload = function() {
+			var element = document.getElementById("box");
+			element.addEventListener("click", function(e) {
+				e.currentTarget.style.backgroundColor = "red";
+			}, false);
+		};	
+	</script>
 </head>
 <body>
-    <h1>배는 안고픈데</h1>
-    <h2>시간이 안가..,,</h2>
+	<div id="box">click me</div>
 </body>
 </html>

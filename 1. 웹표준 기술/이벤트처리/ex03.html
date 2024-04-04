@@ -31,14 +31,19 @@
                     console.log("BOX1");
                 });
 
-                box2.addEventListener("click", function() {
+                box2.addEventListener("click", function(e) {
                     console.log("BOX2");
                 });
 
                 box3.addEventListener("click", function(e) {
-                    e.stopPropagation();//이벤트 전파 취소
+                    //e.stopPropagation();//이벤트 전파 취소: 같은 이벤트는 된다
+                    //e.stopImmediatePropagation();//이벤트 전파 취소: 같은 이벤트도 안된다
                     console.log("BOX3");
                     
+                });
+
+                box3.addEventListener("click", function(e) {
+                    console.log("BOX3-1");
                 });
             });
         </script>
