@@ -1,0 +1,17 @@
+yarn create react-app 파일 명//yarn 이좀더 빠르고 ui가 단순
+npm init react-app 파일 명
+yarn add react-icons
+npm i react-icons
+
+yarn build :빌드 할떄 명령어
+yarn add react-icons
+npm i react-icons
+google ->react icon -> 이미지 선택후 코드 복사 
+.prettierrc
+{
+    "singleQuote": true,
+    "semi": true,
+    "useTabs": false,
+    "tabWidth": 2,
+    "trailingComma": "all"
+}
