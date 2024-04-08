@@ -1,13 +1,12 @@
 import { MdOutlineAdd } from 'react-icons/md';
 
-const AddTodo = ({ onSubmit, onChange, todo, message }) => {
+const AddTodo = ({onSubmit,onChange,todo}) => {
   return (
-    <form onSubmit={onSubmit} autoComplete="off">
-      <input type="type" value={todo} onChange={onChange} autoFocus />
-      <button type="submit">
+    <form onSubmit={onSubmit}>
+      <input type="type" value={todo} onChange={onChange}/>
+      <button type="submit"  >
         <MdOutlineAdd />
       </button>
-      {message && <div>{message}</div>}
     </form>
   );
 };
