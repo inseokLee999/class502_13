@@ -6,6 +6,6 @@ public class Ex12 {
         double num2=3.6;
         //곱셉 결과를 정수로 표현
         int result = (int)(num1*num2);
-        System.out.println(result);
+        System.out.println(result); //
     }
 }
