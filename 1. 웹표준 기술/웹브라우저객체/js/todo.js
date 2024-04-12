@@ -1,10 +1,12 @@
 const todo = {
+  id: 1,
   data: [], // 스케줄 데이터
   init() {
     //초기 저장값 조회 -> 스케줄 완성
     const jsonData = localStorage.getItem("todos");
     const todos = jsonData ? JSON.parse(jsonData) : []; // 받아온 데이터가 빈값이면 빈 배열
     this.data = todos;
+    this.id = todos.length + 1;
     //console.log(this);
     const itemsEl = document.querySelector(".items");
     for (const item of todos) {
@@ -40,6 +42,7 @@ const todo = {
     });
 
     this.save();
+    liEl.dataset.id = id;
   },
   save() {
     localStorage.setItem("todos", JSON.stringify(this.data));
@@ -57,6 +60,14 @@ const todo = {
     buttonEl.addEventListener("click", function () {
       const itemsEl = document.querySelector(".items");
       itemsEl.removeChild(liEl);
+
+      //localStorage 에 저장된 데이터도 삭제
+      const id = Number(liEl.dataset.id);
+      const index = todo.data.findIndex((item) => item.id === id);
+      if (index !== -1) {
+        todo.data.splice(index, 1);
+        todo.save();
+      }
     });
     return liEl;
   },

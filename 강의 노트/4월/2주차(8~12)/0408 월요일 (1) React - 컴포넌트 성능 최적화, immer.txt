@@ -21,10 +21,11 @@ const [todos,setTodos]=useState(createBulkTodos); -> 최초 렌더링 시 한번
 - useState의 함수형 업데이트 기능을 사용하는 것
 	->useCallback,useEffect 
 	- 함수형 업데이트 사용
-- useReducer를 사용하는 것 바깥에 정의 하여 한번만 만들어서 성능이 좋다
+- useReducer를 사용하는 것 : 바깥에 정의 하여 한번만 만들어서 성능이 좋다
 
 2) useState의 함수형 업데이트
 - 새로운 상태를 파라미터로 넣는 대신, 상태 업데이트를 어떻게 할지 정해주는 업데이트 함수를 넣어줄 수도 있습니다. 이를 함수형 업데이트라고 합니다.
+이전 상태를 변경하지 않고 새로운 상태를 생성하는 것이 함수형 업데이트의 핵심
 
 const [number, setNumber] = useState(0);
 // prevNumber는 현재 number 값을 가리킵니다.

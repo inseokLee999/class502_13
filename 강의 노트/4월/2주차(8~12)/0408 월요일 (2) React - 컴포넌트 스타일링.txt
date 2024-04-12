@@ -33,7 +33,7 @@ yarn eject
 3. classnames
 1) CSS 클래스를 조건부로 설정할 떄 매우 유용한 라이브러리
 yarn add classnames
-
+npm i classnames
 2) classnames 간략 사용법
 3) Sass와 함께 사용하기
 	- Sass를 사용할 때도 파일 이름 뒤에 .module.scss 확장자를 사용해 주면 CSS Module로 사용할 수 있습니다.
@@ -41,9 +41,12 @@ yarn add classnames
 4) CSS Module이 아닌 파일에서 CSS Module 사용하기
 	- CSS Module에서 글로벌 클래스를 정의할 때 :global을 사용했던 것처럼 CSS Module이 아닌 .css/.scss 파일에서도 :local을 사용하여 CSS Module을 사용할 수 있습니다.
 	
+classnames/bind 
+
 3. styled-components
 1) 자바스크립트 파일 안에 스타일을 선언하는 방식 / CSS-in-JS라고 부릅니다.
 yarn add styled-components
+npm i styled
 
 참고)
 yarn add sass classnames styled-components

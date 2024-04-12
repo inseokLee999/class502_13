@@ -19,7 +19,8 @@ const todo = {
       const liEl = this.getItem(subject);
       const itemsEl = document.querySelector(".items");
       itemsEl.appendChild(liEl);
-  
+      frmRegist.subject.value='';
+      frmRegist.subject.focus();
       this.data.push(subject);
       this.save();
     },
