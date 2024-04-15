@@ -12,7 +12,7 @@ public class Ex01 {
         Student s2= new Student(1000,"김덕배","축구");
         //System.out.println(System.identityHashCode(s1));//주소
         //System.out.println(s1);
-        s2.study();
+        s2.showInfo();
         //Student s3= new Student();
     }
 }

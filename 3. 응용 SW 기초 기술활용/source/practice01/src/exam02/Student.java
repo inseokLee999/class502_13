@@ -1,7 +1,7 @@
 package exam02;
 
 public class Student {
-    int id;//학번
+    static int id;//학번
 
     String name;// 학생명
 
@@ -15,7 +15,7 @@ public class Student {
         name=_name;
         subject=_subject;
     }
-    void study(){
-        System.out.printf("학번 :%d, 이름:%s ,전공과목:%s",id, name,subject);
+    void showInfo(){
+        System.out.printf("학번 :%d, 이름:%s ,전공과목:%s\n",id, name,subject);
     }
 }

@@ -7,6 +7,5 @@ public class Ex07 {
         String[] strs={"가나","다라","마바"};
         System.out.println(Arrays.deepToString(strs));
         String[] strs2;
-        strs2=Arrays.sort(-1);
     }
 }

@@ -7,7 +7,7 @@ public class 연습문제2 {
         // 40명의 학생이 각각 번호표를 받아 한 방에 4명씩 배정하여
         // 다음과 같이 출력하시오(예 : 학생1, 방번호 1번)
         for (int i = 1; i <= 40; i++) {
-            System.out.printf("학생: %d, 방번호: %d \n", i, i % 10);
+            System.out.printf("학생: %d, 방번호: %d \n", i, i%  10);
         }
     }
 }
