@@ -1,0 +1,117 @@
+리액트 라우터로 SPA 개발하기
+1. 라우팅이란?
+1) 사용자가 요청한 URL에 따라 알맞는 페이지로 보여주는 것을 의미
+2) 여러 페이지로 구성된 웹 애플리케이션을 만들 때 페이지별로 컴포넌트들을 분리해가면서 프로젝트를 관리하기 위해 필요한 것이 라우팅 시스템
+- 리액트 라우터(React Router)
+
+2. SPA란?
+1) SPA(Single Page Application) : 싱글페이지 애플리케이션
+2) 한 개의 페이지로 이루어진 애플리케이션
+3) 리액트 같은 라이브러리를 사용해서 뷰 렌더링을 사용자의 브라우저가 담당하도록 하고, 우선 웹 애플리케이션을 브라우저에 불러와서 실행시킨 후에 사용자와 인터렉션이 발생하면 필요한 부분만 자바스크립트를 사용하여 업데이트하는 방식을 사용하게 됩니다.
+4) 싱글 페이지 애플리케이션은 기술적으로는 한 페이지만 존재하는 것이지만, 사용자가 경험하기에는 여러 페이지가 존재하는 것 처럼 느낄 수 있습니다.
+5) 브라우저의 History API를 사용하여 브라우저의 주소창의 값만 변경하고 기존 페이지에 띄웠던 웹 애플리케이션을 그대로 유지하면서 라우팅 설정에 따라 다른 페이지를 보여줍니다.
+
+CSR(Client Side Rendering)
+SSR(Server Side Rendering)
+리액트 라우터 적용 및 기본 사용법
+
+1. 라이브러리 설치
+	yarn add react-router-dom
+	npm i react-router-dom
+2. 프로젝트에 라우터 적용
+1) src/index.js 파일에서 react-router-dom에 내장되어 있는 BrowserRouter라는 컴포넌트를 사용하여 감싸면 됩니다.
+2) 이 컴포넌트는 웹 애플리케이션에 HTML5의 History API를 사용하여 페이지를 새로 불러오지 않고도 주소를 변경하고 현재 주소의 경로에 관련된 정보를 리액트 컴포넌트에서 사용할 수 있도록 해줍니다.
+
+3. 페이지 컴포넌트 만들기
+
+4. Route 컴포넌트로 특정 경로에 원하는 컴포넌트 보여주기
+
+1) Route 컴포넌트는 다음과 같이 사용합니다.
+	<Route path="주소규칙" element={보여 줄 컴포넌트 JSX} />
+2) Route 컴포넌트는 Routes 컴포넌트 내부에서 사용되어야 합니다.
+
+
+5. Link 컴포넌트를 사용하여 다른 페이지로 이동하는 링크 보여주기
+1) <Link to="경로">링크 이름</Link>
+	-a 태그이다: 기본 기능 x, History API로 기능 수정
+		(e.preventDefault())
+
+6. URL 파라미터와 쿼리스트링
+1) URL 파라미터
+- 주소의 경로에 유동적인 값을 넣는 형태
+- 주로 ID또는 이름을 사용하여 특정 데이터를 조회할 때 사용
+- 예) /profile/이름
+- useParams()
+- URL 파라미터는 /profiles/:username과 같이 경로에 :를 사용하여 설정합니다. 만약 URL 파라미터가 여러개인 경우엔 /profiles/:username/:field와 같은 형태로 설정할 수 있습니다.
+
+2) 쿼리스트링
+- 주소의 뒷부분에 ? 문자열 이후 key=value로 값을 정의하며 &로 구분을 하는 형태
+- 키워드 검색, 페이지네이션, 정렬 방식 등 데이터 조회에 필요한 옵션을 전달할 때 사용
+- 예) /articles?page=1&keyword=react
+- useLocation()
+- 쿼리스트링을 사용할 때는 URL 파라미터와 달리 Route 컴포넌트를 사용할 때 별도로 설정해야 하는 것은 없습니다.
+
+- useLocation Hook은 location 객체를 반환하며 이 객체는 현재 사용자가 보고있는 페이지의 정보를 지니고 있습니다.
+- 쿼리스트링은 location.search 값을 통해 조회를 할 수 있습니다.
+- 리액트 라우터에서는 useSearchParams라는 Hook을 통해서 쿼리스트링을 더욱 쉽게 다룰 수 있게 됩니다.
+- useSearchParams는 배열 타입의 값을 반환하며, 첫번째 원소는 쿼리파라미터를 조회하거나 수정하는 메서드들이 담긴 객체를 반환합니다.
+
+URLSearchParams 생성자 
+
+- const [searchParams, setSearchParams// 전체 교체 할 때 ] = useSearchParams();
+- 쿼리파라미터를 사용할 때 유의점은 쿼리파라미터를 조회할 때 값은 무조건 문자열 타입입라는 것. true 또는 false 값을 넣게 된다면 값을 비교할 때 꼭 'true'와 같이 따옴표로 감싸서 비교를 해야 하며, 숫자를 다룰때는 parseInt를 사용하여 숫자 타입으로 변환해야 한다.
+
+7. 중첩된 라우트
+1) Outlet 컴포넌트가 사용된 자리에 중첩된 라우트가 보여지게 됩니다.
+
+	/board -> 게시글 목록
+	/board/view/:id -> 게시글 상세
+	
+	/member/login
+	/member/join
+	
+	/member
+		login
+		join
+8. 공통 레이아웃 컴포넌트
+1) 중첩된 라우트와 Outlet은 페이지끼리 공통적으로 보여줘야 하는 레이아웃이 있을때도 사용할 수 있습니다.
+
+9. index props
+1) Route 컴포넌트에는 index라는 props가 있습니다. 이 props는 path="/"와 동일한 의미를 가집니다.
+2) index props는 상위 라우트의 경로와 일치하지만, 그 이후에 경로가 주어지지 않았을 때 보여지는 라우트를 설정할때 사용합니다.
+3) path="/"와 동일한 역할을 하며 이를 좀 더 명시적으로 표현하는 방법입니다.
+
+리액트 라우터 부가기능
+1. useNavigate 
+1) Link 컴포넌트를 사용하지 않고 다른 페이지로 이동을 해야 하는 상황에 사용하는 Hook 입니다.
+2) navigate 함수를 사용할 때 파라미터가 숫자 타입이라면 앞으로 또는 뒤로 이동합니다.
+	- navigate(-1) : 뒤로 한번 이동
+	- navigate(1) : 앞으로 한번 이동(뒤로가 한번 한 후 동작)
+3) 다른 페이지로 이동을 할 때 replace 옵션을 사용하면 페이지 이동 기록이 남지 않습니다.
+	const goArticles = () => {
+		navigate('/articles', { replace: true });
+	};
+	location.assign(..),location.href :  history 가 남음
+	location.replace(..) : history 가 안남음
+
+2. NavLink
+1) NavLink 컴포넌트는 링크에서 사용하는 경로가 현재 라우트 경로와 일치하는 경우 특정 스타일 또는 CSS 클래스를 적용하는 컴포넌트입니다.
+2) 이 컴포넌트를 사용할 때 style 또는 className을 설정할 때 { isActive: boolean }을 파라미터로 전달받는 함수 타입의 값을 전달합니다.
+
+3. NotFound 페이지 만들기
+1) *는 와일드카드 문자, 아무 텍스트나 매칭한다는 의미
+2) 라우트 요소의 상단에 위치하는 라우트들의 규칙을 모두 확인하고, 일치하는 라우트가 없다면 이 라우트가 화면에 나타나게 됩니다.
+
+4. Navigate 컴포넌트
+1) Navigate 컴포넌트는 컴포넌트를 화면에 보여주는 순간 다른 페이지로 이동을 하고 싶을 때 사용하는 컴포넌트입니다. 즉, 페이지를 리다이렉트 하고 싶을 때 사용
+	if (!isLoggedIn) {
+		return <Navigate to="/login" replace={true} />;
+	}
+
+코드 스플리팅
+
+1. React.lazy와 Suspense를 통한 컴포넌트 코드 스플리팅
+CSR
+2. Loadable Components를 통한 코드 스플리팅
+yarn add @loadable/component
+npm i @loadable/component
