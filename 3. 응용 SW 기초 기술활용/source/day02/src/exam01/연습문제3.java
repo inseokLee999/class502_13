@@ -8,9 +8,10 @@ public class 연습문제3 {
         // 건물의 층을 누르면 그 층이 어떤 곳인지 알려주는 엘리베이터가 있을 때
         // 이를 switch ~ case문으로 구현하시오(5층인 경우 ‘5층 헬스클럽입니다.’)
         Scanner scanner = new Scanner(System.in);
-        System.out.print("층수를 입력하세요 : (종료 : 0)\n");
-        int floor = scanner.nextInt();
+        int floor=-1;
         while(floor!=0) {
+            System.out.print("층수를 입력하세요 : (종료 : 0)\n");
+            floor = scanner.nextInt();
             switch (floor) {
                 case (1):
                     System.out.println("1층은 약국입니다");
@@ -27,12 +28,13 @@ public class 연습문제3 {
                 case (5):
                     System.out.println("5층은 헬스클럽입니다");
                     break;
+                case(0):
+                    System.out.println("종료합니다");
+                    break;
                 default:
                     System.out.printf("%d층은 없는 층입니다\n", floor);
                     break;
             }
-            System.out.print("층수를 입력하세요 : (종료 : 0)\n");
-            floor = scanner.nextInt();
         }
     }
 }
