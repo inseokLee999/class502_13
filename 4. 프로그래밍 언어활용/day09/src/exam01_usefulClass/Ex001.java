@@ -1,9 +1,8 @@
-package exam01;
+package exam01_usefulClass;
 
 import java.util.Arrays;
-import java.util.Objects;
 
-public class Ex01 {
+public class Ex001 {
     public static void main(String[] args) {
         int total1=add(10,20,30,40);
         int total2=add(10,20,30);
