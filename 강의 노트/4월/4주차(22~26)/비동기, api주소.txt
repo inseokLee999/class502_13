@@ -1,0 +1,20 @@
+비동기 
+
+동기 : 순서대로 실행
+A -> B->C
+
+비동기 : 순서대로 실행 -> 완료는 순서대로 되지 않는다.
+순서 보장으로 promise 랑 async
+
+setTimeout(function(){//이벤트 핸들러 함수
+	//5초뒤에 실행
+},5000);
+
+2baf06d76ae94e46abd65c4e6d59200b
+
+https://newsapi.org/v2/top-headlines?country=kr&apiKey=2baf06d76ae94e46abd65c4e6d59200b
+
+Ajax(Asynchronous JavaScript and XML)
+
+
+Fetch API

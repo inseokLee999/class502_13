@@ -1,0 +1,77 @@
+열거형(enums)
+1. 열거형이란?
+상수만을 위한 클래스 일종
+2. 열거형 정의와 사용
+enum 클래스명 {
+	상수, 상수, 상수..
+}
+상수는 한개만 처리하기 떄문에 상수간의 비교 == 가능하다.
+3. 모든 열거형의 상위 클래스 - java.lang.Enum
+System.out.println(trans instanceof Enum<?>); = True
+enum Transport{
+	BUS,
+	METRO,
+	TAXI
+
+}은 사실 이렇게 되어 있다.
+abstract class Transportation extends (첫 번째 비밀)java.lang.Enum{
+	public static final BUS (두 번째 비밀 enum클래스의 정적 상수객체) = new Transportation(){};
+	public static final METRO = new Transportation(){};//중괄호 있는 이유는 abstract이기 때문
+	public static final TAXI = new Transportation(){};
+	private Transporation(){}//세 번째 비밀 객체가 되면 상수로써 의미가 없으므로 생성자가 private으로 통제가 되어있다.
+	네 번째 마지막 비밀 추상 클래스이다.
+}
+1) Enum 클래스에 정의된 메서드
+	String name() : Enum 상수이름을 문자열로 변환
+		(String toString() 동일)
+	int ordinal() : 상수의 위치 번호(몇 번째 인지)
+	
+	static valueOf : 변환 메서드
+	
+2) 컴파일러가 자동으로 추가해주는 메서드
+valueOf(String str) : 호출객체가 Enum상수 이므로 Class클래스 객체는 필요 없다.
+values(): 정의된 상수목록을 배열로 변환
+4. 열거형에 멤버 추가하기
+5. 열거형에 추상메서드 추가하기
+
+
+애너테이션(annotation)
+	정보를 전달하기 위한 목적이 정해진 클래스의 일종
+1. 에너테이션이란?
+	주석, 주해 ..
+	정보전달
+	@interface 애노테이션 명 {
+	
+	}
+	컴파일러가 자동 변환
+	interface 애노테이션명 extends java.lang.annotation.Annotation
+2. 표준 애너테이션 
+	-JDK에 이미 정의된 애노테이션
+	@Override : 재정의된 메서드임을 알려주는 목적
+	@Deprecated : 향후 제거될 가능성이 있는 메서드임을 알려주는 목적
+3. 메타 애너테이션 
+	- 애노테이션 을 정의 할 때 필요한 애노테이션
+	- @Target: 애너테이션 정의 범위
+		ElementType : 적용범위 enum상수
+			METHOD : 메서드 위에 적용
+			FIELD : 멤버 변수
+			CONSTRUCTOR: 생성자
+			PARAMETER : 매개변수
+	- @Retention : 정보전달시점
+		RetensionPolicy
+			SOURCE
+				애너테이션이 java 파일 상에 유지, 컴파일 완료 후 (Class파일) 에는 제거
+				컴파일러가 필요한 정보를 제공
+				컴파이럴가 필요한 정보
+			CLASS : 기본값
+				:애노테이션이 java파일상에 유지, 컴파일 완류 후 유지
+				-정보 전달 x
+				-기본값임에도 사용
+			RUNTIME
+				:애노테이션이 java파일상에 유지, 컴파일 완료 후 유지
+					- 정보전달이 실행중에 제공
+					
+	단순정보 전달 목적이고, 설정이 없는 경우 : 마커 애노테이션 - @Override
+	
+	애너테이션에서 추가정보 전달 : 추상메서드 정의를 통해 
+	

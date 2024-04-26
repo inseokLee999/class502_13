@@ -1,0 +1,268 @@
+리덕스를 사용하여 리액트 애플리케이션 상태 관리하기
+
+리덕스 관련 코드 작성하기
+- 가장 일반적인 구조로 actions, containers, reducers라는 세 개의 디렉토리를 만들고 그 안에 기능별로 파일을 하나씩 만드는 방법
+- 코드를 종류에 따라 다른 파일에 작성하여 정리할 수 있어서 편리하지만, 새로운 액션을 만들 때마다 세 종류의 파일을 모두 수정해야 하기 때문에 불편
+- 이 방식은 리덕스 공식 문서에서도 사용되므로 가장 기본적이라 할 수 있지만, 사람에 따라 불편할 수도 있는 구조
+
+1. ducks 패턴
+1) 액션 타입, 액션 생성 함수, 리듀서 함수를 기능별로 파일 하나에 몰아서 다 작성하는 방식
+2) 액션타입 정의하기
+
+const INCREASE = "counter/INCREASE";
+const DECREASE = "counter/DECREASE";
+
+3) 가장 먼저 해야 할 작업은 액션 타입을 정의하는 것입니다.
+4) 액션 타입은 대문자로 정의하고, 문자열 내용은 모듈 이름/액션 이름과 같은 형태로 작성합니다.
+5) 문자열 안에 모듈 이름을 넣음으로써, 프로젝트가 커졌을 때 액션의 이름이 충돌되지 않게 해 줍니다.
+
+2. 액션 생성 함수 만들기
+
+export const increase = () => ({ type: INCREASE });
+export const decrease = () => ({ type: DECREASE });
+
+
+3. 초기 상태 및 리듀서 함수 만들기
+
+const initialState = {
+    number: 0
+};
+
+function counter(state = initialState, action) {
+    switch (action.type) {
+        case INCREASE:
+            return {
+                number: state.number + 1
+            };
+        case DECREASE:
+            return {
+                number: state.number - 1
+            };
+        default:
+            return state;
+    }
+}
+
+export default counter;
+
+
+4. 루트 리듀서 만들기
+1) createStore 함수를 사용하여 스토어를 만들 때는 리듀서를 하나만 사용하여야 하므로 리듀서를 하나로 합쳐야 합니다.
+2) 이 작업은 리덕스에서 제공하는 combineReducers라는 유틸 함수를 사용하면 쉽게 처리할 수 있습니다.
+
+import { combineReducers } from "redux";
+import counter from "./counter";
+import todos from "./todos";
+
+const rootReducer = combineReducers({
+  counter,
+  todos,
+});
+
+export default rootReducer;
+
+3) 파일 이름을 index.js로 설정해 주면 불러올 때 디렉터리 이름까지만 입력하여 불러올 수 있습니다.
+
+5. 스토어 만들기
+
+import ReactDOM from "react-dom";
+import { createStore } from "redux";
+import "./index.css";
+import App from "./App";
+const rootReducer from './modules';
+
+const store = createStore(rootReducer);
+
+ReactDOM.render(<App />, document.getElementById('root'));
+
+6. Provider 컴포넌트를 사용하여 프로젝트에 리덕스 적용하기
+
+1) 리액트 컴포넌트에서 스토어를 사용할 수 있도록 App 컴포넌트를 react-redux에서 제공하는 Provider 컴포넌트로 감싸 줍니다.
+2) 이 컴포넌트를 사용할 때는 store를 props로 전달해 주어야 합니다.
+
+7. Redux DevTools의 설치 및 적용
+1) Redux DevTools는 리덕스 개발자 도구이며, 크롬 확장 프로그램으로 설치하여 사용할 수 있습니다.
+2) 크롬 웹 스토어(https://chrome.google.com/webstore/)에서 Redux DevTools를 검색하여 설치합니다.
+3) 패키지를 설치하여 적용합니다.
+
+yarn add redux-devtools-extension
+
+...
+
+import { composeWithDevTools } from "redux-devtools-extension";
+...
+
+const store = createStore(rootReducer, composeWithDevTools());
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
+
+8. 컨테이너 컴포넌트 만들기
+
+1) 리덕스 스토어와 연동된 연동된 컴포넌트를 컨테이너 컴포넌트라고 부릅니다.
+
+connect(mapStateToProps, mapDispatchToProps)(연동할 컴포넌트)
+
+2) mapStateToProps : 리덕스 스토어 안의 상태를 컴포넌트의 props로 넘겨주기 위해 설정하는 함수
+3) mapDispatchToProps : 액션 생성 함수를 컴포넌트의 props로 넘겨주기 위해 사용하는 함수
+4) connect 함수를 호출하고 나면 다른 함수를 반환합니다. 반환된 함수에 컴포넌트를 파라미터로 넣어 주면 리덕스와 연동된 컴포넌트가 만들어집니다.
+5) const makeContainer = connect(mapStateToProps, mapDispatchToProps);
+makeContainer(타깃 컴포넌트);
+
+import { connect } from "react-redux";
+import Counter from "../components/Counter";
+
+const CounterContainer = ({ number, increase, decrease }) => {
+  return (
+    <Counter number={number} onIncrease={increase} onDecrease={decrease} />
+  );
+};
+
+const mapStateToProps = (state) => ({
+  number: state.counter.number,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  // 임시함수
+  increase: () => {
+    console.log("increase");
+  },
+  decrease: () => {
+    console.log("decrease");
+  },
+});
+export default connect(mapStateToProps, mapDispatchToProps)(CounterContainer);
+
+6) connect 함수를 사용할 때는 일반적으로 mapStateToProps와 mapDispatchToProps를 미리 선언해 놓고 사용합니다. 그러나 connect 함수에 익명 함수 형태로 선언해도 됩니다.
+
+const mapStateToProps = (state) => ({
+  number: state.counter.number,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  increase: () => {
+    dispatch(increase());
+  },
+  decrease: () => {
+    dispatch(decrease());
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CounterContainer);
+
+7) 컴포넌트에서 액션을 디스패치하기 위해 각 액션 생성 함수를 호출하고 dispatch로 감싸는 작업이 번거로울 수 있습니다. 액션 생성함수의 개수가 많아지면 더더욱 그렇습니다. 이런 경우는 리덕스에서 제공하는 bindActionCreators 유틸 함수를 사용하면 간편합니다.
+
+import { bindActionCreators } from "redux";
+...
+
+export default connect(
+  (state) => ({
+    number: staet.counter.number,
+  }),
+  (dispatch) =>
+    bindActionCreators(
+      {
+        increase,
+        decrease,
+      },
+      dispatch
+    )
+)(CounterContainer);
+
+8) 더 편한 방법이 있는데, mapDispatchToProps에 해당하는 파라미터를 함수 형태가 아닌 액션 생성 함수로 이루어진 객체 형태로 넣어 주는 것입니다.
+
+export default connect(
+  (state) => ({
+    number: state.counter.number,
+  }),
+  {
+    increase,
+    decrease,
+  }
+)(CounterContainer);
+
+리덕스 더 편하게 사용하기
+1. redux-actions
+1) redux-actions를 사용하면 액션 생성함수를 더 짧은 코드로 작성할 수 있습니다.
+2) 리듀서를 작성할 때도 switch/case 문이 아닌 handleActions라는 함수를 사용하여 각 액션마다 업데이트 함수를 설정하는 형식으로 작성해 줄 수 있습니다
+
+ yarn add redux-actions
+ 
+ import { createAction } from 'redux-actions';
+
+const INCREASE = 'counter/INCREASE';
+const DECREASE = 'counter/DECREASE';
+
+export const increase = createAction(INCREASE);
+export const decrease = createAction(DECREASE);
+
+
+3) handleActions라는 함수를 사용하면 리듀서 함수도 더 간단하고 가독성 높게 작성할 수 있습니다.
+
+import { createAction, handleActions } from "redux-actions";
+
+const INCREASE = "counter/INCREASE";
+const DECREASE = "counter/DECREASE";
+
+export const increase = createAction(INCREASE);
+export const decrease = createAction(DECREASE);
+
+const initialState = {
+  number: 0,
+};
+
+const counter = handleActions(
+  {
+    [INCREASE]: (state, action) => ({ number: state.number + 1 }),
+    [DECREASE]: (state, action) => ({ number: state.number - 1 }),
+  },
+  initialState
+);
+
+
+Hooks를 사용하셔 컨테이너 컴포넌트 만들기
+
+1. useSelector로 상태 조회하기
+1) useSelector Hook을 사용하면 connect 함수를 사용하지 않아도 리덕스의 상태를 조회할 수 있습니다.
+- const 결과 = useSelector(상태 선택 함수);
+
+2) 상태 선택 함수는 mapStateToProps의 형태와 동일합니다.
+3) CounterContainer에서 connect 함수 대신 useSelector를 사용하여 counter.number 값을 조회함으로써 Counter에게 props를 넘겨 줍니다.
+
+2. useDispatch를 사용하여 액션 디스패치하기
+1) 이 Hook은 컴포넌트 내부에서 스토어의 내장 함수 dispatch를 사용할 수 있게 해 줍니다.
+2) 컨테이너 컴포넌트에서 액션을 디스패치해야 한다면 이 Hook을 사용하면 됩니다.
+3) const dispatch = useDispatch();
+dispatch({ type: "SAMPLE_ACTION" });
+
+
+...
+
+import { useSelector, useDispatch } from "react-redux";
+...
+
+const CounterContainer = () => {
+  const number = useSelector((state) => state.counter.number);
+  const dispatch = useDispatch();
+  return (
+    <Counter
+      number={number}
+      onIncrease={() => dispatch(increase())}
+      onDecrease={() => dispatch(decrease())}
+    />
+  );
+};
+
+
+3. useStore를 사용하여 리덕스 스토어 사용하기
+1) useStore Hooks를 사용하면 컴포넌트 내부에서 리덕스 스토어 객체를 직접 사용할 수 있습니
+2) useStore는 어쩔수 없이 스토어에 직접 접근해야 하는 상황에서만 사용해야 합니다. 사용하는 경우가 많지 않습니다.
+
+4. connect 함수와의 주요 차이점
+
+1) connect 함수를 사용하여 컨테이너 컴포넌트를 만들었을 경우, 해당 컨테이너 컴포넌트의 부모 컴포넌트가 리렌더링될 때 해당 컨테이너 컴포넌트의 props가 바뀌지 않았다면 리렌더링이 자동으로 방지되어 성능이 최적화됩니다.
+2) useSelector 함수를 사용하여 리덕스 상태를 조회했을 때는 이 최적화 작업이 자동으로 이루어지지 않으므로, 성능 최적화를 위해서는 React.memo를 컨테이너 컴포넌트에 사용해 주어야 합니다.
