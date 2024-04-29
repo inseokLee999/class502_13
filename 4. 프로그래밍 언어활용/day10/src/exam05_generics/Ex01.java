@@ -1,4 +1,4 @@
-package exam05;
+package exam05_generics;
 
 public class Ex01 {
     public static void main(String[] args) {

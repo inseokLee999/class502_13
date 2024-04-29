@@ -1,4 +1,4 @@
-package exam04;
+package exam05_generics;
 
 public class Grape {
     public String get(){

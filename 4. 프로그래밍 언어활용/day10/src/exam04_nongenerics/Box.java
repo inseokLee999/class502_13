@@ -1,4 +1,4 @@
-package exam04;
+package exam04_nongenerics;
 
 public class Box {
     private Object item;

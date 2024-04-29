@@ -1,4 +1,4 @@
-package exam04;
+package exam05_generics;
 
 public class Apple {
     public String get(){
