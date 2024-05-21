@@ -44,7 +44,11 @@ class Ex08_1 implements Runnable {
                 System.out.println(th.getName());
                 try {
                     Thread.sleep(1000);
-                } catch (InterruptedException e) {}
+                } catch (InterruptedException e) {
+                    System.out.println("interrupted");
+                }
+            }else{//정지상태 -> 다른 쓰레드로 바로 작업 완료
+                th.yield();
             }
         }
     }
