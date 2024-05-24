@@ -11,7 +11,7 @@
         <result column="MOBILE" property="mobile" />
         <result column="REG_DT" property="regDt" />
     </resultMap>
-    <select id="getList" resultType="exam01.Member">
+    <select id="getList" resultMap="memberMap">
         SELECT * FROM MEMBER
     </select>
     <!--<update >

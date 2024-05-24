@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.BoardMapper">
+    <resultMap id="memberMap" type="member.Member">
+        <result column="USER_NO" property="userNo"/>
+        <result column="USER_ID" property="userId"/>
+        <result column="USER_PW" property="userPw"/>
+        <result column="USER_NM" property="userNm"/>
+        <result column="MOBILE" property="mobile"/>
+        <result column="REG_DT" property="regDt"/>
+        <result column="MOD_DT" property="modDT"/>
+    </resultMap>
+    <select id="getList">
+
+    </select>
+    <update id="modify">
+
+    </update>
+    <insert id="register">
+
+    </insert>
+    <delete id="delete">
+
+    </delete>
+</mapper>
