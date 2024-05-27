@@ -1,16 +1,13 @@
 package exam01;
+import java.util.Scanner;
 
 public class Ex01 {
-    public static void main(String[] args) {
-//        Board b1= new Board();
-//        Board b2= new Board();
-//        System.out.println(b1==b2);
-//        System.out.println("b1 주소 : "+System.identityHashCode(b1));
-//        System.out.println("b1 주소 : "+System.identityHashCode(b2));
-        Board b1=Board.getInstance();
-        Board b2=Board.getInstance();
-        System.out.println(b1==b2);
-        System.out.println("b1 주소 : "+System.identityHashCode(b1));
-        System.out.println("b1 주소 : "+System.identityHashCode(b2));
-    }
+        public static void main(String[] args) {
+            Scanner sc = new Scanner(System.in);
+            String a = sc.next();
+            String b = sc.next();
+            System.out.println(a);
+            System.out.println(b);
+        }
+
 }
