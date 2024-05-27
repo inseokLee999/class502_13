@@ -1,27 +1,48 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!--        CREATE TABLE BOARD(
+        SEQ NUMBER(10) PRIMARY KEY,
+        POSTER VARCHAR2(30) NOT NULL,
+        SUBJECT VARCHAR2(100) NOT NULL,
+        CONTENT CLOB NOT NULL,
+        REG_DT DATE DEFAULT SYSDATE,
+        MOD_DT DATE
+        );-->
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.BoardMapper">
-    <resultMap id="memberMap" type="member.Member">
-        <result column="USER_NO" property="userNo"/>
-        <result column="USER_ID" property="userId"/>
-        <result column="USER_PW" property="userPw"/>
-        <result column="USER_NM" property="userNm"/>
-        <result column="MOBILE" property="mobile"/>
+    <resultMap id="boardMap" type="board.Board">
+        <result column="SEQ" property="seq"/>
+        <result column="POSTER" property="poster"/>
+        <result column="SUBJECT" property="subject"/>
+        <result column="CONTENT" property="content"/>
         <result column="REG_DT" property="regDt"/>
         <result column="MOD_DT" property="modDT"/>
     </resultMap>
-    <select id="getList">
-
+    <select id="getList" resultMap="boardMap">
+        SELECT * FROM MEMBER
     </select>
     <update id="modify">
-
+        UPDATE BOARD
+        <set>
+            <if test = " poster!=null ">
+                POSTER = #{poster},
+            </if>
+            <if test=" subject != null">
+                SUBJECT = #{subject}
+            </if>
+            <if test=" content != null">
+                CONTENT = #{content},
+            </if>
+            MOD_DT = SYSDATE
+        </set>
+        WHERE SEQ = #{seq}
     </update>
     <insert id="register">
-
+        INSERT INTO MEMBER (POSTER, SUBJECT, CONTENT)
+        VALUES (SEQ_Board.NEXTVAL,#{poster}, #{subject}, #{content})
     </insert>
     <delete id="delete">
-
+        DELETE FROM BOARD WHERE SEQ = #{seq}
     </delete>
 </mapper>
