@@ -1,0 +1,7 @@
+JSON 관련 라이브러리 (변환)
+-> jackson databind
+
+jack8 -> java.time패키지
+jackson : jsr310
+
+jsr : 자바 표준 권고안 310 -> java Date & Time API
