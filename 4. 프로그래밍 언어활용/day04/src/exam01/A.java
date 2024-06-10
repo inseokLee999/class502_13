@@ -1,17 +1,14 @@
 package exam01;
 
-import java.util.Scanner;
+public abstract class A{
+    public abstract int  add(int num1, int num2);
+     int sub(int num1,int num2){
+        return num1-num2;
+    };
 
-public class A {
-    public static int main() {
-        int n=4;
-        int answer = 0;
-        if(n%2==1){
-            for (int i = 1; i <= n; i += 2) answer += i;}
-        else
-            for (int i = 2; i <= n; i += 2) {
-                answer += i * i;
-            }
-            return answer;
-        }
+    public static void main(String[] args) {
+
+        String str1="ABC";
+        str1.equals("bcd");
+    }
 }
