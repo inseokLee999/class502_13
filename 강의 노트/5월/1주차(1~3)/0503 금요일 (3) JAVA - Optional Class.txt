@@ -1,0 +1,21 @@
+Optional 클래스
+
+목적 
+	NullPointerException 은 개발자를 가장 힘들게 함.. -> 서비스 중단
+	자바는 NPE에 취약한 언어
+	참고) 코틀린 NPE 에 해방
+	
+	null 에 대한 다양한 처리 방식을 제공하는 클래스 
+	
+특징 
+	- 값이 null 인지 아닌지를 체크해 보려면 값을 가지고 있어야함
+	- Wrapper 클래스 
+	
+class Optional <T>{
+	...
+	private final T value;
+	...
+}
+
+Optional 반환 타입은 null이 나올수 있으니까 처리하라는거
+

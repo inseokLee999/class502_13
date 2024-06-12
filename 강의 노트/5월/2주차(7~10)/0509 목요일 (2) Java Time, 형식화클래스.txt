@@ -1,0 +1,57 @@
+Temporal, TemporalAccessor, TemporalAdjustor
+
+LocalDate :
+LocatTime :
+
+date+time = LocalDateTime
+
+ZonedDateTime 
+	-  ZoneId : Asia/Seoul
+	- 섬머타임제 
+	
+OffsetDateTime
+	- ZoneOffset : +9
+		UTC : 세계 표준 협정시
+
+Instant : EpochTime - 1970.1.1 자정(UTC 0),1/1000초로 카운팅한 정수
+	참고) 
+		Date 클래스 -> Instant
+			toInstant()
+			
+TemporalAmound
+	Period : 날짜 사이의 간격(년,월,일)
+	
+	Duration : 시간 간격
+	
+형식화 클래스 
+java.text 패키지 : 형식화 관련 편의 클래스 모음
+1.DecimalFormat
+
+숫자 -> 형식화된 문자열
+10000-> 10,000
+
+	format(..): 숫자 -> 형식화된 문자열
+	Number parse(..): 형식화된 문자열 -> 숫자
+	
+	0패턴
+	#패턴
+2. SimpleDateFormat
+	날짜 형식화 : java.util.Date 객체
+	
+	String format(..) : Date객체 -> 형식화된 문자열
+	Date parse(..) :형식화된 문자열 -> Date 객체
+	
+
+3. ChoiceFormat
+	-format 
+	
+	80#B 
+	70이상 80 미만 C
+	80<B
+	70이상 80 미만 C
+	
+	81점~90미만 -B
+4. MessageFormat
+
+	String format(..) : 형식화된 문자열
+	Object[] parse(..) : 형식화된 문자열 -> 원래 데이터로 변환

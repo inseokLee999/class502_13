@@ -1,0 +1,48 @@
+JDBC(Java DataBase Connectivity) API
+
+API (Application Programming Interface)
+
+- 자바 데이터베이스 연결 기술 명세서 - 인터페이스로 구성 
+- 구현체는 각 DB 업체가 구성(데이터베이스 드라이버)
+
+- java.sql 패키지 - JDBC API 
+
+1. Oracle JDBC 드라이버 설치
+
+DriverManager 클래스 -> Connection 
+DataSource 인터페이스 -> Connection  : 커넥션 풀 
+
+2. 연동 과정
+1) java.sql.* 패키지 임포트
+2) JDBC 드라이버 로딩
+3) 데이터베이스 접속을 위한 Connection객체 생성
+4) 쿼리문을 실행하기 위한 Statement/PreparedStatement/CallableStatement 객체 생성
+5) 쿼리 실행
+6) 쿼리 실행 결과 값(int, ResultSet) 사용
+7) 사용된 객체(ResultSet, Statement/PreparedStatement/CallableStatement, Connection) 종료
+
+3. JDBC 드라이버 로딩 및 DBMS 접속
+1) JDBC 드라이버 로딩하기
+2) Connection 객체 생성하기
+3) 데이터베이스 연결 닫기
+
+
+데이터베이스 쿼리 실행
+1. Statement 객체로 데이터 접근하기
+1) ResultSet executeQuery(String sql)
+2) int executeUpdate(String sql)
+3) close()
+
+2. PreparedStatement 객체로 데이터 접근하기
+1) 동적인 쿼리에 사용
+2) 하나의 객체로 여러 번의 쿼리를 실행할 수 있으며, 동일한 쿼리문을 특정 값만 바꾸어서 여러 번 실행해야 할 때, 매개변수가 많아서 쿼리문을 정리해야 할 때 유용
+
+3. CallableStatement 객체로 데이터 접근하기
+1) 프로시저 실행시 사용 
+
+3. 쿼리문 실행 결과 값 가져오기
+1) ResultSet 객체의 메서드
+
+
+커넥션 풀
+Tomcat JDBC

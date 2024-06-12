@@ -1,0 +1,135 @@
+JDBC(Java DataBase Connectivity) API
+
+API(Application Programming Interface)
+
+- 자바 데이터베이스 연결 기술 명세서 - 인터페이스로 구성
+- 구현체는 각 DB 업체가 구성(데이터 베이스 드라이버)
+
+1. Oracle JDBC 드라이버 설치
+
+ojdbc11.jar 다운받아서 의존성에 추가
+
+DriverMangager 클래스 -> Connection
+DataSource 인터페이스 -> Connection
+2. 연동 과정
+1) java.sql.* 패키지 임포트
+2) JDBC 드라이버 로딩
+	- ClassforName(..)-> ojdbc11.jar
+		oracle.jdbc.driver.OracleDriver
+3) 데이터베이스 접속을 위한 Connection객체 생성
+	DriverManager : 접속을 할 때 마다 Connection -> 비효율적
+
+	DriverManager 
+		.getConnection(String url,String user,String password)
+	
+	DataSource 인터페이스 : 커넥션 풀을 제공하는 라이브러리 구현체가 있다.
+							(Tomcat JDBC,HikariCP)
+			Connection getConnection(..) 
+			
+			커넥션 풀 : 연결객체 저장소
+4) 쿼리문을 실행하기 위한 Statement/PreparedStatement/CallableStatement 객체 생성
+
+5) 쿼리 실행
+6) 쿼리 실행 결과 값(int, ResultSet) 사용
+7) 사용된 객체(ResultSet, Statement/PreparedStatement/CallableStatement, Connection) 종료
+
+3. JDBC 드라이버 로딩 및 DBMS 접속
+1) JDBC 드라이버 로딩하기
+2) Connection 객체 생성하기
+3) 데이터베이스 연결 닫기
+
+CREATE SEQUENCE SEQ_MEMBER;
+
+데이터베이스 쿼리 실행
+1. Statement 객체로 데이터 접근하기
+	Connection
+		Statement createStatement();
+1) ResultSet executeQuery(String sql)
+	- 조회를 하는 쿼리 수행 / SELECT
+	- ResultSet : 조회한 레코드의 조회 시작 주소 값
+2) int executeUpdate(String sql)
+	- 변경을 가하는 쿼리 수행 / INSERT,UPDATE,DELETE
+	- 반환값 : 반영된 레코드 갯수
+3) close()
+
+2. PreparedStatement 객체로 데이터 접근하기
+1) 동적인 쿼리에 사용
+2) 하나의 객체로 여러 번의 쿼리를 실행할 수 있으며, 동일한 쿼리문을 특정 값만 바꾸어서 여러 번 실행해야 할 때, 매개변수가 많아서 쿼리문을 정리해야 할 때 유용
+-SQL 주입(injection)을 방지
+
+Connection 
+	PrepraredStatement prepareStatement(String sql);
+		값이 할당될 부분은 SQL 에  ? 로 기입
+		
+set자료형 (int ? 의 위치번호, 값);
+ResultSet executeQuery() :select //statement 사용시와는 다르게 매개변수 사용 안 해도된다
+int executeUpdate() : INSERT, UPDATE,DELETE
+3. CallableStatement 객체로 데이터 접근하기
+1) 프로시저 실행시 사용 
+
+3. 쿼리문 실행 결과 값 가져오기
+1) ResultSet 객체의 메서드
+	boolean next(): 다음행으로 이동, 다음행이 있으면 true, 없으면 false
+	
+	자료형 get자료형(int 컬럼 순서번호);
+	자료형 get자료형(String 컬럼명);
+	
+	String getString(): 문자형 데이터
+	int getInt(..) long getLong(): 정수형 데이터
+	float getFloat(), double getDouble(): 실수형 데이터
+
+	java.sql.Time : 시간 - getTime()
+	java.sql.Date : 날짜 - getDate()
+	java.sql.Timestamp : 날짜 + 시간 - getTimestamp()
+커넥션 풀을 제공하는 객체
+Tomcat JDBC
+	의존성 : tomcat-jdbc
+	
+HikariCP 
+
+JDBC API
+- JAVA DataBase Connectivity
+- API : Application Programming Interface
+
+-> 인터페이스로 주로 구성
+
+데이터베이스 드라이버
+오라클 : ojdbc11.jar
+
+1. 드라이버 동적 로딩
+
+Class.forName("oracle.jdbc.driver.OracleDriver");
+
+2. Connection 객체 생성 : DB와 자바코드 연결
+1) DriverManager
+	static Connection getConnection(String url,String user,String password);
+	
+	url : jdbc:oracle:thin:@localhost:1521:XE
+	
+2) DataSource 인터페이스 : 커넥션 풀
+
+3. Statement
+	1) 정적 SQL 실행
+	2) Connection
+		Statement createStatement()
+		
+		ResultSet executeQuery(String sql); 
+			-ResultSet : 조회결과 레코드 주소 : 커서이동 다음행을 조회
+				boolean next() : 다음행으로 이동 (다음행이 있으면 true, 없으면 false)
+				자료형 get자료형(int 컬럼 순서번호);
+				자료형 get자료형(String 컬럼명);
+		int executeUpdate(String sql); - 추가, 수정, 삭제
+				- 반환값 : 반영된 레코드 갯수
+		
+4. PreparedStatement
+	1) 동적 SQL
+	2) 값을 ? 파라미터로 미리 정의, 값을 set자료형 메서드로 지정
+	3) Connection
+		PreparedStatement prepareStatement(String sql);
+		PreparedStatement prepareStatement(String sql, String columnNames);//columnNames: 증감번호 형태의 기본키
+			ResultSet getGeneratedKeys() 를 통해서 조회
+	4) 실행
+		ResultSet executeQuery();
+		int executeUpdate();
+5. CallableStatement
+	- 프로시저 호출용 

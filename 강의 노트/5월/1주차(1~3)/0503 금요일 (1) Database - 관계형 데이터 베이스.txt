@@ -1,0 +1,175 @@
+관계형 데이터베이스의 구성 요소
+1. 테이블
+- 데이터를 2차원 표 형태로 저장하고 관리
+- 이 표형태의 데이터 저장 공간을 테이블(table)이라고 합니다.
+- 가로줄을 행(row), 세로줄을 열(column)이라고 부릅니다.
+
+행 : 레코드, 튜플
+열 : 컬럼, 필드
+
+특별한 의미를 지닌 열, 키
+조회 - 가장 중요한 기능
+1. 기본키(Primary Key - PK)
+	- 후보키 중에서 선택한 대표 키
+	// 복합키
+	- 하나의 값으로 레코르를 대표하기가 어려운경우 여러값을 조합해서 기본키를 만드는 방식
+	예) 회원명 + 주소 + 전화번호
+2. 후보키 
+ - 레코드를 대표할 수 있는 값의 후보군
+ 
+ 회원명 주민번호 전화번호 주소
+ ㅇㅇㅇ 000000  0100000 서울
+ 주민번호, 전화 번호 
+ 회원명 + 주소 + 전화번호 
+3. 대리키
+	- 기본키로 선택하기가 적합지 않은 경우 증감 번호 같은 형식으로 대리하는 키(기본키)
+	예) 회원번호, 게시글 번호
+	
+4. 외래키(Foreign Key - FK)
+	- 참조 무결성 제약 조건
+	: 외래키가 있는 쪽이 자식 테이블
+	: 부모 테이블에 있는 레코드를 참조하는 자식 레코드가 있으면 삭제 불가
+회원 
+회원명 아이디
+이이름 user01
+김이름 user02
+
+게시글
+게시글번호 제목 내용 회원명 아이디
+1		제목1 내용1 이이름 user01 // 회원명이름이 바뀌었을때 아이디도 바꿔줘야하는데 안바뀔수있어서 회원명을 안쓰고 (공통적인 값)아이디만 쓴다
+-아이디 : 외래키(참조용)
+
+
+오라클 데이터베이스
+1. 자료형 : 도메인 무결성 제약조건
+	문자
+		CHAR(문자의 길이) : 문자의 길이 만큼 바이트 공간이 생성( 최대 4000byte 설정 가능 - 영문 기준 4000자)
+						참고) UTF-8 / 한글 1자 - 3바이트
+						: CHAR(40): 40 바이트 고정 공간 할당
+						문자가 AB : 2자로 입력해도 40 바이트 공간을 고정으로 할당
+						
+		VARCHAR2(문자열 길이) : 최대 문자열 길이 만큼 바이트 공간 생성(문자열의 길이가 작으면 가변적으로 작게 생성)
+						: VARCHAR2(40) : 문자열이 2자이면 2바이트 만큼만 할당
+						(최대 4000byte까지 할당 가능)
+						- 보통 한줄 텍스트를 저장 할 때 사용
+		
+		CLOB : Character Large OBject
+				최대 4GB까지 저장 가능
+				- 여러줄 테스트를 저장 할 때 주로 사용
+	숫자
+		NUMBER(전체 길이, 소수점 자리수)
+		
+	기타 
+		DATE : 날짜, 시간과 관련된 함수, 연산 기능 사용가능, 형식화
+		
+		BLOB : 최대 크기 4GB의 대용량 이진 데이터를 저장할 수 있습니다.
+		BFILE : 최대 크기 4GB의 대용량 이진 데이터 파일을 저장할 수 있습니다.
+
+참고
+무결성 제약조건
+1. 도메인 무결성 제약조건 : 자료형과 관련, 컬럼에는 지정된 자료형만 데이터 허용
+2. 개체 무결성 제약조건 : 기본키 제약 조건 - 중복 X,NULL 미허용 (비어있는 값도 미허용)
+3. 참조 무결성 제약조건 : 외래키 제약 조건 - 부모 레코드에 자식 레코드( 외래키가 있는 쪽) 가 있는 경우 부모 레코드 삭제 제한
+
+2. 객체
+- 객체는 오라클 데이터베이스 내에서 데이터를 저장하고 관리하기 위한 논리 구조를 가진 구성 요소
+1) 테이블(table)
+2) 인덱스(index)
+	- 목차
+	- 검색에 최적화된 구조로 구성
+	
+3) 뷰(view)
+	- 가상의 테이블
+	
+4) 시퀀스(sequence)
+	- 숫자의 증감
+	
+5) 프로시저(procedure)
+	- 저장 프로그램, 독립적인 함수 프로그램
+	- 반환값 X
+	
+6) 함수(function)
+	- 반환값 O
+	
+7) 패키지(package)
+	- 패키지 함수, 프로시저의 묶음
+	
+8) 트리거(trigger)
+	- 특정 동작 발생시 실행되는 함수
+	- INSERT, DELETE, UPDATE ...
+
+3. PL/SQL
+- 기존 SQL만으로 이를 구현하는 것은 다소 한계가 있습니다. 그래서 오라클 데이터베이스는 데이터 관리를 위해 별도의 프로그래밍 언어를 제공하는데 이를 PL/SQL(Procedural Language extension to SQL)이라고 합니다.
+- 오라클 데이터베이스 프로그래밍이라고 하면 SQL문과 PL/SQL을 사용하여 프로그램울 제작하는 것을 의미합
+- 변수, 조건문, 반복문 등을 사용할 수 있음.
+
+데이터베이스 설치
+
+Docker 설치
+
+loliconneko/oracle-ee-11g
+
+docker pull loliconneko/oracle-ee-11g
+컨테이너 실행
+docker run -d --name oracle11g -p 1521:1521 이미지명:태그명;
+컨테이너 터미널 접속
+docker exec -it 컨테이너id,이름 /bin/bash
+docker run -d -p 1521:1521 --name oracle11g loliconneko/oracle-ee-11g:latest
+
+docker ps : 현재실행되는것 확인
+docker ps -a : 실행되든 안되는 다 확인
+-d : 백그라운드에서 실행
+-p : PC포트 : 컨테이너 포트
+--name : 별칭
+-e 이름 = 값
+예) -p 1522:1521 1521을 1522 에 연결
+
+오라클
+1521 : 기본 포트 
+
+sqlplus 사용자명/비밀번호
+
+최고 관리자 : system
+
+사용자명 : 대소문자 구분X
+
+최고 관리자 : system/oracle
+
+sqlplus system/oracle
+
+컨테이너 내부 터미널 접속
+docker exec -it 컨테이너 이름 /bin/bash 
+docker exec -it oracle11g /bin/bash
+
+SQL Developer - 오라클 공식 GUI 툴 / 자바 빌드 버전 JDK 11
+
+dbeaver 
+비번 : oracle
+
+연습용 스키마 
+scott/tiger
+
+docer exec -it oracle11g/bin/bash
+
+sqlplus system/oracle
+
+잠겨있는 계정을 풀기
+ALTER USER SCOTT IDENTIFIED BY tiger ACCOUNT UNLOCK;
+
+CONN 계정명/비밀번호
+
+도커 이미지 삭제 docker rmi imageId
+오라클 계정 없이 접속 하는방법
+sqlplus /nolog
+
+CONN sys/oracle as sysdba 
+
+ALTER USER SYSTEM IDENTIFIED BY oracle ACCOUNT UNLOCK;
+
+SCOTT 스키마 잠금 풀기
+sqlplus system/oracle
+만약 터미널 접속중(sqlplus):CONN system/oracle
+
+ALTER USER SCOTT IDENTIFIED BY TIGER ACCOUNT UNLOCK
+
+EE.oracle.docker

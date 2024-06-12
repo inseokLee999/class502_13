@@ -1,0 +1,82 @@
+Mockito 기초 사용법
+- Mockito는 모의 객체 생성, 검증, 스텁을 지원하는 프레임워크이다.
+- stub(스텁) : 가짜 데이터
+
+참고) 
+servlet.api
+
+	- javax.servlet-api / java ee 8,javax
+	- jakarta.servlet-api / jakarta ee9~10
+	
+	HttpServletRequest 인터페이스 : 사용자 요청 데이터 조회, 처리
+									-String getParameter(String name);
+1. 의존성 
+1) mockito-core
+2) mockito-junit-jupiter
+
+2. 모의 객체 생성
+1) Mockito.mock() 메서드를 이용하면 특정 타입의 모의 객체를 생성할 수 있다.
+
+3. 스텁 설정
+1) 모의 객체를 생성한 뒤에는 BDDMockito 클래스를 이용해서 모의 객체에 스텀을 구성할 수 있다.
+2) BDDMockito.given() 메서드를 이용하면 모의 객체의 메서드가 특정 값을 리턴하도록 설정할 수 있다.
+3) given() 메서드에 이어 willReturn() 메서드는 스텁을 정의한 메서드가 리턴할 값을 지정한다.
+
+- 모의 객체 생성
+GameNumGen genMock = mock(GameNumGen.class);
+
+- 스텁 설정
+given(genMock.generate(GameLevel.EASY)).willReturn("123");
+//입력값에 따라 출력값 설정
+
+- 스텁 설정에 매칭되는 메서드 실행
+String num = genMock.generate(GameLevel.EASY);
+
+4) 지정한 값을 리턴하는 대신에 익셉션을 발생하게 설정할 수 도 있다. 이때는 willReturn() 대신 willThrow() 메서드를 사용하면 된다.
+
+5) BDDMockito.willThrow() 메서드는 발생할 익셉션 타입이나 익셉션 객체를 인자로 받는다. 이어서 given() 메서드는 모의 객체를 전달받는다. 이때는 모의 객체 메서드의 실행이 아닌 모의 객체를 만들어 주는 것  이때 given() 메서드는 인자로 전달받은 모의 객체 자신을 리턴하는데 이때 익셉션을 발생할 메서드를 호출한다.
+
+참고) 가짜 데이터 생성 라이브러리
+java faker 
+4. 인자 매칭 처리
+1) org.mockito.ArgumentMatchers 클래스를 사용하면 정확하게 일치하는 값 대신 임의의 값에 일치하도록 설정할 수 있다.
+2) ArgumentMatchers 클래스는 다음의 메서드를 제공
+- anyInt(), anyShort(), anyLong(), anyByte(), anyChar(), anyDouble(), anyFloat(), anyBoolean() : 기본 데이터 타입에 대한 임의 값 일치
+- anyString() : 문자열에 대한 임의 값 일치
+- any() : 임의 타입에 대한 일치
+- anyList(), anySet(), anyMap(), anyCollection() : 임의 콜렉션에 대한 일치
+- matches(String), matches(Pattern): 정규표현식을 이용한 String 값 일치 여부
+- eq(값) : 특정 값과 일치 여부
+
+
+5. 행위 검증
+- 실제로 모의 객체가 불렸는지 검증하는 것
+- 예시
+GameNumGen genMock = mock(GameNumGen.class);
+Game game = new Game(genMock);
+game.init(GameLevel.EASY);
+
+then(genMock).should().generate(GameLevel.EASY);
+
+1) BDDMockito.then()은 메서드 호출 여부를 검증할 모의 객체를 전달받는다.
+2) should() 메서드는 모의 객체의 메서드가 불려야 한다는 것을 설정하고 should() 메서드 다음에 실제로 불려야 할 메서드를 지정한다.
+3) 이 코드에서 genMock 모의 객체의 generate() 메서드가 GameLevel.EASY 인자를 사용해서 호출되었는지 검증한다.
+4) 정확한 값이 아니라 메서드가 불렸는지 여부가 중요하다면 any(), anyInt() 등을 사용해서 인자를 지정하면 된다.
+then(genMock).should().generate(any());
+
+5) 정확하게 한 번만 호출된 것을 검증하고 싶다면 should() 메서드에 Mockito.only()를 인자로 전달한다
+then(genMock).should(only()).generate(any());
+6) 메서드 호출 횟수를 검증하기 위해 Mockito 클래스가 제공하는 메서드는 다음과 같다.
+- only() : 한 번만 호출
+- times(int) : 지정한 횟수만큼 호출
+- never() : 호출하지 않음
+- atLeast(int) : 적어도 지정한 횟수만큼 호출
+- atLeastOnce() : atLeast(1)과 동일
+- atMost(int) : 최대 지정한 횟수만큼 호출
+
+6. 인자 캡쳐
+1) 단위 테스트를 실행하다보면 모의 객체를 호출할 때 사용한 인자를 검증해야 할 때가 있다. String이나 int와 같은 타입은 쉽게 검증할 수 있지만 많은 속성을 가진 객체는 쉽게 검증하기 어렵다. 이럴 때 사용할 수 있는 것이 인자 캡처이다.
+
+2) Mockito의 ArgumentCaptor를 사용하면 메서드 호출 여부를 검증하는 과정에서 실제 호출할 때 전달한 인자를 보관할 수 있다.
+
+7. JUnit 5 확장 설정

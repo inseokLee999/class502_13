@@ -1,0 +1,100 @@
+maven
+- 빌드, 의존성(필요한 라이브러리 jar(Java Archive))관리, 배포, 테스트 툴 
+참고) 
+	npm(Node Package Manager)
+	yarn
+1. 설치
+	자바 설치 O
+	환경 변수 java_home
+	
+	D:\inseok\apache-maven-3.9.6\bin
+	
+2. 사용 
+1) maven 프로젝트 생성 
+	mvn archetype:generate
+		groupId : 소속된 그룹(도메인 방식)
+						예) org.project
+		artifactId : 프로젝트 구분 명칭 
+
+		프로젝트 디렉토리 구조 
+			클래스패스 : 클래스 파일을 인식할 수 있는 경로 
+			 
+			src/main/java : 작성하는 자바코드(.java)
+			src/main/resources : 정적 자원 
+											- 설정 파일(xml, properties)
+											- css, js, 이미지
+											
+			src/test/java : 테스트 자바 코드(.java)
+			src/test/resources : 테스트시 필요 정적 자원
+			
+		pom.xml : maven 설정 파일
+		참고) 
+			node: package.json 파일과 동일한 역할
+			
+			<properties>
+				<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> : 소스 인코딩 
+				<maven.compiler.source>17</maven.compiler.source> : 소스 컴파일 자바 버전
+				<maven.compiler.target>17</maven.compiler.target> : 배포 파일(jar) 생성시 자바 버전
+			  </properties>
+			  
+			   - 의존성 설정
+			  <dependencies>
+			  
+			  </dependencies>	
+				
+				 사용자명/.m2  -> 메이븐 레포지토리 (공유)
+				 
+				 scope
+					- compile (기본값) : 빌드시 포함, 배포시 포함 
+					- runtime : 빌드시 포함 X, 실행할때는 필요한 라이브러리(동적 로딩 - Class.forName())
+					- provided : 개발시에만 필요, 빌드 및 배포시에는 미포함 -> 플랫폼 내에서 제공되는 라이브러리
+										예) servlet-api, servlet.jsp-api 
+					- test  : 테스트 시에만 필요한 라이브러리
+			
+		mvn compile  : java 파일 -> class 컴파일 (target 폴더)
+		
+		mvn clean : 컴파일 소스 전체 지우기(target 폴더 삭제)
+		
+			예) 기존 컴파일 소스 삭제 후 다시 컴파일 
+				mvn clean compile
+				
+		mvn test : 테스트 케이스를 실행(전체)
+		
+		mvn package : 배포 파일 생성(jar)
+				compile -> test -> package(jar)
+					-> 테스트 미통과시 배포 X
+				
+				mvn) 기존 컴파일 소스 삭제 후 배포 실행 
+					mvn clean package
+			jar 파일 실행 : java -jav 파일명.jar
+		CTRL + SHIFT + B
+		
+버전 표기법 
+1       .18       .30
+(Major) (Minor)  (Patch)
+major - 기존 버전과 호환 되지 않은 버전과
+minor - 호환성에는 문제가 없는 기능 추가, 수정
+patch - 
+
+lombok.jar
+maven central : 의존성 저장소
+mvnrepository
+
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
+
+@Data - @Getter,@Setter, @ToString,@EqualsAndHashCode
+@NoArgsConstructor : 기본 생성자
+@AllArgsConstructor : 모든 멤버변수로 초기화 생성자
+@RequiredArgsConstructor : 필수 멤버 변수를 생성자 매개변수로 추가
+	- @NonNull : 필수 멤버 변수
+	- 멤버 변수를 final(상수)로 정의한 경우, 값을 대입하지 않은 경우
+@ToString.Exclude : toString() 에 추가 배제
+@ToString.Include : toString() 에 추가
+
+@Builder : 빌더 패턴으로 자동 생성
+
+빌더 패턴 : 값을 설정 -> 객체를 내부에서 생성하는 패턴
+	- 내부에서 객체를 생성 (외부에서 객체 x) - 생성자 접근제어자 private

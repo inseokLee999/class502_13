@@ -1,0 +1,108 @@
+컬렉션 프레임워크(Collections Framework)
+
+컬렉션(Collections) - 데이터 군 
+프레임워크(Framework) : 표준화된 설계 
+
+데이터 군을 다루는데 필요한 클래스를 표준화된 설계 
+
+
+1. 컬렉션 프레임워크 핵심 인터페이스 
+Collection 인터페이스 3가지 List, Set, Map
+	1) List : 순차 자료 구조 
+		- 순서가 있는 자료 구조 
+		- 중복 허용 
+		
+		추가 
+			add(E e)
+			add(int index, E e)
+			addAll(Collection<E> ... )
+			
+		수정 
+			set(int index, E e)
+			
+		삭제 
+			E remove(int index)
+			boolean remove(Object o)
+			
+		조회 
+			E get(int index)
+			
+			boolean contains(Object o)
+			boolean containsAll(Collection<E> ...)
+			int indexOf(....) 
+			int lastIndexOf(...)
+			
+		기타 	
+			int size() : 요소의 갯수 
+			boolean isEmpty() : 요소가 비어 있는 상태인지
+			clear() : 전체 비우기
+		구현 클래스
+			1) ArrayList 
+				- 배열을 구현한 클래스 
+				- 조회 속도는 빠르다 
+				-  공간의 크기가 변경되거나 순서가 변경되는 추가, 수정, 삭제 -> 매번 새로운 배열이 생성 
+					- 성능 저하 문제 
+				- 스택의 구현체를 만들기 적합한 구조 
+				
+			2) LinkedList 
+				- 다음, 이전 요소의 주소 연결 
+				- 순서가 변경될 수 있는 추가, 수정, 삭제가 빠르다
+				- 조회 속도는 ArrayList 보다는 불리 
+				- Queue 인터페이스의 구현체 
+					offer(E e) : 가장 끝에 추가 
+					E poll() : 앞의 요소를 꺼내올때 
+					
+			Vector
+			
+			Stack 
+				E pop() : 끝에 요소를 꺼내기 
+				push(E item) : 끝에 추가 
+		
+	2)  Set : 집합 자료 구조 
+		- 중복을 허용하지 않는다.
+		- 순서를 고려하지 않는 자료 구조 
+			
+		추가 
+			add(E e)
+			addAll(Collection<E> ...)
+			
+		삭제 
+			remove(Object o)
+			removeAll(Collection<E> ...)
+			
+		조회 
+			boolean contains(...)
+			boolean containsAll(Collection<E> ...)
+			
+		기타
+			int size() : 요소 갯수
+			boolean isEmpty() : 요소가 비어 있는 상태인지
+			clear() : 전체 비우기
+		
+		구현 클래스 
+			HashSet, TreeSet( 정렬 기능)
+		
+Map : 사전 자료 구조 
+	- 키 - 값의 순서쌍 구조 
+	- 키 : 값을 찾기 위한 키워드 
+		  : 중복 X (Set - 집합 자료)
+		  
+	- 값 : 중복 가능 
+	
+
+
+2. Stack과 Queue
+
+3. Iterator, ListIterator, Enumeration
+
+4. Comparator와 Comparable
+java.lang.Comparable : 정렬의 기본 기준 (Natrual Order)
+	int compareTo(T o)
+		현재 객체의 숫자 - 비교대상 객체 숫자 : 오름차순 
+		비교 대상 객체 - 현재 객체 : 내림차순 
+		
+		
+		
+5. Arrays
+
+6. Collections

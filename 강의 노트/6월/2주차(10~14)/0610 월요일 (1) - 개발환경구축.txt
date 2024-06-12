@@ -1,0 +1,172 @@
+개발환경 구축
+인텔리제이 기준
+- plugin : Smart Tomcat
+- tomcat
+
+	WAS (Web Application Server)
+	
+	참고)
+	tomcat9 -> javaee 8, 패키지 명 javax.
+	tomcat10 -> jakarta ee 10, 패키지명 jakarta
+	
+	jakarta.servlet-api
+	jakarta.servlet.jsp-api
+	-> 개발시에만 필요, 실제 구현체는 각 웹서버가 가지고 있으므로 배포시에는 배제
+src/main/webapp - jsp 파일 정의
+		- HTML, JS, CSS, JSP 
+src/main/webapp/WEB-INF
+	- web.xml : 애플케이션 배치 설명자 파일
+	- 서블릿, 필더 등등 배치에 대한 설정
+	- lib : 자바 라이브러리 jar
+	- classes : 컴파일된 class
+
+ 
+
+
+웹 기초
+WAS(Web Application Server)
+1. 요청과 응답 이해하기
+	요청(request)
+	응답(response) 
+
+	요청 전문 
+		헤더(header) 	
+			요청에 대한 정보
+			요청 주소(URL,URI)
+			URI (Uniform Resource Identifier)
+			URL (Uniform Resource Locator)
+			요청 방식 (method) - GET, Post
+			- body 데이터의 형식(Content-Type) 예) application/x-www-form-urlencoded /application/json
+			브라우저의 언어 설정 ..
+			브라우저의 종류
+			쿠키 (브라우저에 저장되는 개인 서비스 데이터)
+		바디(body)
+			요청 쪽에서 서버로 전송하는 데이터 (POST method)
+	
+			
+		
+	응답 전문
+		헤더(header)
+		- 응답 데이터에 대한 정보
+		- body 데이터의 형식(content-type)
+			예) content-type : text/html -> 브라우저는 응답한 문자열 데이터 -> HTML 형식으로 인식 -> Document 객체 변환
+		- 응답 상태 코드
+		- 응답 서버에 대한 정보
+		- 서버쪽에서 브라우저 행위 통제
+			Location: 주소 -> 브라우저의 주소를 변경 페이지로 이동
+			Refresh : 초 -> 초 주기로 브라우저 새로 고침
+			Cache-Control : no-Cache : 캐시 통제
+			set-Coocke : 키 = 값
+		바디(body)
+			: 서버가 응답한 데이터 
+2. HTTP ( HyperText Transfer Protocol): HTML 형식의 문서 전송 프로토콜 
+HTTPS : s- secured
+
+HTTP : 기본 포트 80
+HTTPS : 기본 포트 443
+
+참고) FTP ://
+(File Transfer Protocol)
+
+SFTP://
+
+WS://
+
+3. 헤더(header)
+4. HTTP 상태 코드
+2xx 
+	200 : 정상 응답 / 요청이 서버에 정상 도달, 정상 응답
+	201 : 작성됨 created
+	204 : 내용없음(NO CONTENT): 정상응답, 바디 데이터 없음 ( 출력 X)
+3xx
+	301 : 영구 이동
+	302 : 임시 이동
+	304 : 캐시 됨
+4xx : 클라이언트 오류 (사용자 쪽)
+	400 : 잘못된 정보 BAD REQUEST / 요청 쪽에서 서버쪽이 지정한 형식과 맞지 않는 경우
+	401 : 권한 없음 (Unauthorized) : 권한 없는 페이지에 접근했을 때
+	404 : NOT FOUND : 페이지 없음
+	405 : METHOD NOT ALLOWED : 허용되지 않은 요청 메서드
+5xx
+	500(내부 서버 오류): 서버에 오류가 발생하여 요청을 수행할 수 없다.
+	501(구현되지 않음): 서버에 요청을 수행할 수 있는 기능이 없다. 예를 들어 서버가 요청 메소드를 인식하지 못할 때 이 코드를 표시한다.
+	502 (Bad Gateway, 불량 게이트웨이): 서버가 게이트웨이나 프록시 역할을 하고 있거나 또는 업스트림 서버에서 잘못된 응답을 받았다.
+	503(서비스를 사용할 수 없음): 서버가 오버로드되었거나 유지관리를 위해 다운되었기 때문에 현재 서버를 사용할 수 없다. 이는 대개 일시적인 상태이다.
+5. HTTP 요청 메서드
+	GET : 서버 자원 조회
+	https://search.naver.com/search.naver
+	?
+	where=nexearch
+	&
+	sm=top_hty
+	&
+	fbm=0
+	&
+	ie=utf8
+	&
+	query=날씨
+	기타 요청 메서드 : DELETE(GET 방식의 일종)
+	POST : 서버 자원 변경 (작성, 수정 ..)
+
+
+	
+Content-Type:application/x-www-form-urlencoded : 밑의 형식으로 전송이 된다
+subject=%EC%A0%9C%EB%AA%A9%21&content=%EB%82%B4%EC%9A%A9%21
+subject = 제목!&content=내용!->한글 그자체로 네트워크를 통한 전송은 불가 -> 전송가능한 숫자 형태로 변경(16진수, 사이사이 %)-> URL 인코딩 -> 서버전송 -> 서버수신 -> URL 디코딩 -> 원래 형태
+
+참고)
+	content-type : application/json
+ {키 : 값}
+ 
+ 기타 요청 방식(POST 계열)
+ PUT : 데이터 치환
+ PATCH : 데이터 부분 치환
+서블릿(Servlet)
+1. 서블릿(Servlet)의 개요
+자바의 웹을 구현하는 기술
+2. 서블릿(Servlet) 클래스 작성하기
+HttpServlet 추상클래스를 상속 -> 서블릿 클래스
+3. web.xml 파일에 서블릿(Servlet) 등록하기
+<servlet>
+	<servlet-name> 서블릿 구분 이름(중복 x) </servlet-name>
+	<servlet-class>서블릿 클래스 전체 이름</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>서블릿 구분 이름</servlet-name>
+	<url-pattern> 주소 패턴</url-pattern>
+</servlet-mapping>
+4. XML 문법의 기초
+5. 웹 브라우저로부터 데이터 입력 받기
+ServletRequest
+	String getParameter(String name) : name 으로 전송된 값
+	Map <String , String[]> getParameterMap() : 전체 요청 데이터를 Map 형태로 반환
+	Enumeration<String> getParameterNames() : 전송된 모든 name 을 반환
+	String[] getParameterValues(String name) : name 으로 전송된 값이 여러개인 경우
+6. init메서드와  destroy 메서드
+
+init() -> 서블릿 객체 생성 이후 최초 한번 실행
+do 요청 방식 (): 요청시마다 매번 실행
+
+destroy() :서블릿 객체가 소멸전 한번 실행
+
+ServletConfig
+	String getInitParameter(String name) -> 설정값 조회
+	
+	1) 서블릿 설정 init-param : 특정 서블릿 내에서만 유효한 초기 설정 값
+	
+	<servlet>
+		..
+		<init-param>
+			<param-name> 이름 </param-name>
+			<param-value> 값 </param-value>
+		</init-param>
+	</servlet> 
+	2) context-param : 모든 서블릿에서 공유하는 초기 설정 값
+Tomcat -> 동기식, 접속자 추가 -> 스레드 생성
+-> 서블릿 쪽에서 인스턴스 변수 정의 지양 
+
+
+/member/* -> /member/join, /member/login
+* : 모든 문자열
+
+/member/*.jsp -> 확장자가 .jsp 모든 경로

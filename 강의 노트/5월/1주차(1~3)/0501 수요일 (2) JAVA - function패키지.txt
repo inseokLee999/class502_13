@@ -1,0 +1,41 @@
+java.util.function 패키지 : 자주 사용하는 함수 유형의 인터페이스 정의
+
+1. 매개변수 X, 반환 값이 있음
+Supplier<T>
+	T get()
+	
+2. 매개 변수 1개, 반환 값이 없음
+Consumer<T>
+	void accept(T t)
+	
+3. 매개변수 1개, 반환 값 있음
+Function<T,R>
+	R apply(T t)
+	
+4. 매개변수 1개, 반환값boolean
+Predicate <T>
+	boolean test(T t)
+	
+매개변수 2개 - Bi접두어가 추가
+1. 매개변수가 2개, 반환 값 X 
+BiConsumer<T,U>
+	void accept(T t,U u);
+	
+2. 매개변수 2, 반환값 O
+BiFunction<T, U, R>
+	R apply(T t,U u);
+
+3. 매개변수 2, 반환값 boolean
+BiPredicate<T,U>
+	boolean text(T t, U u)
+	
+매개변수와 반환 값 타입이 같은 자료형인 경우
+매개변수 1개
+UnaryOperator <T> :상위 인터페이스 Function<T,T>
+	T apply(T t)
+	
+매개변수 2개 
+BinaryOperator<T> : 상위 인터페이스BiFunction<T,T,T>
+	T apply(T t1, T t2)
+
+지네릭 타입 : 참조 자료형, 배열 타입,, 기본형 X

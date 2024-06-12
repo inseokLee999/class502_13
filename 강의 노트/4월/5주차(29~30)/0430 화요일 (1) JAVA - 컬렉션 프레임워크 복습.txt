@@ -1,0 +1,36 @@
+컬렉션 프레임워크
+컬렉션(collection) : 데이터 군 자료
+프레임 워크(Framework) : 표준화된 설계 특, 데이터 군을 다룰 때 편하게 사용할 수 있도록 틀을 정해놓은 것
+
+자료 구조
+
+Collection 인터페이스
+	List 인터페이스 : 순차 자료구조
+		- 순서가 있는 자료
+		
+		-ArrayList : 배열을 구현한 클래스
+			- 순방향, 역방향 조회시 빠르다
+			- 순서가 변경 될 수 있는 수정, 삭제는 성능 저하
+			- 내부에 생성된 배열 (기본 공간의 갯수 10개)의 공간이 다 차면 2배로 늘어난다.(새로운 배열이 생성)
+			
+		-LinkedList
+			: 다음 요소, 이전 요소의 주소를 가지고 논리적 순서로 연결
+				- 순서가 변경될 수 있는 수정, 삭제시 에 빠르다
+				- 조회 속도는 ArrayList보다는 불리
+				- Queue 인터페이스의 구현체 
+					offer()
+					E poll
+			
+		- Vector 
+			-Stack
+				- push()
+				- E pop()
+	Set 인터페이스 : 집합 자료구조
+	
+기준 
+- 집합 : HastSet, TreeSet - 중복 제거 기준
+	- equals and hashCode()
+	
+- 정렬 : TreeSet - 기본 정렬 기준(Natural Order)
+	java.lang.Comparable
+	int

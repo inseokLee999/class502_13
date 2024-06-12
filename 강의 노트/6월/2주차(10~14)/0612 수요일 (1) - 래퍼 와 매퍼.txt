@@ -1,0 +1,44 @@
+서블릿
+의존성
+servlet-api
+servlet.jsp-api
+필터와 래퍼
+
+- 요청과 응답 사이에서 걸러주는 기능 
+
+1. 필터 클래스, 필터 객체, 필터
+	Filter 인터페이스를 구현 -> 필터 클래스 
+
+2. 필터가 위치하는 곳
+
+3. 필터 클래스의 작성, 설치, 등록
+	web.xml 
+		<filter>
+			<filter-name>..</filter-name>
+			<filter-class>...</filter-class>
+			<init-param>
+				<param-name>이름</param-name>
+				<param-value>값</param-value>
+			</init-param>
+		</filter>
+		<filter-mapping>
+			<filter-name>...</filter-name>
+			<url-pattern>...</url-pattern>
+		</filter-mapping>
+
+	- 필터 체인(filter chain)
+	
+4. 필터 클래스의 init 메서드와 destroy 메서드
+5. 래퍼 클래스 작성 및 적용하기
+
+필터 클래스 FilterChain :: doFilter() : 메서드 전,후 공통 필터 부분-> 여기에 코드 작성은 지양
+
+기본 구현 클래스 - Adapter 클래스
+ServletRequest 인터페이스 -> ServletRequestWrapper
+ServletResponse 인터페이스 -> ServletResponseWrapper
+
+HttpServletRequest 인터페이스 -> HttpServletRequestWrapper
+HttpServletResponse 인터페이스 -> HttpServletResponseWrapper
+
+근데 wrapper 라고 감싸는 구조는 X
+ServletRequest 인터페이스의 기본 구현 클래스 : ServletRequestWrapper

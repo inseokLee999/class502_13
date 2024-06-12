@@ -1,0 +1,24 @@
+AbstractCoffeeShop
+	- String name;//CoffeeShop 이름
+	- String totalSale; // 매출
+	- Map<String,Integer> menus = new Map<>();//커피샵 메뉴
+	- AbstractCoffeeShop(String name,Map<String,Integer> menus){}//생성자
+
+CoffeeShop - 인터페이스
+	- enter(Person person) //Person 입장
+	- order(); // 주문 - 커피샵 매출 증가 , 주문한 사람 소지금 차감 
+	- exit() : 퇴장
+	- String getName():커피샵 명
+	- int getTotalSale: 총매출액
+	- static showSaleSummary(CoffeeShop shop)
+	StarBucks
+		
+	CoffeeBean
+	
+Person
+	- int money; //소지금;getter setter
+	- String name;//사람이름getter
+	- String menu;//주문 사항getter setter
+	- stopBy(CoffeeShop coffeeshop) // CoffeeShop방문
+	- buy(Coffee coffee) // Coffee 구매
+	- 

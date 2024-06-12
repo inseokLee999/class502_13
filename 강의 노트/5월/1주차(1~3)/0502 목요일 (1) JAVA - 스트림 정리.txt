@@ -1,0 +1,62 @@
+스트림 java.util.stream
+
+목적 :
+1. 데이터 소스가 무엇이든지 간에(배열이든 컬렉션이든)
+2. 스트림 객체가 되면 동일한 방식으로 처리하는 것
+3. 데이터 군을 다룰 때 많이 사용하는 기능을 모아 놓은 인터페이스 (편의기능)
+
+특징
+1. 내부 반복
+2. 원본 소스를 변경 X
+3. 일회용
+
+생성 
+1. 배열에서 생성하는 방법
+	Arrays.stream()
+	
+	기본 자료형 스트림 (기본 스트림)
+	int 배열 -> IntStream
+	long 배열 -> LongStream
+	double 배열 -> DoubleStream
+	
+	T[] 배열 (일반 참조 형 배열)->Stream<T>
+	
+	기본 자료형 스트림에서 일반 스트림(Stream<T>)에있는 기능이 필요한 경우
+	예) IntStream : sorted() : 기본정렬기준(java.lang.Comparable)만 정의 되어 있다. -> 오름차순만 가능, 내림차순 정렬 X
+	그러나 일반 스트림 (Stream<Integer>) 에는 sorted() 외에도 sorted(Comparator)가 함께 정의 되어 있다.
+		-> 기본 자료형 스트림은 정렬 기준을 변경 못하지만 일반 스트림은 정렬 기준을 변경 할 수 있다. 
+		-> 일반 스트림(Stream <Integer>)의 기능을 사용하기 위해서 기본 자료형 스트림(IntStream)을 일반 스트림(Stream<Integer>)로 변환할 필요가 있다.
+		-> boxed()메서드를 통해서 변경 가능
+		
+	Array -> IntStream ->boxed()-> Stream -> sorted(Comparator.reverseOrder())-> Array
+2. 컬렉션에서 생성 하는 방법
+	Collection 인터페이스 - Stream <E> stream()
+	- 스트림은 List, Set의 구현 객체만 생성 가능
+	- 일반 스트림만 생성 가능 : Stream<E>
+	- 숫자 관련 편의 기능이 필요한 경우?
+		IntStream mapToInt(IntUnaryOperator..) : Stream <Integer> -> IntStream
+		LongStream mapToLong(LongUnaryOperator..) : Stream <Long> -> LongStream
+		DoubleStream mapToDouble(DoubleUnaryOperator..) : Stream <Double> -> DoubleStream
+3. 일반 : Stream, 기본: IntStream, LongStream, DoubleStream
+	static of(T ...)
+	
+	참고) 자바 8 에서는 정적 메서드 of()가 주로 객체를 생성하는 역할을 한다. 
+	
+기본 자료형 스트림
+IntStream
+DoubleStream
+LongStream
+->숫자 (정수, 실수 ) 관련 편의 기능 제공(일반 스트림은 숫자가 아닌 다른 자료형도 다르므로 숫자에 한정한 기능은 제공 X)
+ex) IntSummaryStatistics
+-> 연산 성능 향상 
+
+중간 연산 
+	- 최종 연산이 호출되어야 수행되는 연산
+	- 지연된 연산
+	- 반환 값이 Stream형태인 경우(일반 Stream - stream<E>, 기본 자료형 스트림)
+	- 처리할 작업을 나열하듯이 정의 - 메서드 체이닝
+	
+최종 연산 
+	- 스트림이 소비되면서 연산이 수행되고 작업이 완료
+	- 가장 끝에 추가되는 경우가 많다.
+	- 반환 값이 스트림이 아닌 경우(int,long,boolean,Optional..)

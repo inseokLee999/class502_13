@@ -1,0 +1,93 @@
+그레이들(Gradle) 사용법
+
+설정 파일 build.gradle
+-> 그루비, 코틀린 : DSL 특화언어
+
+DSL(Domain Specific Language)
+	- Domain : 전문가 영역
+	- 설정 영역
+	
+ext{
+	//
+}
+시스템 환경 변수 
+D:\inseok\gradle-8.7\bin
+
+1. 설치 
+2. 그레이들 명령어
+1) 버전 확인 
+gradle --version
+명령어 
+gradle tasks
+2) 프로젝트 생성
+- gradle init [--type 타입명]
+	참고) 메이븐
+		mvn archetype:generate
+- build.gradle : 프로젝트에 필요한 의존성과 빌드처리 내용을 작성하는 파일
+- settings.gradle : 프로젝트에 대한 설정정보를 작성하는 파일
+	
+3) java-application 타입으로 생성 시 프로젝트 구조
+
+4) 프로젝트 빌드
+참고) 메이븐 mvn package : compile test 배포
+- gradle build
+- 프로젝트를 컴파일(빌드)한다.
+- build.gradle에 apply plugin: 'java'가 추가된 경우 .jar파일로 패키징까지 된다.
+- 컴파일된 파일들은 'app > build' 폴더 안에 생성되며, .jar파일은 'build > libs'에 패키징된다.
+- 컴파일 - 테스트 - 배포
+- 테스트가 실패하면 배포 x
+- gradle clean build : clean 진행 후 build
+5) 프로젝트 실행
+- gradle run 
+- 컴파일 후 메인클래스를 실행한다.
+- 스프링부트의 경우 gradle bootRun을 통해 앱을 구동할 수 있다.
+
+6) 프로젝트 패키징
+- gradle jar
+- 프로그램을 .jar로 패키징
+- 'build > libs'에 생성된다.
+- apply plugin: 'java'가 추가된 경우 build명령으로 해결가능
+- 테스트 x (build가 실패해도 jav만들어짐)
+
+참고) gradle bootjar : 스프링 부트에서 사용
+7) 프로젝트 클린
+- gradle clean
+- build 디렉토리 삭제
+8) gradle-wrapper
+- gradle' 명령어로 프로젝트를 빌드할 수 있지만, gradle-wrapper의 실행명령으로도 task를 실행할 수 있다.
+- 새로운 환경에서 gradle을 설치하지 않고도 빌드가 가능
+	- gradle 명령어의 경우 기본적으로 gradle이 로컬에 설치가 되어있어야 한다.)
+	- 또한 gradle 명령어로 빌드를 할 경우 로컬에 설치된 gradle 버젼으로 빌드되기 때문에, 개발 당시 버젼과 다를경우 문제를 일으킬 수도 있다.
+- gradlew build를 사용하면 사용자가 프로젝트를 만든 사람과 동일한 버전으로 빌드를 할 수 있으며, 심지어 gradle이 설치되지 않아도 빌드가 가능하다.
+
+
+3. build.gradle
+
+sourceCompatibility : 자바버전
+ext{
+	//전역변수
+}
+
+참고) 
+maven 
+	<dependency>
+		<scope></scope>
+	</dependency>
+	
+	scope 
+		기본값 : compile:컴파일시 포함, 배포시 포함
+		runtime : 컴파일시에 x, 실행중 포함
+		provided : 개발시에만 필요, 배포시에 배제
+		test : 테스트시에 필요
+		<dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.32</version>
+            <scope>provided</scope>
+		</dependency>
+		<dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.10.2</version>
+            <scope>test</scope>
+        </dependency>
