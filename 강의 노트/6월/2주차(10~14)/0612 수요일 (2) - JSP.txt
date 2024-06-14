@@ -12,14 +12,15 @@ JSP 생명 주기
 	_jspService(....) : 매 요청시 
 	_jspDestroy() : 소멸시
 	
- 
+_jspService 메서드 내부에 정의된 지역 변수 : 내장 객체 (jsp 페이지에서 바로 접근 가능한 객체)
+
 	참고)
 		_jspService 메서드 지역 내부에 정의된 객체 -> 내장 객체 
 		-> jsp 페이지에서 바로 접근이 가능 
 			
 			HttpServletRequest request : 요청 관련 정보, 기능 
 			HttpServletResponse response : 응답 관련 정보, 기능
-		
+			
 			PageContext pageContext : JSP로 번역된 서블릿 클래스의 환경 정보, 기능
 			ServletContext application : 서블릿(애플리케이션) 환경 정보, 기능
 			ServletConfig config : 서블릿 설정 
@@ -27,7 +28,7 @@ JSP 생명 주기
 			JspWriter out : JSP 페이지에 출력
 			Object page = this // 생성된 서블릿 객체를 참조 
 			
-		
+			Throwable exception(될때도 안될때도 있음)
 		jsp 페이지에서 자바 코드 : 번역시 자바 코드 그자체로 추가 
 		<%
 			자바 코드 
@@ -64,6 +65,8 @@ JSP 생명 주기
 							${식}
 	
 - include
+-> JSP, 서블릿, 텍스트 파일 출력 결과물을 물리적으로 포함
+<%@ include file = "파일경로"%>
 - taglib 
 
 1. page 디렉티브 태그의 기능과 사용법
@@ -75,7 +78,9 @@ JSP 생명 주기
 	- 태그 라이브러리 
 	JSTL (JSP Standard Tag Libaray) - 3.0
 	uri="jakarta.tags.core"
-	
+	참고)
+		예전)JSTL(1.2~)
+		uri="http://java.sun.com/jsp/jstl/core|fmt|functions"
 	- JSTL 3.0
 	
 		- jstl-api 

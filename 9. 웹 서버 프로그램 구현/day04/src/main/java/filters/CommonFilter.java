@@ -1,9 +1,10 @@
 package filters;
 
 import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebFilter;
 
 import java.io.IOException;
-
+@WebFilter(value = "/*")
 public class CommonFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -14,11 +15,11 @@ public class CommonFilter implements Filter {
     }
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-//        System.out.println("CommonFilter 요청 처리 전!");
+        System.out.println("CommonFilter 요청 처리 전!");
 
         chain.doFilter(new CommonRequestWrapper(request),response);
 
-//        System.out.println("CommFilter 응답 후!");
+        System.out.println("CommFilter 응답 후!");
     }
 
 

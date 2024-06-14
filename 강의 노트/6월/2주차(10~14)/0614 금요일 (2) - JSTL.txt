@@ -1,0 +1,104 @@
+JSTL
+1. 설치하기
+jstl-api
+jstl-impl - 구현체
+core 라이브러리 : 제어구문, 반복문 등
+fmt 라이브러리 : 형식화, 숫자 형식, 날짜 형식, 시간대, 다국어
+functions 라이브러리 : 문자열 가공 등
+sql 라이브러리
+
+https://jakarta.ee/specifications/tags/3.0/tagdocs/
+
+URI
+
+2. 코어(core) 라이브러리
+	uri="jakarta.tags.core"
+	 참고)
+		javaee 9 ->  JSTL 1.2 
+		uri="http://java.sun.com/jsp/jstl/core"
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+1) <c:set>	
+	<c:set var="속성명" value="값"/>
+	${속성명}
+	scope = "page|request|session|application"
+	
+	-page : 기본값
+2) <c:remove> : 속성 값 제거 
+<c:remove var="속성명"/>
+
+- scope :값이 없으면 모든 범위의 속성을 제거
+	scope = "page|request|session|application"
+3) <c:if> : 조건식
+<c:if test="${조건식}">
+	// 조건식이 참일 때 실행
+</c:if> 
+<c:if test="${num%2==1}">
+    홀수입니다.
+</c:if>
+<c:if test="${num%2!=1}">
+    짝수입니다.
+</c:if>
+4) <c:choose>: 다중 조건문 /다중 선택문
+
+<c:choose>
+	<c:when test="${조건식1}">
+		//조건식 1이 참일 때 출력
+	</c:when>
+	<c:when test="${조건식2}">
+		//조건식 1이 거짓, 조건식 2가 참일 때 출력
+	</c:when>
+	..
+	<c:otherwise>
+		//모든 조건이 거짓 일 때 출력
+	</c:otherwise>
+</c:choose>
+5) <c:forEach>
+	- 반복문 
+	- 횟수 (begin 시작숫자, end = 종료 숫자, step = 증감단위/ 기본값1,var="카운트변수")
+	- 배열, 컬랙션(Collection - List, Set), Iterator, Enumeration(items="배열,컬렉션 속성" var="요소 1개")
+	//향산된 for 문
+	varStatus = "status"
+		${status.index} : 반복 순서번호 (0부터 시작)
+		${status.count} : 반복 순서번호 (1부터 시작)
+		${status.first} : 첫번째 행인지
+		${status.last} : 마지막 행인지
+		${status.current} : 현재 반복 요소
+	- 콤마(,) 문자열 
+	- <c:forEach>액션의 items 애트리뷰트를 이용해서 처리할 수 있는 데이터
+	
+6) <c:forTokens>
+	- java.util.StringTokenizer 
+	
+	var="문자" items="문자열..." delim="구분 패턴 문자"
+	
+7) <c:catch>
+	- 자바 코드 없이 태그 방식으로 예외 처리 
+	- var : 예외가 발생하면 생성될 예외객체 변수명
+			- 예외가 없으면 null
+			
+8) <c:redirect>
+			
+9) <c:import>
+	
+	참고)
+		<jsp:include ... />
+10) <c:url> 
+11) <c:out> 	
+
+3. 포매팅(fmt) 라이브러리
+	uri="jakarta.tags.fmt" // JSTL 3.0
+	prefix="fmt"
+	
+	
+	JSTL 1.2
+	uri="http://java.sun.com/jsp/jstl/fmt"
+	
+1) fmt:formatDate 	
+2) fmt:formatNumber
+3) fmt:setLocale
+4) fmt:timeZone과 fmt:setTimeZone
+5) fmt:setBundle과 fmt:bundle
+6) fmt:requestEncoding
+
+4. 함수(functions) 라이브러리
+	uri="jakarta.tags.functions"

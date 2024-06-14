@@ -36,6 +36,7 @@
         <servlet-name>member-servlet</servlet-name>
         <url-pattern>/member/*</url-pattern>
     </servlet-mapping>
+
     <!--
     <servlet>
         <servlet-name>join-servlet</servlet-name>

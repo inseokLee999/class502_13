@@ -1,0 +1,18 @@
+JSP 내장객체
+1. request (getHeader,getCookie)
+2. response (getHeader,setHeader)
+3. out
+4. session
+5. application
+6. pageContext
+7. page
+8. config
+9. exception
+
+속성 처리 객체와 메서드의 종류
+pageContext, request, session, application
+
+1. setAttribute(String name, Object value)
+2. getAttrubute(String name)
+3. removeAttribute(String name
+4. getAttributeNames()

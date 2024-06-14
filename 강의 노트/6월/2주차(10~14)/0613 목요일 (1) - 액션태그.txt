@@ -1,0 +1,68 @@
+액션태그
+- 액션 태그는 서버나 클라이언트에게 어떤 행동을 하도록 명령하는 태그
+- 스크립트 태그, 주석, 디렉티브 태그와 함게 JSP 페이지를 구성하는 태그
+- 커스텀 태그의 일종
+
+
+액션태그의 종류
+1. forward 액션 태그의 기능과 사용법
+<jsp:forward page="이동할 페이지 - JSP, html, text, servlet 경로"  />
+ - 페이지 이동 / 버퍼의 통제 
+ - 기존 출력 버퍼를 취소, page에 정의된 경로의 출력 결과물을 버퍼에 출력하고 비운다.
+
+2. include 액션 태그의 기능과 사용법
+- 페이지 추가 / 버퍼의 통제
+참고 ) RequestDispatcher
+		forward() 버퍼에 치환
+		include() 버퍼에 추가
+		
+	M
+	V(View)
+	C(Controller
+<jsp:include page="추가될 페이지"/>
+3. include 액션 태그와 include 디렉티브 태그의 차이
+4. param 액션 태그의 기능과 사용법
+	- param 액션 태그는 현재 JSP 페이지에서 다른 페이지에 정보를 전달하는 태그
+	- 요청 데이터 전달
+	- <jsp:forward/><jsp:include/>
+		: 요청 처리중에 버퍼추가/ 추가정보를 전달
+		: request.getParameter()
+	
+참고) 
+속성을 관리하는 객체 4가지
+속성 : 뷰에서 사용할 수 있는 데이터
+
+PageContext pageContext : 하나의 jsp 페이지에서만 데이터 조회 가능
+HttpServletRequest request : 하나의 요청이 처리되는 범위에서 조회 가능
+HttpSession session : 세션이 유지되는 범위에서 조회가능
+ServletContext application : 애플리케이션이 종료 되기 전까지는 조회 가능
+
+void setAttribute(String name) : 속성 지정/ 없을땐 추가, 있을땐 수정
+Object getAttribute(String name) ;//속성 조회
+void removeAttribute(String name); //속성 제거
+
+데이터가 유지되는 범위
+pageContext -> request -> session -> application
+5. 자바빈즈 액션 태그의 기능과 사용법
+	Bean : 자바 객체
+1) 자바빈즈 :  데이터 표현을 목적으로 하는 자바 클래스
+2) 자바빈즈 작성 규칙
+	- 기본 생성자가 반드시 정의되어 있어야 한다.
+	(빌더 패턴 : 직접 패턴 생성은 안한다(new..) : 내부 빌더 클래스에서 객체를 생성-> 값 설정->객체 변환
+	- 데이터를 담고, 조회하는 데이터 클래스 위주로 정의
+	(getter, setter)
+	- 직렬화(Serializable) 가 필수 (예전)
+3) useBean 액션 태그로 자바빈즈 사용하기
+	scope : 자바 빈스 객체 속성값 유지 범위 (조회 가능 범위)
+		page (기본값)/PageContext 범위에서 조회 가능
+		request /HttpServletRequest 범위에서 조회 가능(요청 처리 범위)
+		session / HttpSession
+		application / ServletContext
+4) setProperty 액션 태그로 프로퍼티 값 저장하기
+//setter 메서드 호출
+5) getProperty 액션 태그로 프로퍼티의 값 가져오기
+//getter 메서드 호출
+
+@PostMapping("/주소")
+public String joinProcess(BoardData data){
+}
