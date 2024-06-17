@@ -1,0 +1,79 @@
+커스텀 액션
+
+1. 커스텀 액션을 만드는 방법
+1) 태그 파일을 작성해서 만드는 방법
+확장자.tag
+
+<%@ taglib prefix=".." tagdir="경로"%>
+2) 태그 클래스를 작성해서 만드는 방법
+SimpleTag 인터페이스
+SimpleTagSupport 클래스
+
+2. 태그파일을 이용해서 커스텀 액션 만들기
+1) tag 지시자는 태그 파일에만 사용할 수 있는 지시자인데, 웹 컨테이너가 태그 파일을 처리할 때 필요한 여러가지 정보를 기술하는 역할을 합니다.
+2) tag 지시자는 page 지시자와 마찬가지로 <%@으로 시작해서 %>로 끝나야 합니다. 그리고 <%@ 바로 다음에는 지시자의 종류를 표시하는 tag라는 이름이 와야 합니다.
+3) 여러가지 정보를 이름="값" 또는 이름='값' 형태로 기술할 수 있습니다. 즉, 애트리뷰트 형태로 기술할 수 있습니다.
+
+3. 태그 파일에서 사용할 수 있는 지시어
+1) tag 지시자 
+	- page 지시자와 유사, 태그의 정보 정의
+	- body-content 
+				: empty - 단일 태그 형태로 사용하는 경우 예)<util:line/>
+				: scriptless - 여는태그, 닫는 태그, 태그안쪽 내용물에 자바 코드 사용불가 X
+							- El 식 사용 가능, 다른 태그 사용 가능..
+				: tagdependent - 여는태그, 닫는태그, 태그 안쪽 내용물은 모두 문자로 해석
+								(자바 코드,EL 식, 다른 태그 모두 사용 불가 - 해석이 그냥 문자로 해석)
+	-pageEncoding : 태그 인코딩 설정
+	-import : 자바 패키지 추가
+	-trimDirectiveWhitespaces:true- 태그 앞 뒤 공백을 제거 출력
+2) include 지시자
+-<%@ include file = "파일 경로 "%>
+3) taglib 지시자
+태그파일내에서도 다른 태그 라이브러리 사용 가능
+4) attribute 지시자
+<%@ attribute name = "속성명"%>
+
+- 속성명으로 지역변수 생성
+- 속성명으로 EL 식 속성 추가
+- type : 자료형(기본값-java.lang.String)
+		기본자료형은 그냥 그대로 사용x 래퍼 클래스 형태로만 설정
+		(int -> java.lang.Integer)
+- required : false(기본값)- 없어도 될 때
+			true- 필수(설정하지 않는 경우 경고 표기)
+5) variable 지시자
+ 
+4. 한글을 포함하는 태그 파일
+5. 애트리뷰트(속성)를 지원하는 태그 파일
+6. 태그 파일의 내장 변수
+7. 동적 애트리뷰트를 지원하는 태그 파일
+- dynamic-attributes
+추가된 속성은 page 범위 속성
+-Map<String, String> ...
+8. 커스텀 액션의 본체를 처리하는 태그 파일
+-body-content:scriptless|
+9. 변수를 지원하는 커스텀 액션
+@variable : 변수
+예)<c:set var="변수명" value="..."/>
+
+1) name-given : 속성명 - EL식 변수
+2) variable-class : EL 식 변수의 자료형, 문자(java.lang.String - 기본값)
+3) scope 
+	- NESTED : 여는 태그, 닫는태그 형식, 태그 내부에서 EL식 변수를 접근
+	- AT_BEGIN : 여는 태그 바로 아래쪽에서 접근
+	- AT_END : 주로 단일 태그에서 많이 사용, 닫는 태그 아래쪽에 접근가능
+
+10. 커스텀 액션의 본체 안에서 변수를 사용하는 예
+1)  name-from-attribute : 속성명으로 부터 변수 사용
+2)  alias
+
+- 변수명 속성의 필수 조건
+- name 속성이 [var]이며 그 값은 name-from-attribute의 값인
+- 반드시 java.lang.String 타입이어야 하고
+- "required"여야 하며
+- "rtexprvalue"가 되어서는 안됩니다. (false) 변수값으로 EL 식 속성, 자바 코드 지정 불가
+예) value= "${num}"(X) value="<%=newDate()%>"(X)다.
+<c:forEach var="item" items="${...}">
+${item}
+</c:forEach>
+
+11. 커스텀 액션 태그를 이용하여 레이아웃 구성하기
