@@ -64,3 +64,16 @@ invalidate() : 세션 데이터 비우기(세션 전부 삭제) / 주로 로그�
 쿠키와 세션의 차이
 
 회원가입, 로그인 구현하기
+
+의존성
+servlet-api
+servlet.jsp-api
+
+jstl-api
+jstl-impl
+lombok
+
+mybatis
+ojdbc11
+slf4j-api
+logback classic
