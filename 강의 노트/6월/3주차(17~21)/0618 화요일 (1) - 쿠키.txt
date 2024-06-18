@@ -1,0 +1,66 @@
+쿠키
+- 개인 서비스 제공 가능 기술
+- 사용자 개인을 어떻게 구분 하는지?
+- 개개인을 구분할 수 있는 데이터를 웹 브라우저에 저장
+- 쿠키 데이터가 필요한 대상은 서비스를 제공하는 서버가 필요하다
+- 데이터는 브라우저, 필요한 대상 서버!
+- 매 요청시 마다 요청 헤더에 쿠키 데이터를 서버쪽으로 전송
+
+쿠키 조회는?
+HttpServletRequest
+Cookie[] getCookies()
+
+쿠키 등록은?
+HttpServletResponse
+	void addCookie(Cookie cookie)
+		- 응답헤더 :Set-Cookie : 이름= 값,이름=값.. 추가
+		- 브라우저가 응답헤더를 바탕으로 쿠키 값을 등록
+
+1. 쿠키의 동작과정
+1) 쿠키 생성단계
+	- 서버 -> 응답헤더 (Set-Cookie : 키=값..)
+	
+2) 쿠키 저장단계
+	- 응답 헤더 (Set-Cookie : 키=값;..) -> 브라우저가 도메인별로 저장
+	
+3) 쿠키 전송단계
+	- 매 요청시마다 요청 헤더 Cookie를 통해서 서버로 전송
+
+2. Cookie 클래스의 메서드 종류
+	setMaxAge(..): 쿠키 유효시간을 설정
+	setHttpOnly(): false - 서버쪽 조회 가능(HttpServletRequest - Cookie[] getCookies())
+						 - 브라우저 자바스크립트 document 객체를 통해서 조회 가능 (document.cookie)
+						 // 민감한 정보는 서버쪽으로만 접근할 수 있게 함
+				 : true - 서버쪽만 조회 가능(HttpServletRequest - Cookie[] getCookies())
+						- 브라우저 자바스크립트로는 조회 불가
+3. 쿠키 객체 얻기
+4. 쿠키 객체의 정보 얻기
+5. 쿠키 삭제
+	setMaxAge(0)->1970.1.1 0:0:0 / 현재시간보다 이전시간으로 설정하면 브라우저가 삭제
+
+
+세션
+- 쿠키는 매 요청시마다 요청헤더를 통해서 개인 데이터가 전송 : 보안에 취약
+- 매번 네트워크를 통해서 전송 되므로, 네트워크에 부담
+
+- 개인 데이터를 서버에 저장하는 기술 : 세션
+- 개인 데이터를 서버에 저장 하므로 브라우저가 보내줄 필요 x
+1. session 내장객체 메서드 종류
+HttpSession
+
+2. 세션 생성
+void setAttribute(String name, Object value);
+
+3. 세션 정보
+Object getAttribute(String name)
+
+4. 세션 삭제
+void removeAttribute(String name)
+
+invalidate() : 세션 데이터 비우기(세션 전부 삭제) / 주로 로그아웃시에 사용
+5. 세션 유효 시간 설정
+- setMaxInactiveInterval
+
+쿠키와 세션의 차이
+
+회원가입, 로그인 구현하기

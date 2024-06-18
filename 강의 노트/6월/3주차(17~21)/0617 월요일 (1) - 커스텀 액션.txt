@@ -77,3 +77,9 @@ ${item}
 </c:forEach>
 
 11. 커스텀 액션 태그를 이용하여 레이아웃 구성하기
+
+List<String>, String[]
+Set<String>
+
+속성명 addCss-> 반복 -> 태그 추가
+속성명 addScript -> 반복 -> 태그 추가
