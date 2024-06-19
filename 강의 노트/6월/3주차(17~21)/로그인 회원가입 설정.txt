@@ -40,3 +40,41 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
+CREATE TABLE MEMBER(
+	USER_NO NUMBER(10) PRIMARY KEY,
+	EMAIL VARCHAR2(60) NOT NULL UNIQUE,
+	PASSWORD VARCHAR2(65) NOT NULL,
+	USER_NAME VARCHAR2(30) NOT NULL,
+	USER_TYPE VARCHAR2(30) DEFAULT 'USER' CHECK(USER_TYPE IN ('USER','ADMIN')),
+	REG_DT DATE DEFAULT SYSDATE,
+	MOD_DT DATE
+);
+CREATE SEQUENCE SEQ_MEMBER;
+
+컨트롤러 - 뷰
+회원가입 -member/join
+		GET : 회원가입 양식
+		POST : 회원가입 처리
+로그인 - member/login
+		GET : 로그인 양식
+		POST : 로그인 처리
+
+모델 - 서비스
+회원가입 기능 - JoinService
+			- RequestJoin : DTO(데이터 전달 객체)
+			- joinValidator
+			- MemberMapper :DAO
+	비밀 번호 처리는?
+	
+	참고)
+		암호화
+			-양방향 암호화 : 암호화 - 복호화
+			AES256, ARIA..
+			-단방향 암호화 : 해시 - 복호화 불가
+				: 고정 해시 - 같은 값에 대하여 같은 해시 값 - md5,sha1,sha256,sha512
+				sha256: abcd-88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589
+				: 유동해시 - 같은값에 대해서도 만들 때마다 변경되는 해시 / 예측 불가능성
+				BCrypt
+				abcd:$2y$10$DAyOF5ll9lCxIjyKpSrvEud1NEpRE.FKrjIxLZ6p9h1C7TW6CqGte
+				
+로그인 기능
