@@ -9,7 +9,6 @@ import org.choongang.member.exceptions.DuplicatedMemberException;
 import org.choongang.member.mapper.MemberMapper;
 import org.choongang.member.services.JoinService;
 import org.choongang.member.services.MemberServiceProvider;
-import org.choongang.member.validators.JoinValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -59,9 +58,9 @@ public class JoinServiceTest {
     @DisplayName("필수 입력항목(이메일, 비밀번호, 비밀번호 확인, 회원명, 약관동의) 검증, 검증 실패시 BadRequestException 발생")
     void requiredFieldTest(){
         assertAll(()->requiredEachFieldTest("email",true,"이메일"),
-            ()->requiredEachFieldTest("email",true,"이메일"),
-                ()->requiredEachFieldTest("password",true,"비밀번호"),
-                ()->requiredEachFieldTest("password",false,"비밀번호"),
+            ()->requiredEachFieldTest("email",false,"이메일"),
+                ()->requiredEachFieldTest("password",true,"비밀번호를 입력"),
+                ()->requiredEachFieldTest("password",false,"비밀번호를 입력"),
                 ()->requiredEachFieldTest("confirmPassword",true,"비밀번호를 확인"),
                 ()->requiredEachFieldTest("confirmPassword",false,"비밀번호를 확인"),
                 ()->requiredEachFieldTest("userName",true,"이름"),
