@@ -93,3 +93,23 @@ D - Dependency Inversion Principle 의존 역전 원칙
 2. 이메일로 회원이 등록되어 있는지 체크
 3. 비밀번호 검증
 4. 세션에 회원 정보 유지
+
+기본자료형 래퍼클래스
+	Integer
+		parseInteger(문자열)
+		
+	Long
+		parseLong(문자열)
+	Boolean
+		parseBoolean(문자열)
+	
+	parse자료형()-> 문자열 -> 기본 자료형
+	
+	valueOf(문자열, 기본자료형 값) -> 래퍼 클래스 객체로 변환
+	
+	Integer.parseInt() -> int 변환
+	Integer.valueOf()->integer 객체로 변환
+	
+	응답 코드 : 서버가 응답 할때 전송/ 처리 상태에 대한 코드
+	
+	

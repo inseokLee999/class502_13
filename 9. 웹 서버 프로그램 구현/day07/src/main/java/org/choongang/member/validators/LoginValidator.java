@@ -5,7 +5,6 @@ import org.choongang.global.exceptions.BadRequestException;
 import org.choongang.global.validators.EmailValidator;
 import org.choongang.global.validators.RequiredValidator;
 import org.choongang.global.validators.Validator;
-import org.choongang.member.controllers.RequestLogin;
 import org.choongang.member.entities.Member;
 import org.choongang.member.mapper.MemberMapper;
 import org.mindrot.jbcrypt.BCrypt;

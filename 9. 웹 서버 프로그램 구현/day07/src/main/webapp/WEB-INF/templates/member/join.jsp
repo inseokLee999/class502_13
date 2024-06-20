@@ -4,11 +4,11 @@
 <c:url var="actionUrl" value="/member/join"/>
 <layout:main title="회원가입">
     <h1>회원가입</h1>
-    <form method="post" action="${actionUrl}" autocomplete="off">
+    <form method="post" action="${actionUrl}" autocomplete="off" target="ifrmProcess">
         <dl>
             <dt>🔹이메일</dt>
             <dd>
-                <input type="text" name="email" required="required">
+                <input type="text" name="email">
             </dd>
             <dt>🔹비밀번호</dt>
             <dd>

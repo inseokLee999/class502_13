@@ -21,7 +21,7 @@ public class LoginService {
         Member member = mapper.get(email);
 
         HttpSession session = request.getSession();
-        session.setAttribute("member", member);
 
+        session.setAttribute("member", member);
     }
 }
