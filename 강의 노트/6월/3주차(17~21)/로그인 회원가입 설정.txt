@@ -112,4 +112,5 @@ D - Dependency Inversion Principle 의존 역전 원칙
 	
 	응답 코드 : 서버가 응답 할때 전송/ 처리 상태에 대한 코드
 	
-	
+	parent.location.href = "주소"
+					.replace("주소")
