@@ -5,6 +5,7 @@
 <c:url var="loginUrl" value="/member/login"/>
 <c:url var="joinUrl" value="/member/join"/>
 <c:url var="logoutUrl"  value="/member/logout"/>
+<c:url var="playerReg" value="/player/register"/>
 <%--
 <%
     boolean isLogin = MemberUtil.isLogin(request);
@@ -35,3 +36,4 @@
     <a href="${joinUrl}">회원가입</a>
 </util:GuestOnly>
 <h1>헤야헤야헤야</h1>
+<a href="${playerReg}">선수 등록 하러 가기</a>

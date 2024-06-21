@@ -1,0 +1,121 @@
+실무 프로젝트 ~7/2
+오후 16:00 17:50 발표 및 평가 과제 제출
+제출형식은 6/24 월 안내
+
+로그인 구현
+
+- 로그인 상태 EL식 속성, 회원정보 속성 - 필터를 이용하여 모든 요청에 공유가능하게 설정
+
+파일 업로드
+
+1. 의존성 추가
+commons-fileupload2-jakarta
+
+2. multipart : 보내는 데이터의 형식이 다르기 때문에(텍스트, 바이트) 그래서 따로 multipart형태로 적어놓는다
+
+일반적인 양식 전송 형태 content-type:application/x-www-form-urlencoded;
+- 텍스트 형태의 양식 데이터 종류
+
+이름=값&이름=값&file=1.png
+
+문제는? 파일 데이터는 바이트 데이터 형식 / 일반 양식 형식과는 다르다
+
+-파트를 나눠서
+일부 파트는 양식 데이터
+일부 파트는 파일 데이터 형태로 전송 
+->multipart
+
+멀티 파트 형태로 전송하려면?
+form 태그의 속성 중 enctype = "multipart/form-data"(파트를 구분 할 수 있는 키 값도 헤더에 같이 전송)
+
+<form method="post" action="${actionUrl}" enctype="multipart/form-data">
+3.jakartaServletDiskFileUpload
+
+4. DiskFileItem
+
+
+D:/uploads/1.png : 브라우저에서 접근 불가 
+
+-> 서블릿 쪽에서 파일을 어와서 body 에 출력 / 형식을 정확하게 알려줘야 제대로 출력
+
+웹경로/upload/1.png
+
+5. 파일 다운로드
+- 출력 방향을 브라우저 화면 X, 지정된 파일로 변경 -> 다운로드
+
+응답 헤더
+	Content-Disposition attachment;filename=파일명
+	
+	문제점
+	- 캐싱
+	- 캐싱이 되면 기존 파일이 변경 X -> 캐싱 사용 X
+	
+	Cache-Control : must-revalidate - 캐시 갱신(new)
+	
+	과거에는 pragma: public - 캐시 갱신(old)
+	
+	오랜시간 다운로드하면 브라우저가 연결 종료 (Time out)
+	-> 정상적인 다운로드가 불가
+	
+	Expires : 0 -> 만료시간 없음
+	
+	파일 전체 용량  - 시간 계산
+	Content-Length
+	파일 형식 
+	Content-Type
+	
+실무 프로젝트 P-3
+
+BeanContainer.java
+
+	- 객체 조립기, 객체 자동 스캔 및 생성
+	- 스캔 방법은 애노테이션 - @Controller, @RestController, @Component, @Service이 있으면 객체 생성
+
+특별한 역할을 하는 컨트롤러
+@Controller : 요청시 유입되는 컨트롤러 / 출력을 jsp
+@RestController : 요청시 유입되는 컨트롤러 /출력을 json -{이름=값}
+
+DispatcherServlet : 모든 요청과 응답의 창구 - 요청 url 에 맞게 해당 controller를 찾아서 실행 
+
+HandlerMapping - HandlerMappingImpl
+	:요청주소와 요청 방식(Method-Get, POST, PATCH, PUT, DELETE) 정보를 가지고
+	컨트롤러 객체(@Controller,@RestController)와 요청 메서드를 찾아 주는 역할
+	
+	@Controller
+@RequestMapping("/member")
+public class MemberController {
+    ...
+
+    @GetMapping("/join")
+    public String join(RequestJoin form) {
+        ...
+    }
+}
+
+GET /member/join
+
+HandlerAdapter - HandlerAdapterImpl
+	: 찾은 컨트롤러 객체의 메서드를 실행 
+	
+	- 요청 메서드에 정의된 매개변수 유형에 따라 요청 데이터를 자료형에 맞게 자동 주입 -> 실행
+	- 서블릿 기본 객체도 매개 변수에 정의되어 있으면 자동 주입(HttpServletRequest, HttpServletResponse,HttpSession 얘네들은 싱글톤쓰면 절대 안 됨)
+	
+
+객체관리의 자동화 -> Reflection API 
+	- 동적 객체 생성, 동적 메서드 호출, 동적 변수 값 변경
+	
+	Class 클래스 -> 각 구성 요인 Constructor 객체, Method,Field 객체
+	
+	Class class
+		Contructor[] getConstructors() : public 범위의 생성자 메서드를 조회
+		Constructor[] getDeclaredConstructors(): 모든 범위의 생성자 메서드를 조회)
+		
+		
+		생성자(arg1){}
+		생성자(arg1,arg2){}
+		생성자(arg1,arg2,arg3){}
+		
+		생성자 (Object[] 1개,2개,3개..)
+		
+		
+		예시로) 선수 정보 등록 하는 페이지

@@ -18,7 +18,7 @@
             </dd>
         </dl>
         <div>
-            <input type="checkbox" name="saveEmail" value="true" id="saveEmail">
+            <input type="checkbox" name="saveEmail" value="true" id="saveEmail" checked>
             <label for="saveEmail">이메일 기억하기</label>
         </div>
         <button type="submit">로그인</button>

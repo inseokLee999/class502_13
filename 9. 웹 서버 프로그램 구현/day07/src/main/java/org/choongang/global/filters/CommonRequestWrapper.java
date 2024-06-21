@@ -19,4 +19,8 @@ public class CommonRequestWrapper extends HttpServletRequestWrapper {
         request.setAttribute("loggedMember", member);
 
     }
+
+    public CommonRequestWrapper(HttpServletRequest request) {
+        super(request);
+    }
 }
