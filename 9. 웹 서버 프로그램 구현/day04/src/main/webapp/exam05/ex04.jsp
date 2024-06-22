@@ -3,7 +3,10 @@
 <%
     String key1 = URLDecoder.decode(request.getParameter("key1"),"UTF-8");
     String key2 = request.getParameter("key2");
+    String key3 = URLDecoder.decode(request.getParameter("key3"),"UTF-8");
 %>
 key1 : <%=key1%>
 <br>
 key2 : <%=key2%>
+<br>
+key3: <%=key3%>

@@ -6,8 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.regex.Matcher;
@@ -31,9 +30,16 @@ public class PlayerSearchController extends HttpServlet {
                 Path source = file.toPath();
                 String contentType = Files.probeContentType(source);
                 resp.setContentType(contentType);
+                try(BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))) {
+                    OutputStream out = resp.getOutputStream();
+                    out.write(bis.readAllBytes());
+                    return;
+                }catch(Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
-
+        resp.sendError(HttpServletResponse.SC_NOT_FOUND);
     }
 
 }

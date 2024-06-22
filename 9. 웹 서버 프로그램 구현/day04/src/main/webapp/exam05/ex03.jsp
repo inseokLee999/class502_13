@@ -6,5 +6,6 @@
 %>
 <jsp:forward page="ex04.jsp">
     <jsp:param name="key1" value="<%=key1%>" />
-    <jsp:param name="key2" value="value2" />
+    <jsp:param name="key2" value="ㅋㅋㅋ" />
+    <jsp:param name="key3" value="임상우"/>
 </jsp:forward>
