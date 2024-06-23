@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class Ex02_matches {
     public static void main(String[] args) {
-        String str = "I like football and baksetballs";
+        String str = "I like football and basketballs";
 
         Pattern p1 = Pattern.compile(".*ball.*");
         Matcher m1 = p1.matcher(str);
