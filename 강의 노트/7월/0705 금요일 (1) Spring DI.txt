@@ -1,0 +1,86 @@
+스프링 DI 설정 및 사용
+1. 스프링을 이용한 객체 조립과 사용
+2. DI 방식1 : 생성자 방식
+3. DI 방식2 : 세터 메서드 방식
+4. @Configuration
+5. @Bean 	
+6. 두 개 이상의 설정 파일 사용하기
+1) 생성자 매개변수
+	: AnnotationConfigApplicationContext(Class<>...)
+	: AnnotationConfigApplicationContext(String ... basePackages) : 패키지 명으로도 가능
+	
+2) @Import 
+	설정 클래스에서 다른 설정 클래스를 포함 시킬 때 
+
+
+의존성 자동 주입
+1. @Autowired
+	- 의존성을 주입해야되는 객체임을 알려주는 애노테이션
+	
+	1) 멤버 변수 위에 정의
+	2) setter 메서드 위에 정의
+	3) Optional 정의된 멤버 변수, 메서드의 매개 변수 위에 있어도 주입
+	
+	4) 자동 스캔 적용(@ComponentScan)시
+	- @Autowired 미 적용 방식
+	- 생성자의 매개변수로 정의 / 기본 생성자가 정의되지 않아야 한다.
+	5) 
+	참고)5에 있었던 예전꺼
+	@Resource
+	@Inject
+2. 일치하는 빈이 없는 경우
+3. @Qualifier : 한정자
+	: 빈의 이름을 직접 지정
+	Ex) @Qualifier("memberDao2")
+    private MemberDao memberDao;
+4. 빈 이름과 기본 한정자 
+	@Bean : 메서드명 
+	@Qualifier : 변경한 이름
+	클래스명 (자동 스캔의 경우)-> 앞 첫문자는 소문자
+	예) class JoinService ->joinService
+5. @Autowired 애노테이션의 필수 여부
+	- required : true - 기본값, 주입받는 객체는 반드시 스프링 컨테이너에 생성되어있어야한다.
+						-없을 수 있는 주입 받는 객체 @NonNull 애노테이션을 적용해도 필수 여부해제
+						- 메서드 호출 O, 없는 의존성에 null 을 대입
+						
+		-없으면 예외 발생
+				: false - 주입받는 객체 x , setter 메서드 호출 x , 의존성 주입x
+				
+		
+컴포넌트 스캔
+1. @Component
+
+2. @ComponentScan
+	- 스프링 컨테이너가 자동으로 스캔 할 패키지 범위 설정
+3. 기본 스캔 대상
+	@Component
+	@Service
+	@Configuration
+	@Controller
+	@RestController
+	@ControllerAdvice
+	@RestControllerAdvice
+	@Aspect
+4. 컴포넌트 스캔에 따른 충돌 처리
+1) 빈 이름 충돌
+	- 클래스명만 빈의 이름으로 고려
+	- 다른 패키지에 있는 동일한 이름의 클래스가 있으면 충돌
+2)  수동 등록한 빈과 충돌
+3) excludeFilters
+
+빈 라이프 사이클과 범위
+1. 컨테이너 초기화 : 빈 객체의 생성, 의존 주입, 초기화
+
+2. 컨테이너 종료 : 빈 객체의 소멸
+
+3. 빈 객체의 라이프 사이클
+1) 객체 생성 -> 의존 설정 -> 초기화 -> 소멸
+2) InitializingBean
+3) DisposableBean
+
+4.  빈 객체의 초기화와 소멸 : 커스텀 메서드
+1) initMethod 
+2) destroyMethod 
+
+5. 빈 객체의 생성과 관리 범위
+@Scope 

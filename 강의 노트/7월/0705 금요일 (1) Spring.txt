@@ -1,0 +1,37 @@
+1. 스프링 프레임워크란?
+(Spring Framework)
+
+1) 의존 주입(Dependency Inject : DI) 지원
+2) AOP(Aspect-Oriented Programming) 지원
+	- 관점 지향 프로그래밍 / 관점 - 개발자의 공통적인 처리 부분
+	- 프록시(proxy) : 대신하다, 대리하다. db,sql이외의 부분을 다해줌
+	
+3) MVC 웹 프레임워크 제공
+	- spring-webmvc 
+	
+4) JDBC, JPA 연동, 선언적 트랜잭션 처리 등 DB 연동 지원 / Spring Data
+JPA(Java Persistence API - ORM 표준 설계)
+
+5) 스프링 데이터,  스프링 시큐리티 - 인증(로그인), 인가(통제), 스프링 배치
+
+
+2. 스프링 프로젝트 생성하기
+	spring-context 의존성 
+	
+	spring6
+		- JDK 컴파일 버전 17
+3. 스프링은 객체 컨테이너
+	IoC - Inversion Of Control : 제어의 역전 
+		- 개발자가 해야되는 객체의 관리 -> 스프링 컨테이너가 대신 수행
+	
+	- 다양한 방식으로 객체 관리 
+		1) 싱글톤 방식으로 객체를 관리
+	
+4. 스프링 DI(Dependency Injection - 의존주입)
+
+1) 의존(Dependency)
+	필요로 하는 객체 - 의존성 
+2) DI를 통한 의존 처리
+3) DI와 의존 객체 변경의 유연함
+
+5.  객체 조립기
