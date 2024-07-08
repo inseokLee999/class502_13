@@ -1,7 +1,7 @@
-package exam01.member.services;
+package member.services;
 
-import exam01.member.dao.MemberDao;
-import exam01.member.entities.Member;
+import member.dao.MemberDao;
+import member.entities.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Optional;
 @Service
 public class InfoService {
+
+    @Autowired
     private MemberDao memberDao;
 
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

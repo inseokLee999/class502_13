@@ -1,36 +1,25 @@
-package exam01.member.services;
+package member.services;
 
-import exam01.member.controllers.RequestJoin;
-import exam01.member.dao.MemberDao;
-import exam01.member.entities.Member;
-import exam01.member.validators.JoinValidator;
+
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import member.controllers.RequestJoin;
+import member.dao.MemberDao;
+import member.entities.Member;
+import member.validators.JoinValidator;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-@RequiredArgsConstructor()
+@RequiredArgsConstructor
 @Service
 public class JoinService {
 
-//    @Autowired//생성자를 직접 주입안해도 찾아서 해준다.
     private final JoinValidator validator;
 
-//    @Autowired
     @NonNull
     private MemberDao memberDao;
 
-    //의존 관계(없으면 객체 생성 X)
-/*    public JoinService(JoinValidator validator, MemberDao memberDao){
-        this.memberDao = memberDao;
-        this.validator = validator;
-    }*/
-    //연관 관계 (생성자에서 넣는거에 비해 없어도 됨)
-    /*
-    public void setValidator(JoinValidator validator) {
-        this.validator = validator;
-    }
-    */
+
     public void process(RequestJoin form){
         validator.check(form); //joinService는 validator 객체, form 객체를 의존 -> 의존성
 

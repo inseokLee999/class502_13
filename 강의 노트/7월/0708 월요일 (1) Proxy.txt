@@ -1,0 +1,45 @@
+AOP 프로그래밍
+(Aspect Oriented Programming)
+spring-aop API spring context 추가시 자동 추가
+aspectjweaver - 구현체
+
+1. 프록시(proxy)
+	- 데코레이터 패턴
+	
+	팩토리얼 연산
+	
+	동적 프록시 
+	java.lang.reflect.Proxy
+	
+	InvocableHandler
+	
+	- 인터페이스를 통한 프록시 / 인터페이스 정의가 필수
+2. AOP
+	- Aspect Oriented Programming : 관점 지향 프로그래밍
+		관점 : 개발자의 공통적인 관심 사항
+		
+		공통 기능 : 핵심 기능 분리 기술
+		
+		공통 기능 - 스프링이 대신 수행
+		핵심 기능 - 개발자가 정의 
+1) @Aspect 
+	- 공통 기능이 정의된 클래스
+2) @Pointcut 
+	- execution 명시자
+	
+	-공통 기능이 적용 될 패키지 범위, 메서드 패턴
+3) 공통기능을 수행할 메서드 위에 정의
+@Before 
+	- 메서드가 호출 되기 전 공통 기능
+@After
+	- 메서드가 호출 된 후 공통 기능
+@AfterReturing
+	- 반환 값을 내보낸 후 공통 기능
+@AfterThrowing
+	- 예외가 발생 한 후 공통 기능
+@Around
+	- 메서드 호출 전, 호출 후 공통 기능
+3. @Order
+
+4. 프록시 생성방식
+5. @Around의 Pointcut 설정과 @Pointcut 재사용
