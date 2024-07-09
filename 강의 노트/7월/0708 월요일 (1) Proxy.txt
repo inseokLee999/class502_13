@@ -22,12 +22,16 @@ aspectjweaver - 구현체
 		
 		공통 기능 - 스프링이 대신 수행
 		핵심 기능 - 개발자가 정의 
+		
+	스프링에 제공하는 모든 관리 기능은 전제조건이 있다
+	-> 스프링이 관리하는 객체만 관리기능을 제공한다.
+	- 스프링 컨테이너에 있는 객체만 적용 가능!
 1) @Aspect 
 	- 공통 기능이 정의된 클래스
 2) @Pointcut 
 	- execution 명시자
 	
-	-공통 기능이 적용 될 패키지 범위, 메서드 패턴
+	- 공통 기능이 적용 될 패키지 범위, 메서드 패턴
 3) 공통기능을 수행할 메서드 위에 정의
 @Before 
 	- 메서드가 호출 되기 전 공통 기능
@@ -39,6 +43,15 @@ aspectjweaver - 구현체
 	- 예외가 발생 한 후 공통 기능
 @Around
 	- 메서드 호출 전, 호출 후 공통 기능
+	
+	- ProceedingJoinPoint
+		Object proceed():핵심 기능 대신 실행
+		getSignature(), getTarget(), getArgs()
+		
+	- Signature
+		String getName()
+		String toLongString()
+		String toShortString()
 3. @Order
 
 4. 프록시 생성방식

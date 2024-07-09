@@ -1,0 +1,39 @@
+JdbcTemplate
+1. 설치 및 설정 
+1) spring-jdbc 
+2) tomcat-jdbc
+	- 커넥션 풀 
+		- 미리 연결 객체를 여러개 생성해서 필요할때마다 빌려주고, 회수하는 방식 
+		- 반응성, 성능 향상의 효과 + 연결이 잘 되고 있는지 체크
+
+	- HikariCp
+	
+	- javax.sql.DataSource
+
++ spring-context
++ lombok
++ spring-test
++ ojdbc11
+2. DataSource 설정
+
+3. JdbcTemplate을 이용한 쿼리실행 
+1) query()
+- List query(String sql, RowMapper rowMapper)
+- List query(String sql, Object[] args, RowMapper rowMapper)
+- List query(String sql, RowMapper rowMapper, Object... args)
+
+2) queryForObject()
+
+3) update()
+- int update(String sql)
+- int update(String sql, Object... args)
+
+4. PreparedStatementCreator를 이용한 쿼리 실행
+5. INSERT 쿼리 실행 시 KeyHolder를 이용해서 자동 생성 키값 구하기
+6. 스프링의 익셉션 변환 처리
+	- 각 연동 기술에 따라 발생하는 익셉션을 스프링이 제공하는 익셉션으로 변환함으로써 다음과 같이 구현 기술에 상관없이 동일한 코드로 익셉션을 처리할 수 있게 된다.
+	SQLExcpetion, HibernateException, PersistenceException ->  DataAccessException
+	(RuntimeException)
+	
+7. 트랜잭션 처리
+- @Transactional

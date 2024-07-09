@@ -1,0 +1,86 @@
+코어 객체 
+	내장 생성자 객체
+	Object
+	String
+	Number
+	Boolean
+	Array
+	
+	내장 객체 
+	JSON
+	Math
+
+호스트 객체 : 실행중인 애플리케이션에 따라 다르게 실행되는 객체
+실행 환경 : 웹 브라우저 - 웹 브라우저 객체
+
+window
+
+	location : 주소 창의 정보, 통제 관련 기능
+	history : 방문 기록 정보, 통제 관련 기능
+	
+	screen : 
+	navigator : 
+	
+	document : 웹 문서를 다룰 수 있는 객체
+				- 모든 HTML 요소는 document 객체로 되어있다.
+				
+				
+웹 브라우저 객체
+1. 클라이언트 측 자바스크립트
+1) 웹 브라우저에서 자바스크립트가 하는 일
+***2) 웹 브라우저에서 자바스크립트 실행 순서***
+
+주소 입력 -> 요청 -> 서버 -> 응답 -> 텍스트 형태 HTML -> 브라우저 수신 -> Document 객체로 변환
+->document 객체 변환
+->dom 트리 구조 재구성 
+->DOMContentLoaded이벤트 발생
+->load 이벤트 발생 : 모든 웹페이지의 자원(css,js,image,video 등등)의 로드가 완료된 경우
+예) window.addEventListener("DOMContentLoaded",function(){
+//DOM  구성 완료
+DOM 조작, 이벤트 바인딩 가능..
+
+));
+
+
+3) async와 defer 속성 - ES6+
+- 외부 스크립트 형태로만 적용 가능
+async: 비동기 스크립트 실행 
+	- 무거운 작업이고, 독립적으로 실행되는 작업인 경우 비동기로 실행
+defer : DOMContentLoaded 이벤트 이후에 실행 - DOM 바로 선택해도 문제 없다.
+
+2. CSS와 렌더링
+3. 웹 브라우저 렌더링 엔진과 자바스크립트 엔진
+
+
+Window 객체
+1. Window 객체의 주요 프로퍼티
+2. Window 객체의 주요 메서드
+
+Location 객체
+1. Location 객체의 프로퍼티
+2. Location 객체의 메서드
+
+History 객체
+1. History 객체의 프로퍼티
+2. History 객체의 메서드
+
+Naviator 객체
+1. Navigator 객체의 주요 프로퍼티
+2. Navigator 객체의 메서드
+
+Screen 객체
+1. Screen 객체의 주요 프로퍼티
+
+창 제어하기
+1. 창 여닫기
+open
+
+2. open 메서드로 설정할 수 있는 옵션의 이름
+width, height, location, scrollbars, toolbar, status, menubar
+
+3. 창 제어하기
+1) moveBy(..), moveTo(...)
+2) resizeBy(..), resizeTo(...)
+3) scrollBy(..), scrollTo(...)
+
+4. 다른 창 참조하기
