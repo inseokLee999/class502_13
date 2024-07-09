@@ -50,12 +50,27 @@ defer : DOMContentLoaded 이벤트 이후에 실행 - DOM 바로 선택해도 �
 
 2. CSS와 렌더링
 3. 웹 브라우저 렌더링 엔진과 자바스크립트 엔진
+jQuery
+//DOMContentLoaded
 
 
 Window 객체
+- 웹 브라우저의 창을 하나 생성 할 때마다 하나씩 생성된다.
 1. Window 객체의 주요 프로퍼티
-2. Window 객체의 주요 메서드
+self : 현재 창
+parent : 부모창의 window 객체 /iframe 관련 : 자식 창 -> 상위 창 (부모창 - parent)
+top : 가장 상위창의 window 객체/ iframe 이 중첩된 경우
 
+같은창이고 가장 상위 창인경우 ? self === parent === top
+
+opener : 팝업을 열어준 창의 window 객체 / window.open() 팝업에서 opener : 열어준 창
+
+pageXOffSet:x축에서 스크롤한 정도
+pageYOffset:y축에서 스크롤한 정도
+2. Window 객체의 주요 메서드
+	alert(message) : 알림 메세지
+	prompt(message): 입력 대화 상자, 반환값이 입력한 값
+	confirm(message) : 확인 메세지, 반환값이 boolean, 확인 - true , 취소 - false
 Location 객체
 1. Location 객체의 프로퍼티
 2. Location 객체의 메서드

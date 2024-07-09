@@ -15,19 +15,27 @@ JdbcTemplate
 + spring-test
 + ojdbc11
 2. DataSource 설정
+-javax.sql.DataSource
+- 연결 유효성 체크 관련 메서드 - Tomcat JDBC
 
-3. JdbcTemplate을 이용한 쿼리실행 
+3. JdbcTemplate을 이용한 쿼리실행 보통 두가지 형태 : query(조회,select), update(insert,delete)
 1) query()
 - List query(String sql, RowMapper rowMapper)
 - List query(String sql, Object[] args, RowMapper rowMapper)
 - List query(String sql, RowMapper rowMapper, Object... args)
 
-2) queryForObject()
+2) queryForObject() : 단일 데이터 조회
+	- 조회된 데이터가 반드시 1개 그렇지않으면 예외가 발생한다.
 
-3) update()
-- int update(String sql)
-- int update(String sql, Object... args)
-
+3) update() : 데이터 변경을 가하는 SQL - INSERT,DELETE, Update : 반환값 - 반영된 레코드 개수
+- int update(String sql)//데이터 고정
+- int update(String sql, Object... args)//바뀔수 있는 부분 
+	- PreparedStatement 방식으로 쿼리 작성
+		값 바인딩 ? ?
+		
+	로거
+	slf4j-api
+	logback classic
 4. PreparedStatementCreator를 이용한 쿼리 실행
 5. INSERT 쿼리 실행 시 KeyHolder를 이용해서 자동 생성 키값 구하기
 6. 스프링의 익셉션 변환 처리
