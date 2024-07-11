@@ -77,7 +77,7 @@ public class MemberRepositoryTest {
     @Test
     @DisplayName("@Query 문")
     void test7(){
-        List<Member> members = (List<Member>) repository.getMembers("%용자%","%gmail%");
+        List<Member> members = repository.getMembers("%용자%","%gmail%");
         members.forEach(System.out::println);
     }
     @Test
