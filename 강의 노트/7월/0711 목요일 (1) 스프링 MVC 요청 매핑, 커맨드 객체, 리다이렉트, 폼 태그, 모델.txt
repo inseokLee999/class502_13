@@ -1,0 +1,118 @@
+스프링 MVC : 요청 매핑, 커맨드 객체, 리다이렉트, 폼 태그, 모델
+
+1. 요청 매핑 애노테이션을 이용한 경로 매핑
+요청 메서드 - GET, DELETE, 
+			POST, PATCH, PUT
+
+
+@RequestMapping : 모든 요청 메서드에 매핑, method 설정에 GET,POST,DELETE 등등 설정 가능
+
+
+4.3
+@GetMapping
+@PostMapping
+@PatchMapping
+@PutMapping
+@DeleteMapping
+
+	params : - 요청 데이터를 한정해서 매핑
+	headers : - 요청쪽 헤더 데이터 체크
+	consumes : 요청쪽 Content-Type 체크
+	produces : 응답 헤더쪽 Content-Type 설정
+	
+	참고) 로거 사용
+		private final Logger log = LoggerFactory.getLogger(MemberController.class);
+		log.trace(..)
+		log.debug(..)
+		log.info(..)
+		log.warn(..)
+		log.error(..)
+		log.fatal(..)
+		
+		lombok 활용시 다음 애너테이션 사용하면 로거 연동 코드 자동 생성
+		private final Logger log = LoggerFactory.getLogger(MemberController.class); 자동생성
+		변수명은 log
+		@slf4j 
+		@log4j
+		@log4j2
+		
+		{} 가 있으면 param을 대체 
+		log.info("{},{} 없음","mode1","mode2");
+		
+		통합 테스트
+		MockMvc - 컨트롤러 테스트를 할수 있는 객체 ( 서버를 켜지 않고도 테스트가 가능하다)
+		MockMvcBuilders.webAppContextSetup(WebApplicationContext): 전체 환경에서 테스트
+		mockMvc = MockMvcBuilders.standaloneSetup(Controllers)
+		
+		mockMvc.perform(post()) servlet.request꺼 사용 (reactive 아님)
+		andDo: 결과처리 방법 ( 한가지 뿐인데 print() : 자세한 정보 :컨트롤러 요청메서드, 요청 헤더, 응답헤더, 응답바디 등등)
+		andReturn : request, header, 등 리턴값을 볼수 있다
+		andExpect
+		
+	반환값 : redirect:주소 실제 주소이동 -> Location 헤더에 주소 추가 -> 페이지이동(302)/:절대 경로 , 없으면 상대 경로(뒤에다 붙임)
+			forward : 주소 -> 주소의 출력 데이터로 버퍼를 치환
+		-requestDispatcher 에 있는 forward메서드와 같음
+		
+		post 그대로 갖고오고 주소도 바뀌지 않음 (버퍼 바뀜)
+		
+2. 요청 파라미터 접근
+1) @RequestParam 
+2) 커맨드 객체를 이용해서 요청 파라미터 사용하기
+
+	커맨드 객체 클래스명 사용해서 넘기면 -> EL 속성으로 자동 추가
+	예) RequestJoin -> requesetJoin
+
+3. 뷰 JSP 코드에서 커맨드 객체 사용하기
+
+4. @ModelAttribute 애노테이션으로 커맨드 객체 속성 이름 변경
+	1)커맨드 객체가 없으면 빈 커맨드 객체 생성
+	2)커맨드 객체 속성 이름 변경
+	3)공통 데이터(속성) 으로 사용할 데이터 지정
+5. 커맨드 객체와 스프링 폼 연동
+
+1) <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+2) <form:form>
+3) <form:input>
+4) <form:password> 
+
+
+6. 컨트롤러 구현 없는 경로 매핑
+	- 컨트롤러 구성을 할 필요없는 간단한 페이지 구성시
+		WebMvcConfigurer 인터페이스
+			-addViewControllers 설정
+
+	Spring6
+	JDK15- Record 클래스 - 커맨드 객체로 사용가능
+7. 커맨드 객체 : 중첩 (커맨드 객체 안에 커맨드 객체)· 콜렉션 프로퍼티
+	
+8. Model을 통해 컨트롤러에서 뷰에 데이터 전달하기
+
+9. ModelAndView를 통한 뷰 선택과 모델 전달
+
+10. GET 방식과 POST 방식에 동일 이름 커맨드 객체 사용하기
+
+
+주요 폼 태그 설명
+1. <form> 태그를 위한 커스텀 태그: <form:form>
+2. <input> 관련 커스텀 태그 : <form:input>, <form:password>, <form:hidden>
+3. <select> 관련 커스텀 태그 : <form:select>, <form:options>, <form:option>
+4. 체크박스 관련 커스텀 태그 : <form:checkboxes>, <form:checkbox>
+5. 라디오버튼 관련 커스텀 태그: <form:radiobuttons>, <form:radiobutton>
+6. <textarea〉 태그를 위한 커스텀 태그 : <form:textarea>
+
+
+CSS 및 HTML 태그와 관련된 공통 속성
+1. cssClass: HTML의 class 속성값
+2. cssErrorClass : 폼 검증 에러가 발생했을 때 사용할 HTML의 class 속성값
+3. cssStyle: HTML의 style 속성값
+
+HTML 태그가 사용하는 다음 속성도 사용 가능하다.
+1. id, title, dir
+2. disabled, tabindex
+3. onfocus, onblur, onchange onclick, ondblclick
+4. onkeydown, onkeypress, onkeyup
+5. onmousedown, onmousemove, onmouseup
+6. onmouseout, onmouseover
+
+
+각 커스텀 태그는 htmlEscape 속성을 사용해서 커맨드 객체의 값에 포함된 HTML 특수 문자를 엔티티 레퍼런스로 변환할지를 결정할 수 있다.
