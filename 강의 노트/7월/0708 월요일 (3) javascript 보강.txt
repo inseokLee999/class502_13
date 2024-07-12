@@ -72,13 +72,25 @@ pageYOffset:y축에서 스크롤한 정도
 	prompt(message): 입력 대화 상자, 반환값이 입력한 값
 	confirm(message) : 확인 메세지, 반환값이 boolean, 확인 - true , 취소 - false
 Location 객체
-1. Location 객체의 프로퍼티
-2. Location 객체의 메서드
+주소창의 정보,기능 통제
+1. Location 객체의 프로퍼티 : 정보, 살아있는 속성, 변경하면 실시간 반영
+2. Location 객체의 메서드 : 통제기능
+assign(주소): 주소로 이동 - 이동할때 마다 방문 기록이 남는다. :이게 둘다 안남는다는건가?
+-> location.href = "주소" 랑 같다
+replace(주소): 주소로 이동 - 이동해도 방문기록이 남지 않는다.
+reload():새로고침
 
 History 객체
 1. History 객체의 프로퍼티
+length : 방문 기록 갯수
+scrollRestoration : auto (기본값) - 스크롤 위치 복구
+					: manual - 스크롤 위치 복구 X, 가장 상단 부터 로딩(뒤로가기 했을 때 그전 스크롤 위치를 기억)
 2. History 객체의 메서드
-
+	back(): 뒤로 1단계이동
+	forward():앞으로 1단계이동
+	go(숫자): 숫자만큼 이동
+		양수 - 앞으로 숫자만큼 이동
+		음수 - 뒤로 숫자 만큼 이동
 Naviator 객체
 1. Navigator 객체의 주요 프로퍼티
 2. Navigator 객체의 메서드

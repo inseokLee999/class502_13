@@ -37,11 +37,30 @@ JdbcTemplate
 	slf4j-api
 	logback classic
 4. PreparedStatementCreator를 이용한 쿼리 실행
+	-> connection 객체가 매개변수로 정의되어있는 메서드를 통해서 사용가능하다
+	-> 증감번호 형태의 PK를 조회
 5. INSERT 쿼리 실행 시 KeyHolder를 이용해서 자동 생성 키값 구하기
 6. 스프링의 익셉션 변환 처리
 	- 각 연동 기술에 따라 발생하는 익셉션을 스프링이 제공하는 익셉션으로 변환함으로써 다음과 같이 구현 기술에 상관없이 동일한 코드로 익셉션을 처리할 수 있게 된다.
 	SQLExcpetion, HibernateException, PersistenceException ->  DataAccessException
 	(RuntimeException)
 	
-7. 트랜잭션 처리
-- @Transactional
+7. 트랜잭션 처리 - 트랜잭션에 대한 수동관리
+- @Transactional - 클래스명 위, 메서드 명 위
+Proxy  사용
+Connection
+setAutoCommit(false)
+
+SQL...
+SQL...
+
+Connection
+commit();
+
+Spring Data 프레임워크
+데이터를 추상화한것
+
+- Spring Data JDBC
+	-쿼리메서드
+	-CRUD 레파지토리
+- SPring Data JPA

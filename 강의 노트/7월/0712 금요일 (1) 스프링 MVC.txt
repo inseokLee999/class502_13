@@ -1,0 +1,91 @@
+스프링 MVC 
+1. 메시지
+1) MessageSource
+	- Bean으로 등록
+	- 반드시 빈의 이름이 messageSource로 지정
+2) ResourceBundleMessageSource
+3) 다국어 지원 위한 메시지 파일
+properties 파일
+2. 커맨드 객체 검증
+1) Validator 인터페이스 
+	-supports(...):검증하는 커멘드 객체 한정 설정
+	-validate(..):커맨드 객체 검증 ..
+	
+2) Errors
+	- 커맨드 객체 자체 오류에 대한 처리 --
+	reject("에러코드");
+	reject("에러코드", "기본 메세지")
+	
+	- 커맨드 객체의 특정 필드 오류에 대한 처리 --
+	rejectValue("필드명", "에러코드");
+	rejectValue("필드명", "에러코드", "기본메세지");
+	
+	
+	-
+	hasErrors() : 한개라도 reject 또는 rejectValue가 호출되면 true
+	
+	타임리프
+	#fields.errors("필드명") : -> errors 객체 담긴 메세지를 필드명으로 조회 -> 배열 
+	
+3) ValidationUtils
+	- 필수 항목 검증에 편의 메서드
+	- rejectIfEmpty(...)
+	- rejectIfEmptyOrWhitespace(...) : 공백 포함 체크
+	
+
+
+3. 에러 코드에 해당하는 메시지 코드를 찾는 규칙
+- 에러코드 + "." + 커맨드객체이름 + "." + 필드명
+- 에러코드 + "." + 필드명
+- 에러코드 + "." + 필드타입
+- 에러코드
+
+4. 프로퍼티 타입이 List나 목록인 경우 다음 순서를 사용해서 메시지 코드를 생성한다.
+
+에러코드 + "." + 커맨드객체이름 + "." + 필드명[인덱스].중첩필드명
+에러코드 + "." + 커맨드객체이름 + "." + 필드명.중첩필드명
+에러코드 + "." + 필드명[인덱스].중첩필드명
+에러코드 + "." + 필드명.중첩필드명
+에러코드 + "." + 중첩필드명
+에러코드 + "." + 필드타입
+에러코드
+
+5. 글로벌 범위 Validator와 컨트롤러 범위 Validator
+1) 글로벌 범위 Validator 설정과 @Valid 애노테이션
+-  WebMvcConfigurer의 getValidalor() 
+2) @InitBinder 애노테이션을 이용한 컨트롤러 범위 Validator
+@InitBinder
+protected void InitBinder(WebDataBinder binder) {
+	binder.setValidator(new RegisterRequestValidator());
+}
+	
+3) 컨트롤러 범위 Validator  > 글로벌 범위 Validator
+
+6. Bean Validation
+Bean Validation API
+hibernate Validator 
+
+
+1) 설정
+2) Bean Validation의 주요 애노테이션 
+@AssertTrue
+@AssertFalse
+@DecimalMax
+@DecimalMin
+@Max
+@Min
+@Digits
+@Size
+@Null
+@NonNull
+@Pattern
+
+@NotEmpty
+@NotBlank
+@Positive
+@PositiveOrZero
+@Email
+@Future
+@FutureOrPresent
+@Past
+@PastOrPresent
