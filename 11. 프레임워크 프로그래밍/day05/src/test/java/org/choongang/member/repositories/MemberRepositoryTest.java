@@ -11,12 +11,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 import static org.springframework.data.domain.Sort.Order.asc;
 import static org.springframework.data.domain.Sort.Order.desc;
-
+@Transactional
 @SpringJUnitWebConfig//extends with spring, web mvc포함
 @ContextConfiguration(classes = MvcConfig.class)
 public class MemberRepositoryTest {
@@ -43,7 +44,7 @@ public class MemberRepositoryTest {
     }
 
     @Test
-    @DisplayName("쿼리 메서드 findById")
+    @DisplayName("쿼리 메서드 findById 후 delete")
     void test3(){
         Member member = repository.findById(3L).orElse(null);
         System.out.println(member);

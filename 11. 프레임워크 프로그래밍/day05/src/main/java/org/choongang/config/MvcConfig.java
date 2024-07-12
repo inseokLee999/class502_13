@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.*;
 @Configuration
 @EnableWebMvc
 @ComponentScan("org.choongang")
-@Import(DBConfig.class)
+@Import({DBConfig.class, MessageConfig.class})
 public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
@@ -22,7 +22,13 @@ public class MvcConfig implements WebMvcConfigurer {
     }
 
     @Override
+    public void addViewControllers(ViewControllerRegistry registry) {//컨트롤러 구성을 할 필요 없는 간단한 페이지 구성시
+        registry.addViewController("/").setViewName("main/index");
+        registry.addViewController("/mypage").setViewName("mypage/index");
+    }
+
+    @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
-        registry.jsp("/WEB-INF/templates/",".jsp");//스프링에서 반환값이 나오면 prefix, suffix사이로 들어가게 된다.
+        registry.jsp("/WEB-INF/templates/", ".jsp");//스프링에서 반환값이 나오면 prefix, suffix사이로 들어가게 된다.
     }
 }
