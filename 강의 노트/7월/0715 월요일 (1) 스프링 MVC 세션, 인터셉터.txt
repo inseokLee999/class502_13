@@ -1,0 +1,22 @@
+스프링 MVC 
+1. 세션
+@SessionAttribute("이름") : 세션값 조회 및 주입
+@SessionAttribute(이름):- Model로 해당 이름으로 값을 속성으로 추가하면 세션에도 동일한 이름으로 추가
+						- 세션에 해당 이름의 값이 있으면 Model에 자동 추가
+						- Magic Form - 여러 페이지으 ㅣ양식
+		-SessionStatus
+			:setComplete():SessionAttributes 에 지정된 이름의 세션값을 비울 때
+2.인터셉터
+1) HandlerInterceptor 인터페이스 
+- boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception;
+- void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception;
+- void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception;
+2) WebMvcConfigurer 인터페이스 : addInterceptors(InterceptorRegistry registry)
+3) Ant 경로 패턴
+- * : 0개 또는 그 이상의 글자
+- ** 0개 또는 그 이상의 폴더 경로
+- ? : 1개 글자
+
+3.쿠키
+- 
+@CookieValue  

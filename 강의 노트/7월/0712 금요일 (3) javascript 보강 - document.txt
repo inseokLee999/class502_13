@@ -1,0 +1,111 @@
+Document 객체 : 모든 html문서는 document객체로 바뀌어있다.
+- Document 객체는 창에 표시되고 있는 웹 페이지를 관리합니다.
+- 이 객체로 웹 페이지의 내용물인 DOM 트리를 읽거나 쓸 수 있습니다.
+- Document 객체는 클라이언트 측 자바스크립트에서 가장 중요한 객체입니다.
+
+1. Document 객체의 주요 프로퍼티
+	referrer : 직전유입 경로 (어디서 온 건지)
+	cookie : 쿠키값 조회 / HttpOnly로 설정된 쿠키는 조회 불가
+						- HttpOnly 로 설정된 쿠키는 서버쪽에서만 요청 헤더 정보를 통해서 확인 가능
+2. Document 객체 주요 메서드
+document.write("<h1>변경</h1>")
+
+문서 제어
+1. DOM 트리
+2. 노드 객체의 프로퍼티
+- 요소와 요소 사이에 있는 공백 문자의 영향을 받습니다.
+1) parentNode
+2) childNodes
+3) firstChild
+4) lastChild
+5) nextSibling
+6) previousSibling
+7) nodeType
+8) nodeValue
+9) nodeName
+
+3. HTML 요소의 트리
+1) children - 자식 요소들
+2) parentElement - 부모 요소
+3) firstElementChild - 첫번째 자식 요소 선택
+4) lastElementChild - 마지막 자식 요소 선택
+6) nextElementSibling - 오른쪽 형제 요소
+7) previousElementSibling - 왼쪽 형제 요소
+8) childElementCount - 자식 요소 갯수
+참고)
+	head : document.head
+	body : document.body
+4. 자바스크립트로 웹 페이지 제어하기
+- 렌더링 엔진은 DOM 트리와 스타일 규칙이 바뀔 때마다 렌더 트리를 다시 구성해서 웹페이지를 다시 그립니다.
+
+5. 노드 객체 가져오기
+id(단일), class(복수) -> 선택을 위한 속성
+1) id 속성으로 노드 가져오기 - 한개만 선택
+document.getElementById("아이디명");
+
+2) 요소 이름으로 노드 가져오기
+document.getElementsByTagName("태그이름");
+const els = document.getElementsByTagName("*");
+
+3) class 속성 값으로 노드 가져오기
+document.getElementsByClassName("클래스명");
+
+4) name 속성 값으로 노드 가져오기
+document.getElementsByName("name명");
+
+5) CSS 선택자로 노드 가져오기
+document.querySelector("CSS 선택자");// 한개
+document.querySelectorAll("css선택자");
+
+6. 속성 값의 읽기와 쓰기
+속성 : 태그에 있는 추가 정보
+	:어떤 속성은 태그의 기능과 관련된 정보를 담고 있다.
+		(예- type,src,href...)
+1) 속성 값 가져오기
+	-getAttribute("속성명")
+2) 속성 값 설정하기
+	-setAttribute("속성명","속성값")
+3) 속성이 있는지 확인하기
+	-hasAttribute("속성명")
+4) 속성 삭제하기
+	-removeAttribute("속성명")
+
+5) 전체 속성의 목록 가져오기
+- attributes
+
+많이 사용하는 속성들은 각 요소의 document 객체 하위 속성으로 바로접근가능.
+-id,type,src,href,target,action
+-class (x) -> className
+
+정보성 속성에는 관례로
+data-속성명 ="값"
+
+-요소의 document 객체
+	-dataset객체	: 속성명으로 바로 접근 가능
+클래스 속성을 관리하는 객체
+-요소의 document객체
+	-classList 객체
+	-클래스의 종류
+	-클래스의 통제 메서드
+		-add():클래스 추가
+		-remove():클래스 제거
+		-contains() : 클래스가 있는지 여부
+		-toggle() :클래스가 있으면 제거, 없으면 추가
+7. HTML 요소의 내용을 읽고 쓰기
+1) innerHTML 프로퍼티
+2) textContent와 innerText 프로퍼티
+
+노드 생성/삽입/삭제하기
+1. 노드 생성하기
+1) 노드 객체를 생성하는 주요 메서드
+
+2. 노드 삽입하기
+1) appendChild(..)
+2) insertBefore(..)
+
+3. 노드 옮기기
+4. 노드 삭제하기
+- removeChild(..)
+
+5. 노드 치환하기
+- replaceChild(...)

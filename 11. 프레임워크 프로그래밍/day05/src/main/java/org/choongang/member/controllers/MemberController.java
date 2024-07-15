@@ -36,7 +36,7 @@ public class MemberController {
         }
         joinService.process(form);
 
-        return "redirect:/member/login";
+        return "redirect:/member/login";//주소가 바뀜 join쓰면 join 창에서 페이지만 바뀜
     }
 //    @InitBinder
 //    public void initBinder(WebDataBinder binder) {
