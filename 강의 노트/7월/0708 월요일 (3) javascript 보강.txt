@@ -91,13 +91,26 @@ scrollRestoration : auto (기본값) - 스크롤 위치 복구
 	go(숫자): 숫자만큼 이동
 		양수 - 앞으로 숫자만큼 이동
 		음수 - 뒤로 숫자 만큼 이동
-Naviator 객체
+Naviator 객체 -GeoLocation API : 내 위치 추적 가능
+navigator.geolocation.getCurrentPosition(function (position) {
+    console.log(position);
+})
 1. Navigator 객체의 주요 프로퍼티
 2. Navigator 객체의 메서드
 
-Screen 객체
+Screen 객체 : 현재 보이는 화면에 대한 정보
 1. Screen 객체의 주요 프로퍼티
-
+Screen {availWidth: 1920,
+ availHeight: 1040,
+ width: 1920,
+ height: 1080,
+ colorDepth: 24, 
+ …}availHeight: 1040
+ availLeft: 0availTop: 0availWidth: 1920colorDepth: 24height: 1080
+ isExtended: false//확장여부
+ onchange: null
+ orientation: ScreenOrientation {angle: 0, type: 'landscape-primary', onchange: null} //landscape-primary : 가로모드, 세로모드 portrait-primary
+ pixelDepth: 24width: 1920[[Prototype]]: Screen
 창 제어하기
 1. 창 여닫기
 open

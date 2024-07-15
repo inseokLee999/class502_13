@@ -1,107 +1,73 @@
 package org.choongang.member.controllers;
 
-import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.MessageSource;
+import org.choongang.member.services.JoinService;
+import org.choongang.member.services.LoginService;
+import org.choongang.member.validators.JoinValidator;
+import org.choongang.member.validators.LoginValidator;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
-import java.util.Locale;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @Controller
 @RequestMapping("/member")
 @RequiredArgsConstructor
 public class MemberController {
-
-    private final MessageSource messageSource;
-    private final HttpServletRequest request;
-    @ModelAttribute("commonValue")
-    public String commonValue() {
-        return "공통 속성값 ..";
-    }
-
-    @ModelAttribute("hobbies")
-    public List<String> hobbies() {
-        return List.of("취미1", "취미2", "취미3", "취미4");
-    }
-
-    @ModelAttribute("hobbies2")
-    public List<CodeValue> hobbies2() {
-        return List.of(
-                new CodeValue("취미1", "hobby1"),
-                new CodeValue("취미2", "hobby2"),
-                new CodeValue("취미3", "hobby3")
-        );
-    }
-
+    private final JoinValidator joinValidator;
+    private final JoinService joinService;
+    private final LoginValidator loginValidator;
+    private final LoginService loginService;
     @GetMapping("/join")
-    public String join(
-//            Model model
-            @ModelAttribute("command") RequestJoin form
-    ) {
-        Locale locale = request.getLocale();//요청헤더 Accept-language
-        String message = messageSource.getMessage("EMAIL", null, locale);
-        log.info(message);
-//        model.addAttribute("requestJoin", form);
+    public String join(@ModelAttribute RequestJoin form) {
         return "member/join";
     }
 
     @PostMapping("/join")
-    public String joinPs(@ModelAttribute("command") RequestJoin form) {
-        log.info(form.toString());
-        return "member/join";
-    }
+    public String joinPs(@Valid RequestJoin form, Errors errors) {//joinValidator 에있는 Errors
+        //회원 가입 데이터 검증
+        joinValidator.validate(form, errors); //전역 validator 에 넣었던 validator 때문에 없어도 동작 한다.
 
+        if (errors.hasErrors()) { // reject, rejectValue 가 한번이라도 호출되면 true
+            return "member/join";
+        }
+        joinService.process(form);
+
+        return "redirect:/member/login";
+    }
+//    @InitBinder
+//    public void initBinder(WebDataBinder binder) {
+//        binder.setValidator(joinValidator);
+//    }
     @GetMapping("/login")
-    public String login(RequestLogin2 form) {
-        if (form != null) {
-            log.info("이메일 :{},비밀번호 :{} ", form.email(), form.password());
+    public String login(@ModelAttribute RequestLogin form, @CookieValue(name = "savedEmail",required = false) String savedEmail/*, @SessionAttribute(name = "member",required = false) Member member*/) {
+
+        /*if(member != null) {
+            log.info(member.toString());
+        }*/
+        if(savedEmail !=null){
+            form.setSaveEmail(true);
+            form.setEmail(savedEmail);
         }
         return "member/login";
     }
-//    private final Logger log = LoggerFactory.getLogger(MemberController.class);
-/*
-    @PostMapping("/join")
-    public String joinPs(RequestJoin form) {
-
-        return "redirect:/member/login"; //Location: /day05/member/login
+    @PostMapping("/login")
+    public String loginPs(@Valid RequestLogin form, Errors errors) {
+        loginValidator.validate(form,errors);
+        if(errors.hasErrors()){
+            return "member/login";
+        }
+        //로그인 처리
+        loginService.process(form);
+        return "redirect:/";
     }
-
-    @GetMapping(path = "/join")
-    public String join() {
-        log.info("{},{} 없음", "mode1", "mode2");
-        return "member/join";
+    @RequestMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate(); //세션 비우기
+        return "redirect:/member/login";
     }
-
-    @GetMapping(path = "/join", params = {"mode=join"})//params : - 요청 데이터를 한정해서 매핑
-    public String join(Model model, HttpServletRequest request) {
-        log.info("mode=join");
-        return "member/join";
-    }
-
-    @PostMapping(path = "/join", headers = "appKey=1234"*//* header에 appKey 값 1234이 있어야지 유입*//*,
-//            consumes = "application/json" //요청쪽 컨텐트타입이 application/json으로 들어오는지)
-            consumes = MediaType.APPLICATION_JSON_VALUE*//*오타 방지용 상수 사용*//*,
-            produces = MediaType.APPLICATION_JSON_VALUE
-    )
-    public String joinPs(RequestJoin form) {
-        log.info("joinPs 실행...");
-        return "redirect:member/join";
-    }
-    */
-    /*
-    @GetMapping("/member/join")
-    public ModelAndView join() {
-        ModelAndView mv = new ModelAndView();
-        mv.addObject("message","안녕하세요");
-        mv.setViewName("member/join");
-        return mv;
-    }
-    */
 }
+
