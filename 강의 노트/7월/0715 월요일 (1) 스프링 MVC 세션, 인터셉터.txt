@@ -8,9 +8,9 @@
 			:setComplete():SessionAttributes 에 지정된 이름의 세션값을 비울 때
 2.인터셉터
 1) HandlerInterceptor 인터페이스 
-- boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception;
-- void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception;
-- void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception;
+- boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception;: 컨트롤러가 실행되기전에 실행된다.preHandle() 메서드가 false를 리턴하면 컨트롤러(또는 다음 HandlerInterceptor)를 실행하지 않는다.
+- void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception;: 컨트롤러 실행 직후에 실행
+- void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception; : 응답 생성 후에 실행
 2) WebMvcConfigurer 인터페이스 : addInterceptors(InterceptorRegistry registry)
 3) Ant 경로 패턴
 - * : 0개 또는 그 이상의 글자
@@ -19,4 +19,5 @@
 
 3.쿠키
 - 
-@CookieValue  
+@CookieValue  : 개별 쿠키값 조회
+@CookieValue(name = "savedEmail",required = false) required false없으면 쿠키값 삭제하면 오류남

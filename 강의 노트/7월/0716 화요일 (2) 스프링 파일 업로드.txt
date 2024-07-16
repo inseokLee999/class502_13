@@ -1,0 +1,41 @@
+스프링 파일 업로드(MultipartFile)
+1. multipart란?
+	<form> 속성 : enctype="multipart/form-data"
+	
+	- multipart 
+		- 일반 양식 데이터의 파트 
+		- 파일 데이터(바이너리 데이터) 파드 
+
+	기본 양식 content-type 
+		application/x-www-form-urlencoded
+2. web.xml 설정 
+<multipart-config>
+	<max-file-size>20971520</max-file-size> <!--  1MB * 20 -->
+    <max-request-size>41943040</max-request-size> <!-- 40MB -->
+</multipart-config>
+
+3. MultipartFile 인터페이스
+@RequestPart	
+4. addResourceHandlers 설정
+	- 파일 업로드 경로 -> 서버 접근 URL로 연결 
+	
+프로필
+1. @Profile
+
+2. spring.profiles.active
+1) web.xml 
+2) 배포 파일 실행시 
+java -jar -Dspring.profiles.active=프로필이름 
+
+프로퍼티 파일을 이용한 프로퍼티 설정
+
+1. @Configuration
+public static PropertySourcesPlaceholderConfigurer properties() {
+		PropertySourcesPlaceholderConfigurer configurer = new PropertySourcesPlaceholderConfigurer();
+		configurer.setLocations(
+				new ClassPathResource("db.properties"),
+				new ClassPathResource("info.properties"));
+		return configurer;
+}
+
+2. @Value("${프로퍼티 키값}")
