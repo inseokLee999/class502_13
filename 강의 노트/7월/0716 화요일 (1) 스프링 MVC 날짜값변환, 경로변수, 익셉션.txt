@@ -1,0 +1,40 @@
+1. 날짜 값 변환
+@DateTimeFormat 
+- LocalDate, LocalTime, LocalDateTime ..
+- 형식이 일치 하지 않으면 예외 발생 
+	- 메세지 코드 typeMismatch
+	
+2. @PathVariable : 경로 변수 
+
+3. 컨트롤러 익셉션 처리하기
+1) @ExceptionHandler
+	- 발생 예외를 정의 
+	- 예외발생시 특정 페이지를 노출 
+	- 메서드에 자동 주입 
+		- 발생한 예외 객체
+		- Model 
+		- HttpServletRequest
+		- HttpServletResponse 
+		- HttpSession 
+	스프링 부트에서 추가된 속성
+	status : HTTP 상태코드
+	error:에러코드
+	path :예외가 발생한 URI
+	exception
+	message
+	
+2) @ControllerAdvice
+	- 컨트롤러의 공통적인 처리
+	- 공통 값 유지 - @ModelAttribute
+	- 공통 에러 페이지 처리 - @ExceptionHandler
+	
+	ResponseEntity 
+	
+bit
+byte - 8bit
+kb - 1024 byte
+mb - 1024 kb
+gb - 1024 mb
+
+20mb
+1024 * 1024 * 20 -> 20mb

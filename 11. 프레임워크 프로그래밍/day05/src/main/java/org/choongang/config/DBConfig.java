@@ -20,15 +20,16 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @MapperScan("org.choongang")
 @EnableJdbcRepositories("org.choongang")
 public class DBConfig extends AbstractJdbcConfiguration {
-    @Bean
+
+    @Bean(destroyMethod = "close")
     public DataSource dataSource() {
         DataSource ds = new DataSource();
 
         /*연결 설정 S*/
         ds.setDriverClassName("oracle.jdbc.driver.OracleDriver");
         ds.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
-        ds.setUsername("SPRING");
-        ds.setPassword("oracle");
+        ds.setUsername(System.getenv("db.username"));
+        ds.setPassword(System.getenv("db.password"));
         /*연결 설정 E*/
 
         /*커넥션 풀 설정 S*/
@@ -50,12 +51,14 @@ public class DBConfig extends AbstractJdbcConfiguration {
     public PlatformTransactionManager transactionManager() {
         return new DataSourceTransactionManager(dataSource());
     }
+
     @Bean
     public SqlSessionFactory sqlSessionFactory() throws Exception {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
         factoryBean.setDataSource(dataSource());
         return factoryBean.getObject();
     }
+
     @Bean
     public NamedParameterJdbcOperations namedParameterJdbcOperations(DataSource dataSource) {
         return new NamedParameterJdbcTemplate(dataSource);

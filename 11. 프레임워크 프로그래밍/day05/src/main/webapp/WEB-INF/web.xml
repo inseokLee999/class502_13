@@ -21,6 +21,23 @@
                 org.choongang.config.MvcConfig
             </param-value>
         </init-param>
+<!--
+        <init-param>
+            <param-name>spring.profiles.active</param-name>
+            <param-value>dev</param-value>
+        </init-param>
+-->
+        <multipart-config><!--한 파일당 최대 용량, 파일 전송을 어떻게 할 것인지 (파일 업로드 설정)-->
+            <max-file-size><!--한 파일당 최대 용량-->
+                20971520
+            </max-file-size>
+            <max-request-size><!--최대 업로드 파일 용량-->
+                62914560
+            </max-request-size>
+            <file-size-threshold>
+                20971520
+            </file-size-threshold>
+        </multipart-config>
     </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
