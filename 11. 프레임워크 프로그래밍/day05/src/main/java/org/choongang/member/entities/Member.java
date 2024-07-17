@@ -1,5 +1,6 @@
 package org.choongang.member.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,7 +19,9 @@ public class Member {
 //    @Column("ID")//컬럼명 매칭
     private Long seq;
     private String email;
+    @JsonIgnore
     private String password;
     private String userName;
+//    @JsonFormat(pattern = "yyyy년 MM월 dd일 HH:mm:ss")
     private LocalDateTime regDt;
 }

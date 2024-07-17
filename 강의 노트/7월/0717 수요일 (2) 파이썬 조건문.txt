@@ -1,0 +1,16 @@
+if문
+1. if 문의 기본 구조
+2. 들여쓰기 방법 알아보기
+3. 조건문이란 무엇인가?
+1) 비교 연산자
+2) and, or, not
+3) in, not in
+4) 조건문에서 아무 일도 하지 않게 설정하고 싶다면?
+	pass
+
+
+4. 다양한 조건을 판단하는 elif
+5. if 문을 한 줄로 작성하기
+
+6. 조건부 표현식
+- message = "success" if score >= 60 else "failure"

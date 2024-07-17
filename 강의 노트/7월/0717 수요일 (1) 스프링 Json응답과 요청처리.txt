@@ -1,0 +1,73 @@
+JSON 응답과 요청 처리
+1. JSON 개요
+-JSON(JavaScript Object Notation) : 자바스크립트 객체 표기법
+- {"이름":"값","이름":"값"}
+2. Jackson 의존 설정
+- jackson-databind
+- jackson-datatype-jsr310
+	(Date & Time API - java.time 패키지)
+- ObjectMapper
+	자바 객체-> JSON 문자열 - writeObjectAsString(자바 객체)
+	JSON 문자열-> 자바 객체 -> readValue(...)
+3. @RestController로 JSON 형식 응답(Representational State Transfer) : 표현적 상태 전이
+	반환값 
+		- 자바 객체(getter가 있는 자바객체) : JSON 문자열로 자바 객체 변환 후 출력
+			- 응답 헤더 : Content-Type:application/json
+		- 반환값이 없는 경우 : 응답 body 가 비어있음
+		- 문자열 : 문자열 그대로 출력이 된다. 
+		(GetMapping: 쪽 property 에서 content Type 설정 가능
+4. @ResponseBody 애노테이션
+- @Controller 로 설정된 일반 컨트롤러 메서드를 Rest로 응답하게 만들어주는 애노테이션
+- 자바 객체, 문자열, 반환값 없음
+5. @Jsonlgnore를 이용한 제외 처리
+	-JSON 변환시 제외
+6. 날짜 형식 변환 처리: @JsonFormat 사용
+	- 출력 날짜, 입력 날짜 형식을 한정
+7. @RequestBody JSON 요청 처리
+커맨드 객체 변환 기준 - Content-Type:application/x-www-form-urlencoded;라서 json으로 요청바디에 넣으면 안된다
+커맨드 객체 앞에 @RequestBody를 추가하면 Content-Type :application/json으로 판단하고 데이터 변환 작업을 한다.
+
+POST 
+PUT
+PATCH
+
+- POSTMAN : REST 테스트
+- ARC(Advanced Rest Client) : REST 테스트 
+
+- MockMvc
+
+8. ResponseEntity로 객체 리턴하고 응답 코드 지정하기
+	-응답 헤더, 바디 쪽을 상세하게 설정하는 경우
+1) ResponseEntity를 이용한 응답 데이터 처리
+2) ResponseEntity.status(상태코드).body(객체) : 응답 상태 코드 + 출력 데이터
+3) ResponseEntity.status(HttpStatus.NOT_FOUND).build(); : 응답상태코드/ 출력 데이터 X
+public ResponseEntity<List<Member>> list() {
+        List<Member> members = IntStream.rangeClosed(1, 10)
+                .mapToObj(i -> Member.builder()
+                        .email("user" + i + "@test.org")
+                        .password("12345678")
+                        .userName("user" + i)
+                        .regDt(LocalDateTime.now())
+                        .build())
+                .toList();
+        return ResponseEntity.status(HttpStatus.OK).body(members);
+		new ResponseEntity<>(members, headers, HttpStatus.OK);
+4) ReponseEntity.ok(member)
+5) noContent() : 204
+6) badRequest() : 400
+7) notFound() : 404
+
+9. @ExceptionHandler 적용 메서드에서 ResponseEntity로 응답하기
+10. @Valid 에러 결과를 JSON으로 응답하기
+
+
+
+
+UriComponentsBuilder
+
+RestTemplate
+1. <T> ResponseEntity<T> getForEntity(...)
+2. <T> T getForObject
+3. <T> ResponseEntity<T> postForEntity
+4. <T> T postForObject
+5. <T> ResponseEntity<T> exchange(...)

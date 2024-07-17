@@ -37,6 +37,6 @@ bin/
 
 ### VS Code ###
 .vscode/
-
+application-dev.*
 ### Mac OS ###
 .DS_Store

@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.choongang.global.exceptions.BadRequestException;
+import org.choongang.member.entities.Member;
 import org.choongang.member.services.JoinService;
 import org.choongang.member.services.LoginService;
 import org.choongang.member.validators.JoinValidator;
@@ -15,6 +16,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.IntStream;
 
 @Slf4j
 @Controller
@@ -58,7 +63,19 @@ public class MemberController {
     @GetMapping({"/info/{id}/{id2}", "/info/{id}"})
     public void info(@PathVariable("id") String email, @PathVariable(name = "id2", required = false) String email2) {
         log.info("email:{}, email2:{}", email, email2);
-
+    }
+    @ResponseBody
+    @GetMapping("/list2")
+    public List<Member> list(){
+        List<Member> members = IntStream.rangeClosed(1, 10)
+                .mapToObj(i -> Member.builder()
+                        .email("user" + i + "@test.org")
+                        .password("12345678")
+                        .userName("user" + i)
+                        .regDt(LocalDateTime.now())
+                        .build())
+                .toList();
+        return members;
     }
     @ExceptionHandler(BadRequestException.class)//발생할 예외의 종류
     public String errorHandler(BadRequestException e, HttpServletRequest request, HttpServletResponse response, Model model){

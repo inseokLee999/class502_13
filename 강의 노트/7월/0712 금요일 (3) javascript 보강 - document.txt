@@ -93,19 +93,26 @@ data-속성명 ="값"
 		-toggle() :클래스가 있으면 제거, 없으면 추가
 7. HTML 요소의 내용을 읽고 쓰기
 1) innerHTML 프로퍼티
+	- document객체 안쪽html 텍스트 반환
 2) textContent와 innerText 프로퍼티
-
+	innerText: document객체 안쪽html 텍스트만 반환(태그 제외)
+	textContent :document객체 안쪽html 텍스트 반환(태그 제외)
 노드 생성/삽입/삭제하기
 1. 노드 생성하기
+document.createElement("태그명")
+	
+document.createTextNode("텍스트")
+
 1) 노드 객체를 생성하는 주요 메서드
 
 2. 노드 삽입하기
-1) appendChild(..)
-2) insertBefore(..)
-
+1) appendChild(..): 끝에 삽입
+2) insertBefore(..) : 특정 요소 앞에 삽입 가능
+insertBefore(추가할 요소, 기준);
 3. 노드 옮기기
 4. 노드 삭제하기
 - removeChild(..)
 
 5. 노드 치환하기
 - replaceChild(...)
+
