@@ -57,13 +57,18 @@ public ResponseEntity<List<Member>> list() {
 6) badRequest() : 400
 7) notFound() : 404
 
+JSON -> 형식을 고정해서 응답해야한다
 9. @ExceptionHandler 적용 메서드에서 ResponseEntity로 응답하기
 10. @Valid 에러 결과를 JSON으로 응답하기
 
+Errors
+	필드별로 발생한 에러 
+	getFieldErrors() : 필드별 전체 에러 정보
+	getGlobalErrors() : 커맨드 객체 자체 에러 정보(reject(..)..)
+	getAllErrors() : 전체 에러 정보
 
 
-
-UriComponentsBuilder
+UriComponentsBuilder : url 만들어주는 친구
 
 RestTemplate
 1. <T> ResponseEntity<T> getForEntity(...)

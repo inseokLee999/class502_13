@@ -1,15 +1,14 @@
-package org.choongang.advices;
+package org.choongang.global.advices;
 
 import lombok.extern.slf4j.Slf4j;
 import org.choongang.global.exceptions.CommonException;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
 @Slf4j
-@ControllerAdvice("org.choongang")//적용될 범위 지정
+//@ControllerAdvice("org.choongang")//적용될 범위 지정
 public class CommonControllerAdvice {
     @ExceptionHandler(Exception.class)//controller 에서도 적용 가능
     public ModelAndView errorHandler(Exception e, Model model) {
