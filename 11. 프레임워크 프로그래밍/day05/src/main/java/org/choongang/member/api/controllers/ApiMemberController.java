@@ -29,7 +29,7 @@ public class ApiMemberController {
     private final JoinService joinService;
     private final Utils utils;
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity join(@RequestBody @Valid RequestJoin form, Errors errors) {
         if (errors.hasErrors()) {
             throw new BadRequestException(utils.getErrorMessages(errors));
@@ -77,7 +77,7 @@ public class ApiMemberController {
         //content-Type  : text/plain
 
         return "안녕하세요라";
-        //문자열을 받으면 template경로가 아니라 문자열 그자체를 출력
+        //문자열을 받으면 template 경로가 아니라 문자열 그자체를 출력
     }
 
     @GetMapping("/test2")

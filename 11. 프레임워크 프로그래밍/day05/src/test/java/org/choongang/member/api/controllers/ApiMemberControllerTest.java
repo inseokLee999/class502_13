@@ -50,7 +50,7 @@ public class ApiMemberControllerTest {
         form.setAgree(true);
         System.out.println(form.toString());
         ObjectMapper om = new ObjectMapper();
-        om.registerModule(new JavaTimeModule());
+        om.registerModule(new JavaTimeModule());//??
         String json = om.writeValueAsString(form);
         mockMvc.perform(post("/api/member")
                         .contentType(MediaType.APPLICATION_JSON)//요청 헤더

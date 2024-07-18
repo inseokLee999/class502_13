@@ -2,7 +2,7 @@
 1. 설정
 	thymeleaf-spring6
 	thymeleaf - java8time // JDK8 Date & TIME API  -> #temporals : 형식화 
-	thymeleaf layout :레이아웃 기능 
+	thymeleaf layout :레이아웃 기능 (효율적인 템플릿 구성)
 	
 2. 특징
 	- Natural Template 

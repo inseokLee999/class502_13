@@ -80,7 +80,7 @@ public class Ex01 {
         RestTemplate restTemplate = new RestTemplate();
 
         RequestJoin form = new RequestJoin();
-        form.setEmail("user77@test.org");
+        form.setEmail("user772@test.org");
         form.setPassword("12345678");
         form.setConfirmPassword("12345678");
         form.setUserName("user77");
@@ -91,6 +91,7 @@ public class Ex01 {
 
         HttpHeaders headers = new HttpHeaders();
 //        headers.add("Content-Type", "application/json");
+//        headers.add("Content-Type", MediaType.APPLICATION_JSON_VALUE);
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<String> entity = new HttpEntity<>(params, headers);

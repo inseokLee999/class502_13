@@ -70,9 +70,12 @@ Errors
 
 UriComponentsBuilder : url 만들어주는 친구
 
-RestTemplate
+RestTemplate : 템플릿을 받아서 object로 반환해주는?
 1. <T> ResponseEntity<T> getForEntity(...)
 2. <T> T getForObject
 3. <T> ResponseEntity<T> postForEntity
 4. <T> T postForObject
 5. <T> ResponseEntity<T> exchange(...)
+
+HttpEntity -> 헤더, 바디등 함께 전송시 필요
+
