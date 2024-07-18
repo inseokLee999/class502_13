@@ -48,17 +48,18 @@ public class ApiMemberControllerTest {
         form.setConfirmPassword("12345678");
         form.setUserName("user99");
         form.setAgree(true);
-
+        System.out.println(form.toString());
         ObjectMapper om = new ObjectMapper();
-        om.registerModule(new JavaTimeModule());
+        om.registerModule(new JavaTimeModule());//??
         String json = om.writeValueAsString(form);
         mockMvc.perform(post("/api/member")
-                .contentType(MediaType.APPLICATION_JSON)//요청 헤더
-                .content(json)//요청 바디
-        ).andDo(print())
+                        .contentType(MediaType.APPLICATION_JSON)//요청 헤더
+                        .content(json)//요청 바디
+                ).andDo(print())
                 .andExpect(status().isCreated());//의도한 대로 결과가 나오는지 테스트
 //        결과는 null 인데
     }
+
     @Test
     void test2() throws Exception {
         mockMvc.perform(get("/api/member/list")).andDo(print()).andExpect(status().isOk());

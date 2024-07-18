@@ -52,10 +52,11 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/mypage").setViewName("mypage/index");
     }
 
-    @Override
-    public void configureViewResolvers(ViewResolverRegistry registry) {
-        registry.jsp("/WEB-INF/templates/", ".jsp");//스프링에서 반환값이 나오면 prefix, suffix사이로 들어가게 된다.
-    }
+    /*    @Override
+        public void configureViewResolvers(ViewResolverRegistry registry) {
+            registry.jsp("/WEB-INF/templates/", ".jsp");//스프링에서 반환값이 나오면 prefix, suffix사이로 들어가게 된다.
+        }*/
+
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         String fileName = "application";
