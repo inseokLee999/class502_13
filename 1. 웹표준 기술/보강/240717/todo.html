@@ -5,18 +5,19 @@
     <script src="todo.js"></script>
 </head>
 <body>
-    <form name="frmTodo" method="post" autocomplete="off">
-        <input type="text" name="todo" placeholder="할일을 입력하세요.">
-        <button type="submit">등록하기</button>
-        <ul id="schedules">
+<form name="frmTodo" method="post" autocomplete="off">
+    <input type="text" name="todo" placeholder="할일을 입력하세요.">
+    <button type="submit">등록하기</button>
+</form>
+<ul id="schedules">
 
-        </ul>
-        <script type="text/html" id="tpl">
-            <li>
-                #todo#
-                
-            </li>
-        </script>
-    </form>
+</ul>
+
+<script type="text/html" id="tpl">
+    <li>
+        #todo#
+        <button type="button">삭제</button>
+    </li>
+</script>
 </body>
 </html>
