@@ -1,0 +1,8 @@
+while문
+1. while 문의 기본 구조
+while 조건식:
+	조건식이 참일 떄 반복 되는 코드
+2. while 문 만들기
+3. while 문 강제로 빠져나가기
+4. while 문의 맨 처음으로 돌아가기 - continue
+5. 무한 루프

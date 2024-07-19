@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Member List</title>
+</head>
+<body>
+<!--
+email("user01@test.org")
+                .password("12345678")
+                .userName("사용자01")
+                .regDt(LocalDateTime.now())
+                .build();
+-->
+<h1>회원 정보</h1>
+<th:block th:object="${member}">
+    <dl>
+        <dt th:text="#{이메일}">이메일</dt>
+        <!--        <dd th:text="${member.email}">user@example.org 개쩐당 이거안나오넹</dd>-->
+        <dd th:text="*{email}"></dd>
+    </dl>
+    <dl>
+        <dt th:text="#{비밀번호}">비밀번호</dt>
+        <dd th:text="*{password}">
+            <!--            <input type="password" readonly="readonly" th:value="${member.password}">-->
+
+        </dd>
+    </dl>
+    <dl>
+        <dt th:text="#{회원명}">회원명</dt>
+        <dd th:utext="*{userName}"></dd>
+        <!--        <dd th:text="${member.userName}"></dd>-->
+    </dl>
+    <dl>
+        <dt th:text="#{가입일}">가입일</dt>
+        <dd th:text="*{regDt}"></dd>
+        <!--        <dd th:text="${member.regDt}"></dd>-->
+    </dl>
+    <a href="#" th:href="@{/member/login}" th:text="#{로그인}">dㄴㅁㅇㄹf</a>
+    <br>
+    <a th:href="@{/member/login(p1=*{email},p2=*{userName})}" th:text="로그인">ㅋㅋ</a><!--쿼리 스트링-->
+    <a th:href="@{/member/info/{email}/{email2}(email=*{email},email3=#{이메일})}" th:text="정보보기"></a><!--변수 설정-->
+</th:block>
+<!--/day05/member/login/?p1=user01...&p2=사용자01-->
+<br>
+<a href="#" th:href="@{/member/login}" th:text="#{로그인}">dㄴㅁㅇㄹf</a>
+<br>
+<a th:href="@{/member/login(p1=${member.email},p2=${member.userName})}" th:text="로그인">ㅋㅋ</a>
+</body>
+</html>

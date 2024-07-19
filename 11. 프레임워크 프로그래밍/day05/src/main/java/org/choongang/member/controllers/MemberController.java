@@ -50,13 +50,32 @@ public class MemberController {
         return "redirect:/member/login";//주소가 바뀜 join쓰면 join 창에서 페이지만 바뀜
     }
 
+    /*    @GetMapping("/list")
+        public String list(@Valid @ModelAttribute MemberSearch search, Errors errors) {
+            log.info(search.toString());
+            boolean result = false;
+            if (!result) {
+                throw new BadRequestException("예외 발생!");
+            }
+            return "member/list";
+        }*/
+
     @GetMapping("/list")
-    public String list(@Valid @ModelAttribute MemberSearch search, Errors errors) {
-        log.info(search.toString());
-        boolean result = false;
-        if (!result) {
-            throw new BadRequestException("예외 발생!");
-        }
+    public String list2(Model model) {
+//        Member member = Member.builder()
+//                .email("user01@test.org")
+//                .password("12345678")
+//                .userName("<h1>사용자01</h1>")
+//                .regDt(LocalDateTime.now())
+//                .build();
+//        model.addAttribute("member", member);
+        List<Member> items = IntStream.rangeClosed(1, 10)
+                .mapToObj(i -> Member.builder()
+                        .email("user" + i + "@test.org")
+                        .userName("사용자" + i)
+                        .regDt(LocalDateTime.now())
+                        .build()).toList();
+        model.addAttribute("items", items);
         return "member/list";
     }
 
@@ -64,9 +83,10 @@ public class MemberController {
     public void info(@PathVariable("id") String email, @PathVariable(name = "id2", required = false) String email2) {
         log.info("email:{}, email2:{}", email, email2);
     }
+
     @ResponseBody
     @GetMapping("/list2")
-    public List<Member> list(){
+    public List<Member> list() {
         List<Member> members = IntStream.rangeClosed(1, 10)
                 .mapToObj(i -> Member.builder()
                         .email("user" + i + "@test.org")
@@ -77,8 +97,9 @@ public class MemberController {
                 .toList();
         return members;
     }
+
     @ExceptionHandler(BadRequestException.class)//발생할 예외의 종류
-    public String errorHandler(BadRequestException e, HttpServletRequest request, HttpServletResponse response, Model model){
+    public String errorHandler(BadRequestException e, HttpServletRequest request, HttpServletResponse response, Model model) {
         e.printStackTrace();
         log.info("MemberController에서 유입");
         return "error/common";

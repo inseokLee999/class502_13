@@ -23,7 +23,7 @@ JSON 응답과 요청 처리
 	-JSON 변환시 제외
 6. 날짜 형식 변환 처리: @JsonFormat 사용
 	- 출력 날짜, 입력 날짜 형식을 한정
-7. @RequestBody JSON 요청 처리
+7. @RequestBody JSON 요청 처리 : 다양한 정보 담기
 커맨드 객체 변환 기준 - Content-Type:application/x-www-form-urlencoded;라서 json으로 요청바디에 넣으면 안된다
 커맨드 객체 앞에 @RequestBody를 추가하면 Content-Type :application/json으로 판단하고 데이터 변환 작업을 한다.
 
