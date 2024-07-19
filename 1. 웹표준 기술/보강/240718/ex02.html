@@ -36,10 +36,14 @@
                 box3El.addEventListener("click", function(e) {
                     e.stopPropagation(); // 이벤트 전파 취소
                     console.log("BOX3 클릭");
-                    
-                    //console.log(e);
+                    // e.stopPropagation();//이벤트 전파 취소 - 동일 요소 클릭한 이벤트만 전파 취소
+                    e.stopImmediatePropagation();// 동일 요소 모든 이벤트 전파 취소
+                    // console.log(e);
 
                 });
+                box3El.addEventListener("click",function(e){
+                    console.log("box3 ㅋㄹ")
+                })
             });
         </script>
         <div class="box box1">
