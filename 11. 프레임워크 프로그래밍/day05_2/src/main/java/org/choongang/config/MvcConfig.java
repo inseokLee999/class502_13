@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.*;
 @Configuration
 @EnableWebMvc
 @ComponentScan("org.choongang")//꼭있어야하는가?dd
-@Import({DBConfig.class, MessageConfig.class})
+//@Import({DBConfig.class, MessageConfig.class})
 public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {

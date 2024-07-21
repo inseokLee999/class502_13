@@ -14,7 +14,8 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class JoinService {
     private final MemberMapper memberMapper;
-    public void process(RequestJoin form){
+
+    public void process(RequestJoin form) {
         String hash = BCrypt.hashpw(form.getPassword(), BCrypt.gensalt(12));
         Member member = Member.builder()
                 .email(form.getEmail())
@@ -23,7 +24,7 @@ public class JoinService {
                 .regDt(LocalDateTime.now())
                 .build();
         int result = memberMapper.register(member);
-        if(result<1){
+        if (result < 1) {
             throw new BadRequestException("회원가입에 실패했습니다.");
         }
     }
