@@ -16,9 +16,20 @@
 1. 이벤트 객체의 공통 프로퍼티
 2. 마우스 이벤트 객체
 - 마우스 이벤트 객체에서 좌표를 담당하는 프로퍼티
+- mouseenter/mouseover : 하위 요소의 이벤트도 중첩으로 발생
+- mouseleave / mouseout : 
 
 3. 키보드 이벤트 객체
+keyup :키를 눌렀다 땔때
+keypress: 키를 누를 때 계속 이벤트 발생
+keydown : 키를 누를 때 이벤트 한번 발생
+- 눌러진 키 정보 - keyCode
+change : 키보드 이벤트 관련 속성 x - 눌려진 키 정보 X
 
+4. 기타 
+select : 값을 선택 하는 경우 -> change
+
+input[type='file']-> 파일 탐색기에서 파일을 선택한 경우 -> change 이벤트 발생
 이벤트 전파
 1. 이벤트의 단계
 1) 캡펴링 단계
@@ -46,4 +57,4 @@ preventDefault()
 - 화살표 함수를 사용하는 방법
 - addEventListener의 두 번째 인수로 객체를 넘기는 방법
 	- handleEvent 
-	
+	객체 안에 handleEvent 를 넣으면 this는 객체 가 된다
