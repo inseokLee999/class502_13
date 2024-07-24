@@ -69,8 +69,15 @@ import { Fragment } from 'react' -> node_modules/react/index.js
 
 mjs
 
-export : 모둘 내보기
-
+export : 모둘 내보내기
+export : 1. default - 한가지 만 내보낼 때, import 할때 이름을 바꿔도 인식가능
+		2. export 여러개 내보낼때, {} 형식으로 보내야하고 이름바꾸려면 as 사용해서 쓴다.
+import : 모듈 불러오기
+import 변수명 from 모듈 경로
+	from 
+		. : 현재 파일의 경로 기준
+		..: 현재 파일의 상위 경로
+		.,.. 없이 모듈 명 ex)react 기준 경로 node_modules 하위 폴더 index.js
 export default 변수명 -> import 변수명(변경 가능) from ...  : 모듈을 1개만 내보기 가능 
 
 export 변수명  : 모듈을 여러개 내보내기 가능  -> import {변수명} from ... / 변수명은 변경 불가
