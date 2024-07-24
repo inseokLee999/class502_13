@@ -100,5 +100,9 @@ JPQL-> Java Persistence Query Language
 	
 	: 게시글 조회수 - UV
 		브라우저 정보(User-Agent) + IP + 회원번호(0)  : UID  + 게시글 번호(ID)
-	
+	@Embedded/ @Embeddable : 사용하면 객체를 통채로 column으로 사용가능(BoardView, BoardViewId)
 4) @GeneratedValue : 자동 증감 번호
+
+JPQL -> 엔티티 기준의 쿼리 언어
+
+5) @CreatedDate, @LastModifiedDate -> 엔티티의 상태 변화에 따라서 값이 업데이트

@@ -1,0 +1,96 @@
+JSX
+1. 코드 이해하기 
+src/App.js
+
+
+
+2. JSX란?
+- JSX는 자바스크립트의 확장 문법이며 XML과 매우 비슷하게 생김
+- 이런 형식으로 작성한 코드는 브라우저에서 실행되기 전에 코드가 번들링되는 과정에서 바벨을 사용하여 일반 자바스크립트 형태의 코드로 변환됩니다.
+
+document.createElement("div");
+...
+
+<div> 
+
+
+JSX 문법 
+1. 감싸인 요소
+- 반드시 하나의 요소에 의하여 감싸여 있어야 합니다.
+- Virtual DOM에서 컴포넌트의 변화를 감지해 낼 때 효율적으로 비교할 수 있도록 컴포넌트 내부는 하나의 DOM 트리 구조로 이루어져야 한다는 규칙 
+- Fragment : 태그로 렌더링 X
+	<> ~ </>
+
+참고) 컴포넌트 
+	- 부분 화면 
+	- 함수형 컴포넌트 
+		- 화살표 함수 권장 
+		
+	- 클래스형 컴포넌트 
+	
+
+
+2. 자바스크립트 표현 
+- 자바스크립트 표현식을 작성하려면 JSX 내부에서 코드를 { }로 감싸면 됩니다.
+
+3. if문 대신 조건부 연산자(삼항조건식)
+4. AND 연산자(&&)를 사용한 조건부 렌더링 
+5. undefined를 렌더링하지 않기
+- 리액트 컴포넌트에서는 함수에서 undefined만 반환하여 렌더링하는 상황을 만들면 안됩니다(오류 발생함)
+- 기본값 지정하여 오류 방지
+
+6. 인라인 스타일링 
+1) CSS는 객체 형태로 넣어 주어야 함 
+2) - 문자가 포함되는 이름이 있을땐 -을 제거하고 카멜 표기법으로 작성 
+	background-color 
+	
+7. class 대신 className 
+
+8. 꼭 닫아야 하는 태그
+	<input></input>
+	<input />
+	
+9. 주석
+- {/* ... */} 형식으로 작성 
+- 시작태그를 여러 줄로 작성할 때는 그 내부에서 // ... 와 같은 형태로 작성할 수 있음 
+
+참고)
+- 직접 작성한 파일, 자원을 로드 
+import ... from "./..." -> 동일 경로 
+import ... from "../..." -> 상위 경로 
+import { Fragment } from 'react' -> node_modules/react/index.js 
+
+-> WebPack
+	-> index.html, ...css, ...js
+
+. 
+..
+
+
+mjs
+
+export : 모둘 내보기
+
+export default 변수명 -> import 변수명(변경 가능) from ...  : 모듈을 1개만 내보기 가능 
+
+export 변수명  : 모듈을 여러개 내보내기 가능  -> import {변수명} from ... / 변수명은 변경 불가
+																									-> as 별칭 
+
+
+ESLint와 Prettier 적용하기
+1. ESLint 
+- 보기 > 문제를 클릭하여 확인 
+
+2. Prettier 
+- VS Code에서 F1을 누르고 format이라고 입력한 후 Enter를 누르면 자동 정리
+- 자동으로 코드 정리를 하려면 
+- 파일 -> 기본 설정 -> 설정 -> Format On Save 옵션 체크 : 저장시 자동 정리
+- 설정 파일 작성 
+.prettierrc
+
+{
+	"singleQuote": true,
+	"semi": true,
+	"useTabs": false,
+	"tabWidth": 2
+}
