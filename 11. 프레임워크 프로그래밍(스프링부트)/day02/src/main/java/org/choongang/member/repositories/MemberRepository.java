@@ -17,6 +17,6 @@ public interface MemberRepository extends JpaRepository<Member, Long>, QuerydslP
 
     List<Member> findByEmailContainingAndUserNameContainingOrderByCreatedAtDesc(String key1, String key2);
 
-    @Query("SELECT m FROM Member m WHERE m.email LIKE :k1 AND m.userName LIKE :k2 order by m.createdAt DESC ")
-    List<Member> getMembers(@Param("k1") String key1,@Param("k2") String key2);
+    @Query("SELECT m FROM Member m WHERE m.email LIKE :k1 AND m.userName LIKE :k2 ORDER BY m.createdAt DESC")
+    List<Member> getMembers(@Param("k1") String key1, @Param("k2") String key2);
 }

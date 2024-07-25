@@ -4,10 +4,24 @@
 3. 다대일(N:1) : @ManyToOne
 4. 다대다(N:M) : @ManyToMany
 
+@JoinColumn : 조인되는 컬럼의 이름을 변경 할 때
+Many 쪽 외래키를 가지고 있다, 자식 테이블, 연관 관계의 주인
+		
+one 쪽 - 부모 테이블
 지연로딩 
-1. FetchType.EAGER
-2. FetchType.LAZY
-
+1. FetchType.EAGER : 즉시 로딩 - 처음 부터 조인 
+2. FetchType.LAZY : 지연 로딩 - 처음에는 현재 엔티티만 조회, 다른 매핑된 엔티티는 사용 할 때만 2차 쿼리 실행
+- Transactional 애너테이션과 함께 많이 사용 왜냐하면 주 앤티티의 영속성이 유지되어야 하니까
+지연로딩은 트랙잭셔널 쓸때가 많다( 메인쪽 앤티티가 갖고와져야하니까)
+- 글로벌 전략으로 지연로딩, 필요 할 때만 즉시 로딩 전략 사용해라
+Fetch 조인 -> 필요한 엔티티만 즉시 로딩 전략을 사용 (필요 시 마다  쿼리하면 N+1 만큼 불필요한 쿼리 발생하는걸 해결)
+1) JPQL 직접 정의 : @Query 애노테이션 정의
+@Query("SELECT b FROM BoardData b LEFT JOIN fetch b.member")
+    List<BoardData> getAllList();
+2) @EntityGraph 애노테이션 : 쿼리 메서드 사용시 정의 가능
+3) QueryDsl 의 fetchJoin() 메서드 사용
+	JPAQueryFactory 
+		- 생성자 매개 변수 EntityManager
 영속성 전이
 1. CASCADE 종류	
 1) PERSIST

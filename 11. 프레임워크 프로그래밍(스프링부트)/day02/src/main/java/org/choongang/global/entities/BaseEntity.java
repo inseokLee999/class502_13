@@ -1,5 +1,6 @@
 package org.choongang.global.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
@@ -10,13 +11,16 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
-@MappedSuperclass//공통으로 사용할 상위 클래스
-@Getter
-@Setter
+@Getter @Setter
+@MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseEntity {
+
     @CreatedDate
+    @Column(updatable = false)
     private LocalDateTime createdAt;
+
     @LastModifiedDate
+    @Column(insertable = false)
     private LocalDateTime modifiedAt;
 }

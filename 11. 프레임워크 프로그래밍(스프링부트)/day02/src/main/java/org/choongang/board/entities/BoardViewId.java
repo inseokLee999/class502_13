@@ -7,11 +7,11 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @EqualsAndHashCode
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Embeddable
 public class BoardViewId {
     private long seq;
-    @Column(name = "_uid")
+    @Column(name="_uid")
     private int uid;
 }

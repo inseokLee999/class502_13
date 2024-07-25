@@ -7,5 +7,4 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableJpaAuditing
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
-
 }

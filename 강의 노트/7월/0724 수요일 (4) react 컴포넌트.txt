@@ -20,7 +20,7 @@
 1) props는 properties를 줄인 표현으로 컴포넌트 속성을 설정할 때 사용하는 요소입니다.
 2) props 값은 해당 컴포넌트를 불러와 사용하는 부모 컴포넌트에서 설정할 수 있습니다.
 3) props 기본값 설정: defaultProps
-4) children
+4) children 태그 안쪽에 있는 내용은
 5) propTypes를 통한 props 검증
 
 3. 클래스형 컴포넌트에서 props 사용하기
