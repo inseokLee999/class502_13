@@ -20,5 +20,13 @@ public class Ex01 {
 
         member.setEmail("test@test.org");
         member.setPassword("12345678");
+        member.setUserName("사용자01");
+
+        em.persist(member);
+        em.flush();
+        em.detach(member);
+        em.flush();
+
+
     }
 }

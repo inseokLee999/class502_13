@@ -1,0 +1,60 @@
+스프링 시큐리티 
+1. 의존성 설치
+2. 스프링 시큐티리 설정 
+3. 회원가입 구현 
+	1) UserDetails 인터페이스 : DTO
+		
+	2) UserDetailsService 인터페이스 : Service
+	
+4. 시큐리티를 이용한 회원 인증(로그인) 구현 
+5. 로그인 정보 가져오기
+1) Principal 요청메서드에 주입  : getName() : 아이디  : 요청 메서드의 주입
+2) SecurityContextHolder를 통해서 가져오기
+3) @AuthenticationPrincipal  : UserDetails 구현 객체 주입, 요청 메서드의 주입시 밖에 사용 가능 
+
+4) Authentication
+	Object getPrincipal(...) : UserDetails의 구현 객체 
+	boolean isAuthenticated() : 인증 여부
+	
+/error 템플릿 경로 : 응답 코드.html
+
+6. thymeleaf-extras-springsecurity6
+	1) xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+		
+	2) sec:authorize="hasAnyAuthority(...)", sec:authorize="hasAuthority(...)"
+	3) sec:authorize="isAuthenticated()" : 로그인 상태 
+	4) sec:authorize="isAnonymous()" : 미로그인 상태 
+	
+	5) csrf 토큰 설정하기 
+		- ${_csrf.token}
+		- ${_csrf.headerName}
+	
+7. 페이지 권한 설정하기 
+	- AuthenticationEntryPoint 
+	
+8.  Spring Data JPA Auditing + Spring Security
+- 로그인 사용자가 자동 DB 추가 
+1) AuditorAware 인터페이스
+
+
+
+POST 요청시 CSRF 토큰 검증 : 검증 실패시 403
+- 자바 스크립트 ajax 형태로 POST 데이터를 전송할시 CSRF 토큰 검증 
+
+
+9. @EnableMethodSecurity
+
+1) @PreAuthorize: 메서드가 실행되기 전에 인증을 거친다.
+2) @PostAuthorize: 메서드가 실행되고 나서 응답을 보내기 전에 인증을 거친다.
+
+3) 사용할수 있는 표현식 
+- hasRole([role]) : 현재 사용자의 권한이 파라미터의 권한과 동일한 경우 true
+- hasAnyRole([role1,role2]) : 현재 사용자의 권한디 파라미터의 권한 중 일치하는 것이 있는 경우 true
+- principal : 사용자를 증명하는 주요객체(User)를 직접 접근할 수 있다.
+- authentication : SecurityContext에 있는 authentication 객체에 접근 할 수 있다.
+- permitAll : 모든 접근 허용
+- denyAll : 모든 접근 비허용
+- isAnonymous() : 현재 사용자가 익명(비로그인)인 상태인 경우 true
+- isRememberMe() : 현재 사용자가 RememberMe 사용자라면 true
+- isAuthenticated() : 현재 사용자가 익명이 아니라면 (로그인 상태라면) true
+- isFullyAuthenticated() : 현재 사용자가 익명이거나 RememberMe 사용자가 아니라면 true

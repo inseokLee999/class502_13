@@ -7,15 +7,15 @@ const Counter2 = () => {
     });//[상태값, 상태를 바꾸는 함수]
     const {number, name} = data;
     const decrease = () => {
-        setData({...data, number: number - 1})
+        // setData({...data, number: number - 1})
+        setData((prev) => ({...prev, number: number - 1}))
     };
     const increase = () => {
         setData({...data, number: number + 1})
     };
     return (
         <>
-            <h1>{number}</h1>
-            <h2>{name}</h2>
+            <h1>{number}{name}</h1>
             <button type={"button"} onClick={decrease}>-1</button>
             <button type={"button"} onClick={increase}>+1</button>
         </>
