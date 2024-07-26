@@ -27,11 +27,11 @@ public class Ex01 {
 //        EntityTransaction tx = em.getTransaction();
 //        tx.begin();//transaction 시작
         Member member = new Member();
-        member.setSeq(1L);
+        //member.setSeq(1L);
         member.setEmail("user01@test.org");
         member.setPassword("12345678");
         member.setUserName("사용자01");
-        member.setCreatedAt(LocalDateTime.now());
+       // member.setCreatedAt(LocalDateTime.now());
 //      영속 상태 - 변화 감지 메모리에 있다, 변화 감지
         em.persist(member);//멤버 엔티티가 영속성 관리 상태가 된다 값의 변화에 따라서 쿼리가 알아서 실행 된다.
 

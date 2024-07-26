@@ -5,6 +5,7 @@ import lombok.*;
 import org.choongang.board.entities.BoardData;
 import org.choongang.global.entities.BaseEntity;
 import org.choongang.member.constants.Authority;
+import org.hibernate.annotations.BatchSize;
 
 import java.util.List;
 
@@ -43,7 +44,8 @@ public class Member extends BaseEntity {
     @JoinColumn(name="profileSeq")
     private MemberProfile profile;
 
+    @BatchSize(size=3)
     @ToString.Exclude // ToString 추가 배제
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member",cascade = {CascadeType.REMOVE,CascadeType.PERSIST},orphanRemoval=true)//DB의 제약 조건 CASCADE ON DELETE 는 아니다(제약 조건이 추가되는것이 아니다.) 자식을 제거하고 부모를 제거
     private List<BoardData> items;
 }
