@@ -1,0 +1,74 @@
+연관 관계 매핑
+1. 일대일(1:1) : @OneToOne
+2. 일대다(1:N) : @OneToMany
+3. 다대일(N:1) : @ManyToOne
+4. 다대다(N:M) : @ManyToMany
+
+@JoinColumn : 조인되는 컬럼의 이름을 변경 할 때
+Many 쪽 외래키를 가지고 있다, 자식 테이블, 연관 관계의 주인
+		
+one 쪽 - 부모 테이블
+지연로딩 
+1. FetchType.EAGER : 즉시 로딩 - 처음 부터 조인 
+2. FetchType.LAZY : 지연 로딩 - 처음에는 현재 엔티티만 조회, 다른 매핑된 엔티티는 사용 할 때만 2차 쿼리 실행
+- Transactional 애너테이션과 함께 많이 사용 왜냐하면 주 앤티티의 영속성이 유지되어야 하니까
+지연로딩은 트랙잭셔널 쓸때가 많다( 메인쪽 앤티티가 갖고와져야하니까)
+- 글로벌 전략으로 지연로딩, 필요 할 때만 즉시 로딩 전략 사용해라
+Fetch 조인 -> 필요한 엔티티만 즉시 로딩 전략을 사용 (필요 시 마다  쿼리하면 N+1 만큼 불필요한 쿼리 발생하는걸 해결)
+1) JPQL 직접 정의 : @Query 애노테이션 정의
+@Query("SELECT b FROM BoardData b LEFT JOIN fetch b.member")
+    List<BoardData> getAllList();
+2) @EntityGraph 애노테이션 : 쿼리 메서드 사용시 정의 가능
+3) QueryDsl 의 fetchJoin() 메서드 사용 (직접조인)
+	JPAQueryFactory 
+		- 생성자 매개 변수 EntityManager
+	JPAQuery
+영속성 전이 @OneToMany 에 적용되는 속성 
+- 부모 엔티티의 영속성 변화 상태를 자식 엔티티에 전달
+1. CASCADE 종류	
+1) PERSIST
+2) MERGE
+3) REMOVE
+4) REFRESH
+5) DETACH
+6) ALL
+
+2. 고아 객체 제거하기
+- @OneToMany 애노테이션에 orphanRemoval=true 옵션을 추가
+
+참고) 수동관리 빈 위에 @Lazy  를 넣으면 처음 사용 할 때(ㄱ사용시점에) 객체를 생성한다.
+
+Auditing을 이용한 엔티티 공통 속성화
+
+1. @MappedSuperclass
+2. AuditorAware 인터페이스 
+3. @EntityListeners
+4. @EnableJpaAuditing
+
+JPQL
+
+
+@Scheduled : 설정된 주기별로 실행될 함수를 설정
+1) fixedDelay
+	작업완료 후 고정 시간 지연 간격
+2) fixedRate
+	고정 시간 간격으로 실행
+3) initialDelay
+	작업 시작전 시간 간격 지연
+4) cron : 상세한 주기 설정할 때 사용
+
+0 0 */1 * * * * (/1 는 매 시간 마다 없으면 몇시 몇분 몇초)
+1시간마다 실행 정각 실행
+0 30 13,18 * * *
+오후 1시 30분
+오후 6시 30분
+cron 표현식의 특수 문자
+*: 모든 값 (예: * 분 필드에 사용하면 모든 분에 실행됨)
+?: 특정 값을 지정하지 않음 (일과 요일 필드에서만 사용 가능)
+-: 범위 지정 (예: 10-12 시 필드에 사용하면 10시, 11시, 12시에 실행됨)
+,: 여러 값 지정 (예: MON,WED,FRI 요일 필드에 사용하면 월, 수, 금에 실행됨)
+/: 간격 지정 (예: 0/5 분 필드에 사용하면 0분부터 시작해 매 5분마다 실행됨)
+L: 마지막 (일 필드에서 L은 그 달의 마지막 날, 요일 필드에서 L은 마지막 주의 해당 요일)
+W: 가장 가까운 평일 (일 필드에서 사용, 예: 15W는 15일에 가장 가까운 평일에 실행)
+#: 몇 번째 주의 요일 (예: MON#2는 매달 두 번째 월요일에 실행)
+5) @EnableScheduling : 스케줄링 설정 활성화
