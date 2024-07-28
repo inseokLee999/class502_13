@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @MapperScan("org.choongang")
 public class DBConfig extends AbstractJdbcConfiguration {
-    @Bean
+    @Bean(destroyMethod = "close")
     public DataSource dataSource() {
         DataSource ds = new DataSource();
         /*연결 설정 S*/
