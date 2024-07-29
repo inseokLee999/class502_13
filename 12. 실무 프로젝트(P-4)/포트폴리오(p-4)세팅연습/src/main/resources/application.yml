@@ -29,12 +29,12 @@ spring:
       max-file-size: 20MB
       max-request-size: 60MB
       file-size-threshold: 30MB
-  thymeleaf:
-    prefix: classpath:/templates/
-    suffix: .html
-    mode: HTML
-    encoding: utf-8
-    cache: false
+  #thymeleaf:
+  #  prefix: classpath:/templates/
+  #  suffix: .html
+  #  mode: HTML
+  #  encoding: utf-8
+  #  cache: false
 file:
   upload:
     path: D:/uploads
