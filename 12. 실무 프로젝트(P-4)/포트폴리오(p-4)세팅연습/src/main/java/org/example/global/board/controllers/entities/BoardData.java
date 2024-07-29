@@ -20,6 +20,7 @@ public class BoardData {
     private String title;//제목
     @Lob
     private String content;//내용
-    @ManyToMany
-    private List<HashTag> tags;//태그
+
+//    @ManyToMany
+//    private List<HashTag> tags;//태그
 }

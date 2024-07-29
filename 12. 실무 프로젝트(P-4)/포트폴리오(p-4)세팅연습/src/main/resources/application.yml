@@ -29,6 +29,12 @@ spring:
       max-file-size: 20MB
       max-request-size: 60MB
       file-size-threshold: 30MB
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: utf-8
+    cache: false
 file:
   upload:
     path: D:/uploads
@@ -38,3 +44,4 @@ logging:
   level:
     org.hibernate.type: trace
     org.hibernate.orm.jdbc.bind: trace
+#    org.thymeleaf: debug

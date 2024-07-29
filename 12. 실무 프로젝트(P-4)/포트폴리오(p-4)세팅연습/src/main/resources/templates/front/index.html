@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<form method="get" action="/board/read">
+<form method="get" th:action="@{/board/read}">
     <button type="submit">게시판으로 가기</button>
 </form>
-<form method="get" action="/member/join">
-    <button type="submit">회원가입으로 가기</button>
-</form>
+<button th:onclick="|window.location.href='@{/member/join}'|">회원가입하러가기</button>
 </body>
-</html>
+</html>>
