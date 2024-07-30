@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/main}">
 <main layout:fragment="content">
-    <form method="get" th:action="@{/board/list}">
+    <a th:href="@{/board/list}">
         <button type="submit">게시판 보러 가기</button>
-    </form>
+    </a>
 </main>
 </html>

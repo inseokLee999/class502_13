@@ -40,6 +40,7 @@ public class BoardController {
 //        items = boardDataRepository.findAll();
         model.addAttribute("items", items);
         commonProcess("", model);
+        setPageTitle("게시판 목록",model);
 //        model.addAttribute("addCss","list");
         return "board/list";
     }
@@ -47,6 +48,7 @@ public class BoardController {
     @GetMapping("/write")
     public String write(@ModelAttribute BoardPost item, Model model) {
         commonProcess("write", model);
+        setPageTitle("게시판 쓰기",model);
         return "board/write";
     }
 
@@ -66,6 +68,7 @@ public class BoardController {
     public String update(@PathVariable("seq") long seq, Model model) {
         commonProcess("update", model);
         Optional<BoardData> boardData = boardDataRepository.findById(seq);
+        setPageTitle("게시글 수정",model);
         if (boardData.isPresent()) {
             BoardPost boardPost = new ModelMapper().map(boardData.get(), BoardPost.class);
             model.addAttribute("boardPost", boardPost);
@@ -90,6 +93,7 @@ public class BoardController {
     public String view(@PathVariable("seq") long seq, Model model) {
         BoardData boardData = boardInfoService.get(seq);
         model.addAttribute("boardData", boardData);
+        setPageTitle("게시글 보기",model);
         commonProcess("view", model);
         return "board/view";
     }
@@ -106,5 +110,8 @@ public class BoardController {
 
         model.addAttribute("addCss", addCss);
         model.addAttribute("addScript", addScript);
+    }
+    private void setPageTitle(String title, Model model){
+        model.addAttribute("pageTitle", title);
     }
 }

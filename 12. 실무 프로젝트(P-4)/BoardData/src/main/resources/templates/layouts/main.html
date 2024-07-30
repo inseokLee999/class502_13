@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>
+        게시판 평가
         <th:block th:if="${pageTitle != null}"
-        th:text="${#strings.concat(pageTitle, ' - ')}"></th:block>
-        사이트 제목
+        th:text="${#strings.concat(' - ',pageTitle)}"></th:block>
     </title>
     <link rel="stylesheet" type="text/css" th:href="@{/board/css/style.css}">
     <link th:if="${addCss != null}" rel="stylesheet" type="text/css"

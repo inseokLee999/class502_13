@@ -8,7 +8,7 @@
             <li><a href="#" th:text="#{소개}">소개</a></li>
             <li><a href="#" th:text="#{서비스}">서비스</a></li>
             <li><a href="#" th:text="#{문의}">문의</a></li>
-            <li><a href="#" th:text="#{게시판}">게시판</a></li>
+            <li><a th:href="@{/board/list}" th:text="#{게시판}">게시판</a></li>
         </ul>
     </nav>
 </header>
