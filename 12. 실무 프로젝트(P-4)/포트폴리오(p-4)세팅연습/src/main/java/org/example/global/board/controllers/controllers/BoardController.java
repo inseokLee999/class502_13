@@ -34,7 +34,7 @@ public class BoardController {
     @GetMapping("/read")
     public String read(Model model) {
         List<BoardData> items = boardDataRepository.findAll();
-        model.addAttribute("items", items);
+        model.addAttribute("i   tems", items);
         return "front/board/read";
     }
 

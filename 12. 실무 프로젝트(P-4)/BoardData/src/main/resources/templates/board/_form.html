@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<form method="post" autocomplete="off" th:action="@{/board/save}" th:object="${boardPost}" th:fragment="saveBoard">
+    <dl>
+        <input type="hidden" th:field="*{seq}" />
+        <dt th:text="#{제목}"></dt>
+        <dd>
+            <input type="text" name="title" th:field="*{title}">
+            <div class="error" th:each="err:${#fields.errors('title')}" th:text="${err}"></div>
+
+        </dd>
+    </dl>
+    <dl>
+        <dt th:text="#{작성자}"></dt>
+        <dd>
+            <input type="text" name="author" th:field="*{author}">
+            <div class="error" th:each="err:${#fields.errors('author')}" th:text="${err}"></div>
+        </dd>
+    </dl>
+    <dl>
+        <dt th:text="#{내용}"></dt>
+        <dd>
+            <textarea type="text" name="content" th:field="*{content}"></textarea>
+            <div class="error" th:each="err:${#fields.errors('content')}" th:text="${err}"></div>
+        </dd>
+    </dl>
+    <div class="buttons">
+        <button type="submit" th:text="#{작성하기}"></button>
+        <button type="reset" th:text="#{다시쓰기}"></button>
+    </div>
+</form>
+</html>
