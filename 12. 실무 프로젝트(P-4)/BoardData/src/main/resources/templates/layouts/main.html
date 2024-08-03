@@ -14,7 +14,7 @@
     <th:block layout:fragment="addCss"></th:block>
 
     <script th:src="@{/board/js/common.js}"></script>
-    <script th:if="${addScript != null}" th:each="jsFile : ${addScript}" th:src="@{/front/js/{file}.js(file=${jsFile})}"></script>
+    <script th:if="${addScript != null}" th:each="jsFile : ${addScript}" th:src="@{/js/{file}.js(file=${jsFile})}"></script>
     <th:block layout:fragment="addScript"></th:block>
 </head>
 <body>

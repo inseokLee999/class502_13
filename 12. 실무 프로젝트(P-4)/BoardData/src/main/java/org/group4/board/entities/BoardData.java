@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.group4.global.entities.BaseEntity;
+import org.group4.global.entities.BaseMemberEntity;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
@@ -15,7 +16,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BoardData extends BaseEntity {
+public class BoardData extends BaseMemberEntity {
     @Id
     @GeneratedValue
     private Long seq;

@@ -1,7 +1,11 @@
 스프링 파일 업로드(MultipartFile)
 1. multipart란?
 	<form> 속성 : enctype="multipart/form-data"
-	
+	여러개일 때는 multiple
+	<input type = "hidden" name = "gid" value = "...">
+	<input type = "hidden" name = "location" value = "...">
+	또는 
+	<form method="post" action="..?gid=..&location=.."..>
 	- multipart 
 		- 일반 양식 데이터의 파트 
 		- 파일 데이터(바이너리 데이터) 파드 
