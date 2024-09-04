@@ -10,7 +10,7 @@ const TodoContainer = () => {
     { id: 2, title: '할일2', done: false },
     { id: 3, title: '할일3', done: false },
   ]);
-
+  const [form, setForm] = useState({});
   const onToggle = (id) => {
     /*
     const newItems = items.map((item) =>
@@ -39,9 +39,15 @@ const TodoContainer = () => {
     //제거는 주로 filter 매서드
     setItems(items => items.filter(item => item.id !== id));
   };
+  const onSubmit  = (e) => {
+    e.preventDefault();// 양식 기본 동작 차단
+  };
+  const onChange = (e) => {
+
+  }
   return (
     <>
-      <TodoForm />
+      <TodoForm onSubmit={onSubmit} />
       <TodoList items={items} onToggle={onToggle} onRemove={onRemove} />
     </>
   );
