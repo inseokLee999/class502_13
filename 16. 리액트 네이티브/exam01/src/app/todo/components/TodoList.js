@@ -7,15 +7,20 @@ const TodoList = ({ items, onToggle, onRemove }) => {
     <ul>
       {items &&
         items.length > 0 &&
-        items.map(({ id, title, done }) => (
+        items.map(({ id, title, content, done }) => (
           <li key={id} onClick={() => onToggle(id)}>
-            {done ? <FaCheckSquare /> : <FaRegCheckSquare />}
-            {title}
-            <CiSquareRemove onClick={() => onRemove(id)} />
+            <div>
+              {done ? <FaCheckSquare /> : <FaRegCheckSquare />}
+              {title}
+              <CiSquareRemove onClick={() => onRemove(id)} />
+            </div>
+            <div>
+              {content && <div>{content}</div>}
+            </div>
           </li>
         ))}
     </ul>
   );
 };
 
-export default TodoList;
+export default React.memo(TodoList);
