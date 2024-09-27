@@ -1,1 +1,0 @@
-"use strict";exports.id=98,exports.ids=[98],exports.modules={4098:(e,s,r)=>{r.r(s),r.d(s,{default:()=>d});var t=r(326);let d=()=>t.jsx("h1",{children:"지연로딩.."})}};
