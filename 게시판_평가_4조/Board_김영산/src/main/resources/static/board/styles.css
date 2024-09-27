@@ -1,0 +1,71 @@
+/* 기본 스타일 설정 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+}
+
+/* 테이블 스타일 */
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+    background-color: #333;
+    color: #fff;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+th {
+    font-weight: bold;
+}
+
+/* 링크 스타일 */
+a {
+    color: #007BFF;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+a:hover {
+    text-decoration: underline;
+    background-color: #e9ecef;
+    transition: background-color 0.3s ease;
+}
+
+/* 새 게시물 작성 링크 */
+a[href="/board/page"] {
+    display: block;
+    width: 160px;
+    margin: 20px auto;
+    text-align: center;
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+a[href="/board/page"]:hover {
+    background-color: #218838;
+}

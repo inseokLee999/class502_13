@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판 목록</title>
+    <link rel="stylesheet" href="/board/styles.css">
+</head>
+<body>
+<h1>게시판 목록</h1>
+<table>
+    <thead>
+    <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>설정</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- 게시물 데이터 반복문 예시 -->
+    <tr th:each="board : ${boardData}">
+        <td th:text="${board.seq}"></td>
+        <td th:text="${board.title}"></td>
+        <td th:text="${board.author}"></td>
+        <td>
+            <a th:href="@{'/board/detail/' + ${board.seq}}">상세보기</a>
+            <a th:href="@{'/board/update/' + ${board.seq}}">수정</a>
+            <a th:href="@{'/board/delete/' + ${board.seq}}">삭제</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="/board/page">새 게시물 작성</a>
+</body>
+</html>

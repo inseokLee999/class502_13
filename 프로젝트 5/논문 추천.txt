@@ -1,0 +1,100 @@
+1. 키워드 매칭 (Keyword Matching)
+   원리: 논문의 키워드나 제목에서 특정 키워드를 검색하여 사용자가 관심을 가질 만한 논문을 추천합니다.
+   방법:
+         사용자가 관심 있는 키워드를 입력하거나, 과거에 읽은 논문에서 주요 키워드를 추출합니다.
+         데이터베이스에서 해당 키워드를 포함하는 논문을 검색하여 추천합니다.
+   장점: 구현이 간단하며, 명확한 키워드를 중심으로 추천이 이루어집니다.
+   단점: 사용자의 깊은 관심사를 반영하기 어렵고, 키워드가 불명확하거나 중복될 경우 부정확한 추천이 발생할 수 있습니다.
+2. 메타데이터 기반 필터링
+   원리: 논문의 메타데이터(저자, 출판 연도, 저널, 인용 수 등)를 기반으로 필터링하여 추천합니다.
+   방법:
+         사용자가 선호하는 저자, 특정 저널, 또는 출판 연도 범위 등을 기준으로 논문을 필터링합니다.
+         예를 들어, 특정 저자의 논문이나 최근 5년간의 논문만을 추천합니다.
+   장점: 사용자가 선호하는 논문 특성을 반영하여 추천할 수 있습니다.
+   단점: 사용자의 명시적인 선호를 기준으로 하므로, 새로운 주제나 저자를 발견하는 데 제한적입니다.
+3. 인용 수 기반 추천 (Citation Count-Based Recommendation)
+   원리: 인용 수가 많은 논문을 추천하여, 영향력 있는 연구를 사용자에게 제시합니다.
+   방법:
+         논문 데이터베이스에서 인용 수가 높은 논문을 우선적으로 추천합니다.
+         사용자가 특정 주제를 선택하면, 해당 주제에서 인용 수가 높은 논문을 필터링하여 추천할 수 있습니다.
+   장점: 일반적으로 중요한 연구 결과를 포함하는 논문을 추천할 수 있습니다.
+   단점: 최신 연구는 인용 수가 적을 수 있으며, 특정 주제의 인기 논문에만 집중될 수 있습니다.
+4. 랜덤 추천 (Random Recommendation)
+   원리: 무작위로 논문을 추천하여 사용자가 예상치 못한 논문을 발견할 수 있도록 합니다.
+   방법:
+          사용자에게 관련성 없는 다양한 주제의 논문을 무작위로 추천합니다.
+          특정 주제나 키워드에 대해 무작위로 선택하여 다양성을 제공할 수 있습니다.
+   장점: 예상치 못한 논문을 발견할 수 있는 기회를 제공합니다.
+   단점: 추천의 품질이 낮아질 수 있으며, 사용자가 관심을 가질 가능성이 적습니다.
+5. 카테고리 기반 추천 (Category-Based Recommendation)
+   원리: 논문을 특정 카테고리나 주제에 따라 분류하여, 사용자가 선택한 카테고리 내에서 추천합니다.
+   방법:
+          논문을 미리 정의된 카테고리나 주제에 따라 분류합니다.
+          사용자가 관심 있는 카테고리를 선택하면, 해당 카테고리 내에서 논문을 추천합니다.
+   장점: 특정 주제에 집중하여 사용자가 원하는 논문을 쉽게 찾을 수 있습니다.
+   단점: 카테고리 범위가 넓거나, 잘못 분류된 논문이 있을 경우 정확성이 떨어질 수 있습니다.
+6. 사용자 정의 규칙 기반 추천 (User-Defined Rule-Based Recommendation)
+   원리: 사용자가 자신만의 추천 규칙을 정의하여 논문을 추천받는 방식입니다.
+   방법:
+         사용자가 선호하는 저자, 주제, 키워드, 출판 연도 등을 기준으로 규칙을 설정합니다.
+         이 규칙에 따라 논문을 필터링하고 추천합니다.
+   장점: 사용자가 직접 설정한 기준에 따라 맞춤형 추천이 가능합니다.
+   단점: 사용자가 규칙을 정확하게 설정하지 않으면 부정확한 추천이 될 수 있습니다.
+학문 분야(Field) / 세부 전공(Subfield)
+1. 자연과학 (Natural Sciences)
+   물리학 (Physics)
+   화학 (Chemistry)
+   지구과학 (Earth Sciences)
+   생명과학 (Biology)
+   천문학 (Astronomy)
+   수학 (Mathematics)
+2. 공학 및 기술 (Engineering and Technology)
+   컴퓨터 과학 (Computer Science)
+   전자공학 (Electrical Engineering)
+   기계공학 (Mechanical Engineering)
+   토목공학 (Civil Engineering)
+   화학공학 (Chemical Engineering)
+   재료공학 (Materials Science)
+3. 의학 및 보건학 (Medical and Health Sciences)
+   임상의학 (Clinical Medicine)
+   간호학 (Nursing)
+   약학 (Pharmacy)
+   공중보건 (Public Health)
+   수의학 (Veterinary Science)
+   의생명과학 (Biomedical Science)
+4. 인문학 (Humanities)
+   철학 (Philosophy)
+   역사학 (History)
+   언어학 (Linguistics)
+   문학 (Literature)
+   종교학 (Religious Studies)
+   예술 (Arts)
+5. 사회과학 (Social Sciences)
+   심리학 (Psychology)
+   경제학 (Economics)
+   사회학 (Sociology)
+   정치학 (Political Science)
+   인류학 (Anthropology)
+   법학 (Law)
+   교육학 (Education)
+6. 농업 및 생명공학 (Agricultural and Environmental Sciences)
+   농업학 (Agricultural Science)
+   환경과학 (Environmental Science)
+   생태학 (Ecology)
+   임학 (Forestry)
+   수산학 (Fisheries Science)
+   식품과학 (Food Science)
+7. 경영 및 경제 (Business and Economics)
+   경영학 (Business Administration)
+   마케팅 (Marketing)
+   재무학 (Finance)
+   회계학 (Accounting)
+   국제경영 (International Business)
+   산업공학 (Industrial Engineering)
+8. 예술 및 디자인 (Arts and Design)
+   시각예술 (Visual Arts)
+   음악 (Music)
+   디자인 (Design)
+   건축학 (Architecture)
+   연극 및 공연예술 (Theatre and Performing Arts)
+   영화학 (Film Studies)
