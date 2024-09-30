@@ -1,0 +1,24 @@
+From cbb85ebc0005244cf45dadc7df9c87b44132fabe Mon Sep 17 00:00:00 2001
+From: inseokLee999 <syt06137@naver.com>
+Date: Fri, 27 Sep 2024 17:45:53 +0900
+Subject: [PATCH] =?UTF-8?q?=ED=86=A0=ED=81=B0=20=EC=82=AD=EC=A0=9C?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ 프로젝트 4/깃허브 토큰.txt | 1 -
+ 1 file changed, 1 deletion(-)
+ delete mode 100644 프로젝트 4/깃허브 토큰.txt
+
+diff --git a/프로젝트 4/깃허브 토큰.txt b/프로젝트 4/깃허브 토큰.txt
+deleted file mode 100644
+index 75fbde8..0000000
+--- a/프로젝트 4/깃허브 토큰.txt	
++++ /dev/null
+@@ -1 +0,0 @@
+-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
+\ No newline at end of file
+-- 
+2.44.0.windows.1
+
